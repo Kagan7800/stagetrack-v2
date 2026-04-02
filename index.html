@@ -1,35 +1,13 @@
-﻿<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StageTrack Pro | Tactical Interface</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div id="master-stage" role="main">
-        <aside class="sidebar" aria-label="Left Camera Feeds">
-            <div class="tile active-feed"><span class="badge">IC</span></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-        </aside>
-        <section id="pc-container">
-            <h1 id="status-title">SYSTEM CONTROL</h1>
-            <nav class="btn-grid" aria-label="Mode Selection">
-                <button class="control-btn" data-mode="Grid">Grid</button>
-                <button class="control-btn" data-mode="Spotlight">Spot</button>
-                <button class="control-btn" data-mode="Presenter">Pres</button>
-                <button class="control-btn" data-mode="Kid Mode" data-kid="true">Kid Mode</button>
-            </nav>
-        </section>
-        <aside class="sidebar" aria-label="Right Camera Feeds">
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-        </aside>
-    </div>
-    <script src="main.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>my-dashboard</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
