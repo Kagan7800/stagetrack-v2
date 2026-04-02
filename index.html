@@ -2,12 +2,35 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>my-dashboard</title>
+    <title>StageTrack Pro</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <div id="master-stage">
+      <div class="sidebar">
+        <div class="tile"><span class="badge">CAM</span></div>
+        <div class="tile"><span class="badge">MIC</span></div>
+        <div class="tile"><span class="badge">LIGHT</span></div>
+      </div>
+
+      <div id="pc-container">
+        <h2 id="status-title">STANDBY</h2>
+        <div class="btn-grid">
+          <button class="control-btn" data-mode="live" data-kid="false">LIVE</button>
+          <button class="control-btn" data-mode="record" data-kid="false">RECORD</button>
+          <button class="control-btn" data-mode="pause" data-kid="false">PAUSE</button>
+          <button class="control-btn" data-mode="kid mode" data-kid="true">KID MODE</button>
+        </div>
+      </div>
+
+      <div class="sidebar">
+        <div class="tile"><span class="badge">AUD</span></div>
+        <div class="tile"><span class="badge">VID</span></div>
+        <div class="tile"><span class="badge">NET</span></div>
+      </div>
+    </div>
+
+    <script type="module" src="main.js"></script>
   </body>
 </html>
