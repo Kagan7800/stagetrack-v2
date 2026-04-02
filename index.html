@@ -2,12 +2,36 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>my-dashboard</title>
+    <title>StageTrack Pro</title>
+    <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <div id="master-stage">
+      <div class="sidebar">
+        <div class="tile"><span class="badge">CAM 1</span></div>
+        <div class="tile"><span class="badge">CAM 2</span></div>
+        <div class="tile"><span class="badge">CAM 3</span></div>
+        <div class="tile"><span class="badge">CAM 4</span></div>
+      </div>
+
+      <div id="pc-container">
+        <h1 id="status-title">STANDBY</h1>
+        <div class="btn-grid">
+          <button class="control-btn active" data-mode="standby" data-kid="false">STANDBY</button>
+          <button class="control-btn" data-mode="live" data-kid="false">LIVE</button>
+          <button class="control-btn" data-mode="brb" data-kid="false">BRB</button>
+          <button class="control-btn" data-mode="kids" data-kid="true">KIDS</button>
+        </div>
+      </div>
+
+      <div class="sidebar">
+        <div class="tile"><span class="badge">MIC 1</span></div>
+        <div class="tile"><span class="badge">MIC 2</span></div>
+        <div class="tile"><span class="badge">SFX</span></div>
+        <div class="tile"><span class="badge">MUSIC</span></div>
+      </div>
+    </div>
+    <script type="module" src="/main.js"></script>
   </body>
 </html>
