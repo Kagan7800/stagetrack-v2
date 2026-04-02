@@ -1,0 +1,52 @@
+﻿:root {
+    --neon: #00E0FF;
+    --gold: #FFCE00;
+    --bg: #050a1a;
+    --transition-speed: 0.3s;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    background-color: var(--bg);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    overflow: hidden;
+}
+#master-stage {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    transform: scale(1.4);
+}
+.sidebar { display: flex; flex-direction: column; gap: 12px; }
+.tile {
+    width: 100px; height: 100px;
+    border: 2px solid var(--neon);
+    background: rgba(0, 224, 255, 0.05);
+    position: relative;
+}
+.badge {
+    position: absolute; top: 5px; left: 5px;
+    background: var(--gold); color: #000;
+    font-size: 10px; font-weight: 900; padding: 2px 6px;
+}
+#pc-container {
+    width: 450px; height: 450px;
+    background: #000; border: 8px solid var(--gold);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    transition: all var(--transition-speed) ease;
+}
+#status-title {
+    color: var(--gold); letter-spacing: 4px; margin-bottom: 30px;
+}
+.btn-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+.control-btn {
+    background: transparent; border: 2px solid var(--gold);
+    color: var(--gold); padding: 12px 24px; font-weight: bold; cursor: pointer;
+}
+.control-btn:hover, .control-btn.active { background: var(--gold); color: #000; }
+.kid-active { border-color: var(--neon) !important; box-shadow: 0 0 50px rgba(0, 224, 255, 0.4) !important; }
+.kid-text { color: var(--neon) !important; text-shadow: 0 0 10px var(--neon) !important; }
