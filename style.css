@@ -5,14 +5,8 @@
     --transition-speed: 0.3s;
 }
 
-/* --- BLOCK 1: Global Styles --- */
-* { 
-    box-sizing: border-box; 
-    margin: 0; 
-    padding: 0; 
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* --- BLOCK 2: Body/Background --- */
 body { 
     background-color: var(--bg);
     background-image: url('b1.png'), url('b2-.png'); 
@@ -25,9 +19,11 @@ body {
     align-items: center;
     height: 100vh;
     overflow: hidden;
-} /* This } closes the body block */
+    color: var(--neon);
+    font-family: 'Courier New', monospace;
+}
 
-/* --- BLOCK 3: Button Images --- */
+/* --- BUTTON IMAGES --- */
 .btn-b1 {
     background-image: url('b1.png') !important;
     background-size: contain !important;
@@ -42,4 +38,47 @@ body {
     background-repeat: no-repeat !important;
     background-position: center !important;
     color: transparent !important;
+}
+
+/* --- INTERFACE --- */
+#hw-layer {
+    width: 320px;
+    background: rgba(5, 5, 5, 0.95);
+    border: 2px solid #27272a;
+    padding: 20px;
+    position: relative;
+    z-index: 10;
+}
+
+.button-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.control-btn {
+    background: #0a0a0a;
+    border: 1px solid #27272a;
+    color: var(--neon);
+    padding: 12px;
+    font-family: inherit;
+    font-weight: bold;
+    cursor: pointer;
+    min-height: 60px;
+}
+
+.control-btn:hover {
+    border-color: var(--neon);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+#log-container {
+    font-size: 10px;
+    height: 120px;
+    overflow: hidden;
+    color: var(--gold);
+    margin-top: 15px;
+    border-top: 1px solid #27272a;
+    padding-top: 10px;
 }
