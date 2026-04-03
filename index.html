@@ -1,36 +1,61 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>StageTrack Pro</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div id="master-stage">
-      <div class="sidebar">
-        <div class="tile"><span class="badge">CAM</span></div>
-        <div class="tile"><span class="badge">MIC</span></div>
-        <div class="tile"><span class="badge">LIGHT</span></div>
-      </div>
-
-      <div id="pc-container">
-        <h2 id="status-title">STANDBY</h2>
-        <div class="btn-grid">
-          <button class="control-btn" data-mode="live" data-kid="false">LIVE</button>
-          <button class="control-btn" data-mode="record" data-kid="false">RECORD</button>
-          <button class="control-btn" data-mode="pause" data-kid="false">PAUSE</button>
-          <button class="control-btn" data-mode="kid mode" data-kid="true">KID MODE</button>
+<head>
+    <meta charset="UTF-8">
+    <title>SNTL-X // OS v2.1.3</title>
+    <style>
+        :root { --cyan: #00ffff; --gold: #ffce00; --bg: #000; --brd: #27272a; }
+        body { 
+            background: var(--bg); color: var(--cyan); 
+            font-family: 'Courier New', monospace; 
+            display: flex; justify-content: center; align-items: center; 
+            height: 100vh; margin: 0; overflow: hidden; 
+        }
+        body::before { 
+            content: " "; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03)); 
+            z-index: 100; background-size: 100% 2px, 3px 100%; pointer-events: none; 
+        }
+        #hw-layer { 
+            width: 320px; background: rgba(5, 5, 5, 0.95); 
+            border: 2px solid var(--brd); padding: 20px; 
+            position: relative; z-index: 10; 
+        }
+        .button-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+        .control-btn { 
+            background: #0a0a0a; border: 1px solid var(--brd); color: var(--cyan); 
+            padding: 12px; font-family: inherit; font-weight: bold; cursor: pointer; 
+        }
+        .control-btn:hover { border-color: var(--cyan); box-shadow: 0 0 10px rgba(0, 255, 255, 0.3); }
+        #log-container { 
+            font-size: 10px; height: 120px; overflow: hidden; 
+            color: var(--gold); margin-top: 15px; border-top: 1px solid var(--brd); padding-top: 10px; 
+        }
+    </style>
+</head>
+<body>
+    <main id="hw-layer">
+        <div style="font-size: 11px; border-bottom: 1px solid var(--brd); padding-bottom: 8px; text-align: center;">
+            [SNTL_HARDWARE_INTERFACE]
         </div>
-      </div>
-
-      <div class="sidebar">
-        <div class="tile"><span class="badge">AUD</span></div>
-        <div class="tile"><span class="badge">VID</span></div>
-        <div class="tile"><span class="badge">NET</span></div>
-      </div>
-    </div>
-
-    <script type="module" src="main.js"></script>
-  </body>
+        <div class="button-grid">
+            <button class="control-btn" onclick="execute('B1')">B1</button>
+            <button class="control-btn" onclick="execute('B2')">B2</button>
+            <button class="control-btn" onclick="execute('SCAN')">SCAN</button>
+            <button class="control-btn" onclick="execute('STATUS')">STATUS</button>
+        </div>
+        <div id="log-container"></div>
+    </main>
+    <script>
+        const log = document.getElementById('log-container');
+        function addLog(m) {
+            const e = document.createElement('div');
+            e.innerHTML = `> ${m}`;
+            log.prepend(e);
+        }
+        function execute(c) { addLog(`CMD: ${c}_OK`); }
+        window.onload = () => { addLog("SYSTEM_READY_V2.1.3"); };
+    </script>
+</body>
 </html>
