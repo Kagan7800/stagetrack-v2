@@ -5,13 +5,23 @@
     --transition-speed: 0.3s;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body {
+body { 
     background-color: var(--bg);
-    height: 100vh;
+    /* b1.png is the TOP layer, b2-.png is the BOTTOM layer */
+    background-image: url('b1.png'), url('b2-.png'); 
+    
+    /* Position b1 at the top center, and b2- in the middle */
+    background-position: center 20px, center center;
+    background-repeat: no-repeat, no-repeat;
+    
+    /* 'contain' keeps the banner from stretching, 'cover' fills the screen with the background */
+    background-size: 300px auto, cover; 
+    
+    margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Segoe UI', system-ui, sans-serif;
+    height: 100vh;
     overflow: hidden;
 }
 #master-stage {
