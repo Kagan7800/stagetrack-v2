@@ -1,4 +1,4 @@
-﻿document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('pc-container');
     const title = document.getElementById('status-title');
     const btnGrid = document.querySelector('.btn-grid');
