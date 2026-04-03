@@ -50,3 +50,7 @@ body {
 .control-btn:hover, .control-btn.active { background: var(--gold); color: #000; }
 .kid-active { border-color: var(--neon) !important; box-shadow: 0 0 50px rgba(0, 224, 255, 0.4) !important; }
 .kid-text { color: var(--neon) !important; text-shadow: 0 0 10px var(--neon) !important; }
+.tile.active-feed {
+    border-color: var(--gold);
+    background: rgba(255, 206, 0, 0.08);
+}

@@ -8,26 +8,24 @@
 </head>
 <body>
     <div id="master-stage" role="main">
-        <aside class="sidebar" aria-label="Left Camera Feeds">
-            <div class="tile active-feed"><span class="badge">IC</span></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
+        <aside class="sidebar" aria-label="Left Feeds">
+            <div class="tile active-feed"><span class="badge">CAM</span></div>
+            <div class="tile"><span class="badge">MIC</span></div>
+            <div class="tile"><span class="badge">LIGHT</span></div>
         </aside>
         <section id="pc-container">
-            <h1 id="status-title">SYSTEM CONTROL</h1>
+            <h1 id="status-title">STANDBY</h1>
             <nav class="btn-grid" aria-label="Mode Selection">
-                <button class="control-btn" data-mode="Grid">Grid</button>
-                <button class="control-btn" data-mode="Spotlight">Spot</button>
-                <button class="control-btn" data-mode="Presenter">Pres</button>
-                <button class="control-btn" data-mode="Kid Mode" data-kid="true">Kid Mode</button>
+                <button class="control-btn" data-mode="live">LIVE</button>
+                <button class="control-btn" data-mode="record">RECORD</button>
+                <button class="control-btn" data-mode="pause">PAUSE</button>
+                <button class="control-btn" data-mode="kid mode" data-kid="true">KID MODE</button>
             </nav>
         </section>
-        <aside class="sidebar" aria-label="Right Camera Feeds">
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
+        <aside class="sidebar" aria-label="Right Feeds">
+            <div class="tile"><span class="badge">AUD</span></div>
+            <div class="tile"><span class="badge">VID</span></div>
+            <div class="tile"><span class="badge">NET</span></div>
         </aside>
     </div>
     <script src="main.js"></script>
