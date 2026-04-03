@@ -23,26 +23,9 @@ body {
     font-family: 'Courier New', monospace;
 }
 
-/* --- BUTTON IMAGES --- */
-.btn-b1 {
-    background-image: url('b1.png') !important;
-    background-size: contain !important;
-    background-repeat: no-repeat !important;
-    background-position: center !important;
-    color: transparent !important;
-}
-
-.btn-b2 {
-    background-image: url('b2-.png') !important;
-    background-size: contain !important;
-    background-repeat: no-repeat !important;
-    background-position: center !important;
-    color: transparent !important;
-}
-
-/* --- INTERFACE --- */
+/* --- INTERFACE CONTAINER --- */
 #hw-layer {
-    width: 320px;
+    width: 400px; /* Slightly wider to show off the horizontal button */
     background: rgba(5, 5, 5, 0.95);
     border: 2px solid #27272a;
     padding: 20px;
@@ -52,9 +35,29 @@ body {
 
 .button-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr; /* Two columns for B2, SCAN, STATUS */
     gap: 12px;
     margin-top: 20px;
+}
+
+/* --- THE HORIZONTAL B1 BUTTON --- */
+.btn-b1 {
+    grid-column: 1 / -1; /* This forces B1 to span across both columns (edge to edge) */
+    width: 100%;
+    background-image: url('b1.png') !important;
+    background-size: cover !important; /* 'cover' makes the image fill the whole wide button */
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    color: transparent !important;
+    min-height: 80px !important; /* Taller height for the banner look */
+}
+
+.btn-b2 {
+    background-image: url('b2-.png') !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    color: transparent !important;
 }
 
 .control-btn {
