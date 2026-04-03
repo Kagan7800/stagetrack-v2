@@ -39,6 +39,7 @@ body {
     align-items: center; justify-content: center;
     transition: all var(--transition-speed) ease;
 }
+#b1-logo { width: 120px; height: 120px; margin-bottom: 16px; }
 #status-title {
     color: var(--gold); letter-spacing: 4px; margin-bottom: 30px;
 }
