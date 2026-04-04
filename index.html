@@ -1,67 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Full Background Interface</title>
-    <style>
-        /* 1. Reset margins and fix height */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SNTL-X // OS v3.0.0</title>
+  <!-- Best-practice cache control for GitHub Pages: use a versioned query string. -->
+  <style>
+    /* 1) RESET & FULL SCREEN LAYOUT */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        html, body {
-            height: 100%;
-            width: 100%;
-        }
+    html, body {
+      height: 100%;
+      width: 100%;
+      background: #000;
+      overflow: hidden; /* keep B1/B2 locked, prevent scroll */
+      font-family: monospace;
+    }
 
-        /* 2. The Background Logic */
-        body {
-            /* REPLACE 'background.svg' WITH YOUR ACTUAL FILENAME */
-            background-image: url('background.svg'); 
-            
-            /* 'contain' ensures the full image is always visible */
-            background-size: contain; 
-            
-            /* 'no-repeat' stops the image from tiling */
-            background-repeat: no-repeat; 
-            
-            /* 'center' keeps it in the middle of the screen */
-            background-position: center; 
-            
-            /* 'fixed' keeps it from moving if you scroll */
-            background-attachment: fixed; 
-            
-            /* Match this color to the edges of your image for a seamless look */
-            background-color: #000000; 
-            
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-family: monospace;
-        }
+    body {
+      display: flex;
+      flex-direction: column;
+    }
 
-        /* 3. Overlay Content (Optional UI Box) */
-        .content-overlay {
-            margin-top: 50px;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
-            border: 1px solid #333;
-            color: #00E0FF;
-            text-align: center;
-            width: 300px;
-        }
+    /* 2) B1: TOP (50% viewport height) */
+    .b1-top {
+      flex: 0 0 50vh;
+      width: 100%;
+      background: url('b1-040426.svg?v=2026-04-04') no-repeat center;
+      background-size: cover;
+      border-bottom: 2px solid #FFCE00;
+    }
 
-    </style>
+    /* 3) B2: BOTTOM (50% viewport height) */
+    .b2-bottom {
+      flex: 0 0 50vh;
+      width: 100%;
+      background: url('b2-040426.svg?v=2026-04-04') no-repeat center;
+      background-size: cover;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* 4) Overlay controls */
+    .controls {
+      position: absolute;
+      bottom: 40px;
+      display: flex;
+      gap: 20px;
+    }
+
+    .btn {
+      background: rgba(0, 0, 0, 0.8);
+      border: 1px solid #00E0FF;
+      color: #00E0FF;
+      padding: 15px 30px;
+      font-weight: bold;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+
+    .btn:hover {
+      background: #00E0FF;
+      color: #000;
+    }
+  </style>
 </head>
 <body>
+  <div class="b1-top"></div>
 
-    <div class="content-overlay">
-        <h2>INTERFACE ACTIVE</h2>
-        <p>System Online</p>
+  <div class="b2-bottom">
+    <div class="controls">
+      <button class="btn" type="button" onclick="alert('SCANNING...')">Scan</button>
+      <button class="btn" type="button" onclick="alert('STATUS: OK')">Status</button>
     </div>
-
+  </div>
 </body>
 </html>
