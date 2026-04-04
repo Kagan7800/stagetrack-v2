@@ -3,8 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SNTL-X // OS v2.3.2</title>
-    <link rel="stylesheet" href="style.css?v=0404b">
+    <title>SNTL-X // OS v2.4.0</title>
+    <style>
+        :root { --neon: #00E0FF; --gold: #FFCE00; --bg: #050a1a; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body { 
+            background-color: var(--bg);
+            display: flex;
+            flex-direction: column; 
+            align-items: center;
+            min-height: 100vh;
+            font-family: monospace;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* TOP BANNER */
+        .b1-header {
+            width: 100%;
+            height: 120px;
+            background: #000 url('b1-040426.svg') no-repeat center;
+            background-size: contain;
+            border-bottom: 2px solid var(--gold);
+        }
+
+        /* INTERFACE BOX */
+        .ui-frame {
+            width: 340px;
+            background: #000;
+            border: 2px solid #333;
+            padding: 20px;
+            margin-top: 40px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        .ui-label {
+            color: var(--gold);
+            font-size: 11px;
+            text-align: center;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .ui-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        /* B2 STARRY BUTTON */
+        .b2-svg-btn {
+            grid-column: span 2; 
+            height: 100px;
+            background: #000 url('b2-040426.svg') no-repeat center !important;
+            background-size: contain !important;
+            border: 1px solid #444;
+            cursor: pointer;
+            margin-bottom: 5px;
+        }
+
+        .std-btn {
+            background: transparent;
+            border: 1px solid #444;
+            color: var(--neon);
+            height: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .std-btn:hover, .b2-svg-btn:hover {
+            border-color: var(--neon);
+            box-shadow: 0 0 10px rgba(0, 224, 255, 0.2);
+        }
+
+        #ui-console {
+            height: 80px;
+            margin-top: 15px;
+            border-top: 1px solid #333;
+            padding-top: 10px;
+            color: var(--gold);
+            font-size: 10px;
+            overflow: hidden;
+            line-height: 1.4;
+        }
+    </style>
 </head>
 <body>
     <div class="b1-header"></div>
@@ -14,12 +100,11 @@
         
         <div class="ui-grid">
             <button class="b2-svg-btn" onclick="execute('B2')"></button>
-            
             <button class="std-btn" onclick="execute('SCAN')">SCAN</button>
             <button class="std-btn" onclick="execute('STATUS')">STATUS</button>
         </div>
 
-        <div id="ui-console">> SYSTEM_READY_040426</div>
+        <div id="ui-console">> SYSTEM_READY_V2.4.0</div>
     </main>
 
     <script>
