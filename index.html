@@ -3,25 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SNTL-X // OS v2.2.0</title>
-    <link rel="stylesheet" href="style.css">
+    <title>SNTL-X // OS v2.3.1</title>
+    <link rel="stylesheet" href="style.css?v=0404">
 </head>
 <body>
-    <div class="banner-top"></div>
+    <div class="b1-header"></div>
 
-    <main id="pc-container">
-        <div id="status-title">[SNTL_HARDWARE_INTERFACE]</div>
-
-        <div class="btn-grid">
-            <button class="control-btn b2-style" data-mode="b2"></button>
-            <button class="control-btn" data-mode="scan">SCAN</button>
-            <button class="control-btn" data-mode="status">STATUS</button>
-            <button class="control-btn" data-mode="kid" data-kid="true">KID</button>
+    <main class="ui-frame">
+        <div class="ui-label">[SNTL_HARDWARE_INTERFACE]</div>
+        
+        <div class="ui-grid">
+            <button class="b2-svg-btn" onclick="execute('B2')"></button>
+            <button class="std-btn" onclick="execute('SCAN')">SCAN</button>
+            <button class="std-btn" onclick="execute('STATUS')">STATUS</button>
+            <button class="std-btn" onclick="execute('KID')">KID</button>
         </div>
 
-        <div id="terminal-out"></div>
+        <div id="ui-console">> SYSTEM_READY_040426</div>
     </main>
 
-    <script src="main.js" defer></script>
+    <script>
+        const log = document.getElementById('ui-console');
+        function execute(c) {
+            const e = document.createElement('div');
+            e.innerText = `> ${c}_OK`;
+            log.prepend(e);
+        }
+    </script>
 </body>
 </html>
