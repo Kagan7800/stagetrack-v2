@@ -1,83 +1,15 @@
-:root {
-    --neon: #00E0FF;
-    --gold: #FFCE00;
-    --bg: #050a1a;
-}
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-body { 
-    background-color: var(--bg);
-    display: flex;
-    flex-direction: column; 
-    align-items: center;
-    min-height: 100vh;
-    font-family: monospace;
-    overflow-x: hidden;
-}
-
-/* B1: TOP BANNER (Edge to Edge) */
-.b1-header {
-    width: 100%;
-    height: 120px; 
-    background: #000 url('b1-040426.svg') no-repeat center;
-    background-size: cover; /* This makes it fill the entire width */
-    border-bottom: 2px solid var(--gold);
-}
-/* UI BOX */
-.ui-frame {
-    width: 340px;
-    background: #000;
-    border: 2px solid #333;
-    padding: 20px;
-    margin-top: 40px;
-}
-
-.ui-label {
-    color: var(--gold);
-    font-size: 11px;
-    text-align: center;
-    border-bottom: 1px solid #333;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-}
-
 .ui-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 12px;
 }
 
-/* B2: THE STARRY SVG BUTTON */
 .b2-svg-btn {
-    grid-column: span 2; /* Makes B2 wide across the top of the grid */
+    grid-column: span 2; 
     height: 100px;
     background: #000 url('b2-040426.svg') no-repeat center !important;
     background-size: contain !important;
     border: 1px solid #444;
     cursor: pointer;
     margin-bottom: 5px;
-}
-
-.std-btn {
-    background: transparent;
-    border: 1px solid #444;
-    color: var(--neon);
-    height: 50px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.std-btn:hover, .b2-svg-btn:hover {
-    border-color: var(--neon);
-}
-
-#ui-console {
-    height: 80px;
-    margin-top: 15px;
-    border-top: 1px solid #333;
-    padding-top: 10px;
-    color: var(--gold);
-    font-size: 10px;
-    overflow: hidden;
 }
