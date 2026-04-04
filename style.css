@@ -12,15 +12,15 @@ body {
     display: flex;
     flex-direction: column; 
     align-items: center;
-    min-height: 100vh;
+    height: 100vh;
     font-family: 'Courier New', monospace;
-    color: white;
+    overflow: hidden;
 }
 
-/* --- BANNER B1: FIXED TOP --- */
-.b1-banner {
+/* --- B1 BANNER (Top Edge) --- */
+.banner-top {
     width: 100%;
-    height: 90px;
+    height: 80px;
     background: #000 url('b1.png') no-repeat center;
     background-size: contain;
     border-bottom: 2px solid var(--gold);
@@ -28,33 +28,34 @@ body {
 }
 
 /* --- MAIN INTERFACE BOX --- */
-#hw-layer {
-    width: 320px; 
+#core-shell {
+    width: 320px;
     background: #000;
     border: 2px solid #27272a;
     padding: 15px;
-    margin: 20px 0; /* Space above and below */
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
 }
 
-.header {
+.interface-label {
     color: var(--gold);
     font-size: 10px;
     text-align: center;
     border-bottom: 1px solid #27272a;
     padding-bottom: 8px;
     margin-bottom: 15px;
-    letter-spacing: 1px;
 }
 
-/* --- THE BUTTON GRID --- */
-.grid {
+.button-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
 }
 
-/* B2 BUTTON FIX */
-.btn-b2 {
+/* --- B2 IMAGE BUTTON (FIXED FILENAME) --- */
+.b2-style {
+    /* Using the filename with the dash as requested */
     background: #000 url('b2-.png') no-repeat center !important;
     background-size: contain !important;
     border: 1px solid #27272a;
@@ -62,7 +63,7 @@ body {
     cursor: pointer;
 }
 
-.ctrl {
+.btn-text {
     background: transparent;
     border: 1px solid #27272a;
     color: var(--neon);
@@ -71,12 +72,12 @@ body {
     cursor: pointer;
 }
 
-.ctrl:hover, .btn-b2:hover {
+.btn-text:hover, .b2-style:hover {
     border-color: var(--neon);
 }
 
 /* --- LOG AREA --- */
-#log-container {
+#terminal-out {
     height: 80px;
     margin-top: 15px;
     border-top: 1px solid #27272a;
