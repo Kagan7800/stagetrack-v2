@@ -8,85 +8,76 @@
 
 body { 
     background-color: var(--bg);
-    margin: 0;
     display: flex;
     flex-direction: column; 
     align-items: center;
-    height: 100vh;
-    font-family: 'Courier New', monospace;
-    overflow: hidden;
+    min-height: 100vh;
+    font-family: monospace;
+    overflow-x: hidden;
 }
 
-/* --- B1 BANNER (TOP) --- */
-.banner-top {
+/* B1: TOP BANNER (Edge to Edge) */
+.b1-header {
     width: 100%;
-    height: 100px;
-    /* Updated to the new SVG filename */
+    height: 120px; /* Tall enough to see the SVG clearly */
     background: #000 url('b1-040426.svg') no-repeat center;
     background-size: contain;
     border-bottom: 2px solid var(--gold);
-    flex-shrink: 0;
-    display: block; /* Ensures the div doesn't collapse */
 }
 
-/* --- MAIN INTERFACE BOX --- */
-#core-shell {
-    width: 320px;
+/* UI BOX */
+.ui-frame {
+    width: 340px;
     background: #000;
-    border: 2px solid #27272a;
-    padding: 15px;
-    margin-top: 30px;
-    display: flex;
-    flex-direction: column;
+    border: 2px solid #333;
+    padding: 20px;
+    margin-top: 40px;
 }
 
-.interface-label {
+.ui-label {
     color: var(--gold);
-    font-size: 10px;
+    font-size: 11px;
     text-align: center;
-    border-bottom: 1px solid #27272a;
-    padding-bottom: 8px;
-    margin-bottom: 15px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
 }
 
-.button-container {
+.ui-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    gap: 12px;
 }
 
-/* --- B2 BUTTON (SVG FIX) --- */
-.b2-style {
-    /* Updated to the new SVG filename */
+/* B2: THE STARRY SVG BUTTON */
+.b2-svg-btn {
+    grid-column: span 2; /* Makes B2 wide across the top of the grid */
+    height: 100px;
     background: #000 url('b2-040426.svg') no-repeat center !important;
     background-size: contain !important;
-    border: 1px solid #27272a;
-    height: 65px;
-    width: 100%;
+    border: 1px solid #444;
     cursor: pointer;
-    display: block;
+    margin-bottom: 5px;
 }
 
-.btn-text {
+.std-btn {
     background: transparent;
-    border: 1px solid #27272a;
+    border: 1px solid #444;
     color: var(--neon);
+    height: 50px;
     font-weight: bold;
-    height: 65px;
     cursor: pointer;
 }
 
-.btn-text:hover, .b2-style:hover {
+.std-btn:hover, .b2-svg-btn:hover {
     border-color: var(--neon);
-    background-color: rgba(0, 224, 255, 0.05);
 }
 
-/* --- LOG AREA --- */
-#terminal-out {
+#ui-console {
     height: 80px;
     margin-top: 15px;
-    border-top: 1px solid #27272a;
-    padding-top: 8px;
+    border-top: 1px solid #333;
+    padding-top: 10px;
     color: var(--gold);
     font-size: 10px;
     overflow: hidden;
