@@ -2,21 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>SNTL-X // OS v2.1.5</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNTL-X // OS v2.1.6</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="top-banner-b1"></div>
 
     <main id="hw-layer">
-        <div class="interface-header">
-            [SNTL_HARDWARE_INTERFACE]
-        </div>
+        <div class="interface-header">[SNTL_HARDWARE_INTERFACE]</div>
+        
         <div class="button-grid">
-            <button class="control-btn btn-b2" onclick="execute('B2')">B2</button>
+            <button class="control-btn btn-b2" onclick="execute('B2')"></button>
             <button class="control-btn" onclick="execute('SCAN')">SCAN</button>
-            <button class="control-btn" onclick="execute('STATUS')">STATUS</button>
+            <button class="control-btn" id="status-btn" onclick="execute('STATUS')">STATUS</button>
         </div>
+
         <div id="log-container"></div>
     </main>
 
@@ -27,10 +28,8 @@
             e.innerHTML = `> ${m}`;
             log.prepend(e);
         }
-        function execute(c) {
-            addLog(`CMD: ${c}_OK`);
-        }
-        window.onload = () => { addLog("SYSTEM_READY_V2.1.5"); };
+        function execute(c) { addLog(`CMD: ${c}_OK`); }
+        window.onload = () => { addLog("SYSTEM_READY_V2.1.6"); };
     </script>
 </body>
 </html>
