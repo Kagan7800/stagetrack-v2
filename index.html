@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>SNTL-X // OS v2.1.7</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNTL-X // OS v2.2.0</title>
+    <link rel="stylesheet" href="style.css?v=99">
 </head>
 <body>
+    <div class="banner-b1"></div>
 
-    <div class="b1-banner"></div>
-
-    <div id="hw-layer">
+    <main id="hw-layer">
         <div class="header">[SNTL_HARDWARE_INTERFACE]</div>
         
         <div class="grid">
@@ -18,18 +18,18 @@
             <button class="ctrl" onclick="execute('STATUS')">STATUS</button>
         </div>
 
-        <div id="log-container"></div>
-    </div>
+        <div id="log-out"></div>
+    </main>
 
     <script>
-        const log = document.getElementById('log-container');
+        const log = document.getElementById('log-out');
         function addLog(m) {
             const e = document.createElement('div');
             e.innerText = `> ${m}`;
             log.prepend(e);
         }
         function execute(c) { addLog(`CMD: ${c}_OK`); }
-        window.onload = () => { addLog("SYSTEM_READY_V2.1.7"); };
+        window.onload = () => { addLog("SYSTEM_READY_V2.2.0"); };
     </script>
 </body>
 </html>
