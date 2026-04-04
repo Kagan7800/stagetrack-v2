@@ -12,27 +12,28 @@ body {
     display: flex;
     flex-direction: column; 
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     font-family: 'Courier New', monospace;
-    overflow: hidden;
+    color: white;
 }
 
-/* --- B1 BANNER: EDGE TO EDGE --- */
+/* --- BANNER B1: FIXED TOP --- */
 .b1-banner {
     width: 100%;
-    height: 100px;
+    height: 90px;
     background: #000 url('b1.png') no-repeat center;
     background-size: contain;
     border-bottom: 2px solid var(--gold);
+    flex-shrink: 0;
 }
 
-/* --- THE MAIN BOX --- */
+/* --- MAIN INTERFACE BOX --- */
 #hw-layer {
-    width: 320px; /* Reduced size */
+    width: 320px; 
     background: #000;
     border: 2px solid #27272a;
     padding: 15px;
-    margin-top: 30px;
+    margin: 20px 0; /* Space above and below */
 }
 
 .header {
@@ -42,20 +43,22 @@ body {
     border-bottom: 1px solid #27272a;
     padding-bottom: 8px;
     margin-bottom: 15px;
+    letter-spacing: 1px;
 }
 
+/* --- THE BUTTON GRID --- */
 .grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
 }
 
-/* --- B2 BUTTON: IMAGE INSIDE --- */
+/* B2 BUTTON FIX */
 .btn-b2 {
     background: #000 url('b2-.png') no-repeat center !important;
     background-size: contain !important;
     border: 1px solid #27272a;
-    min-height: 60px;
+    height: 60px;
     cursor: pointer;
 }
 
@@ -64,7 +67,7 @@ body {
     border: 1px solid #27272a;
     color: var(--neon);
     font-weight: bold;
-    min-height: 60px;
+    height: 60px;
     cursor: pointer;
 }
 
@@ -79,6 +82,6 @@ body {
     border-top: 1px solid #27272a;
     padding-top: 8px;
     color: var(--gold);
-    font-size: 9px;
+    font-size: 10px;
     overflow: hidden;
 }
