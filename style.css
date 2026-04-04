@@ -1,89 +1,35 @@
-:root {
-    --neon: #00E0FF;
-    --gold: #FFCE00;
-    --bg: #050a1a;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNTL-X // OS v2.1.6</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="top-banner-b1"></div>
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+    <main id="hw-layer">
+        <div class="interface-header">[SNTL_HARDWARE_INTERFACE]</div>
+        
+        <div class="button-grid">
+            <button class="control-btn btn-b2" onclick="execute('B2')"></button>
+            <button class="control-btn" onclick="execute('SCAN')">SCAN</button>
+            <button class="control-btn" id="status-btn" onclick="execute('STATUS')">STATUS</button>
+        </div>
 
-body { 
-    background-color: var(--bg);
-    margin: 0;
-    display: flex;
-    flex-direction: column; 
-    align-items: center;
-    height: 100vh;
-    overflow: hidden;
-    font-family: 'Courier New', monospace;
-    transform: scale(0.85); 
-    transform-origin: top center;
-}
+        <div id="log-container"></div>
+    </main>
 
-/* --- B1 BANNER (Top Edge) --- */
-.top-banner-b1 {
-    width: 100vw; 
-    height: 80px; 
-    background: #000 url('b1.png') no-repeat center;
-    background-size: contain;
-    border-bottom: 2px solid var(--gold);
-    flex-shrink: 0;
-}
-
-/* --- MAIN INTERFACE BOX --- */
-#hw-layer {
-    width: 340px;
-    background: rgba(10, 10, 10, 0.95);
-    border: 2px solid #27272a;
-    padding: 15px;
-    margin-top: 15px;
-    display: flex;
-    flex-direction: column;
-}
-
-.interface-header {
-    font-size: 10px; 
-    border-bottom: 1px solid #27272a; 
-    padding-bottom: 5px; 
-    text-align: center; 
-    color: var(--gold);
-}
-
-/* --- THE BUTTONS --- */
-.button-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-top: 15px;
-}
-
-/* Specific fix for B2 image */
-.btn-b2 {
-    background: #000 url('b2-.png') no-repeat center !important;
-    background-size: contain !important;
-    color: transparent !important;
-}
-
-.control-btn {
-    background: #000;
-    border: 1px solid #27272a;
-    color: var(--neon);
-    padding: 10px;
-    font-weight: bold;
-    cursor: pointer;
-    min-height: 55px; /* Set height to ensure it shows */
-}
-
-.control-btn:hover {
-    border-color: var(--neon);
-}
-
-/* --- THE LOG (Shrunk to save space) --- */
-#log-container {
-    font-size: 9px;
-    height: 80px; /* Shrunk from 150px to 80px */
-    overflow: hidden;
-    color: var(--gold);
-    margin-top: 10px;
-    border-top: 1px solid #27272a;
-    padding-top: 5px;
-}
+    <script>
+        const log = document.getElementById('log-container');
+        function addLog(m) {
+            const e = document.createElement('div');
+            e.innerHTML = `> ${m}`;
+            log.prepend(e);
+        }
+        function execute(c) { addLog(`CMD: ${c}_OK`); }
+        window.onload = () => { addLog("SYSTEM_READY_V2.1.6"); };
+    </script>
+</body>
+</html>
