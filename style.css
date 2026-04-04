@@ -28,7 +28,7 @@ body {
 }
 
 /* --- MAIN INTERFACE BOX --- */
-#core-shell {
+#pc-container {
     width: 320px;
     background: #000;
     border: 2px solid #27272a;
@@ -38,7 +38,7 @@ body {
     flex-direction: column;
 }
 
-.interface-label {
+#status-title {
     color: var(--gold);
     font-size: 10px;
     text-align: center;
@@ -47,33 +47,38 @@ body {
     margin-bottom: 15px;
 }
 
-.button-container {
+.btn-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
 }
 
-/* --- B2 IMAGE BUTTON (FIXED FILENAME) --- */
+/* --- B2 IMAGE BUTTON --- */
 .b2-style {
-    /* Using the filename with the dash as requested */
-    background: #000 url('b2-.png') no-repeat center !important;
-    background-size: contain !important;
+    background: #000 url('b2.png') no-repeat center;
+    background-size: contain;
     border: 1px solid #27272a;
     height: 60px;
     cursor: pointer;
 }
 
-.btn-text {
+.control-btn {
     background: transparent;
     border: 1px solid #27272a;
     color: var(--neon);
+    font-family: 'Courier New', monospace;
     font-weight: bold;
     height: 60px;
     cursor: pointer;
 }
 
-.btn-text:hover, .b2-style:hover {
+.control-btn:hover, .b2-style:hover {
     border-color: var(--neon);
+}
+
+.control-btn.active {
+    border-color: var(--gold);
+    color: var(--gold);
 }
 
 /* --- LOG AREA --- */
@@ -85,4 +90,14 @@ body {
     color: var(--gold);
     font-size: 10px;
     overflow: hidden;
+}
+
+/* --- KID MODE --- */
+#pc-container.kid-active {
+    border-color: var(--gold);
+}
+
+#status-title.kid-text {
+    color: var(--neon);
+    font-size: 14px;
 }
