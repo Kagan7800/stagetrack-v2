@@ -2,16 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>SNTL-X // OS v2.1.3</title>
+    <title>SNTL-X // OS v2.1.4</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="top-banner-b1"></div>
+
     <main id="hw-layer">
-        <div style="font-size: 11px; border-bottom: 1px solid #27272a; padding-bottom: 8px; text-align: center;">
+        <div class="interface-header">
             [SNTL_HARDWARE_INTERFACE]
         </div>
         <div class="button-grid">
-            <button class="control-btn btn-b1" onclick="execute('B1')">B1</button>
             <button class="control-btn btn-b2" onclick="execute('B2')">B2</button>
             <button class="control-btn" onclick="execute('SCAN')">SCAN</button>
             <button class="control-btn" onclick="execute('STATUS')">STATUS</button>
@@ -29,9 +30,7 @@
         function execute(c) {
             addLog(`CMD: ${c}_OK`);
         }
-        window.onload = () => {
-            addLog("SYSTEM_READY_V2.1.3");
-        };
+        window.onload = () => { addLog("SYSTEM_READY_V2.1.4"); };
     </script>
 </body>
 </html>
