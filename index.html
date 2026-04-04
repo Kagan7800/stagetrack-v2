@@ -2,34 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SNTL-X // OS v2.1.6</title>
+    <title>SNTL-X // OS v2.1.7</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="top-banner-b1"></div>
 
-    <main id="hw-layer">
-        <div class="interface-header">[SNTL_HARDWARE_INTERFACE]</div>
+    <div class="b1-banner"></div>
+
+    <div id="hw-layer">
+        <div class="header">[SNTL_HARDWARE_INTERFACE]</div>
         
-        <div class="button-grid">
-            <button class="control-btn btn-b2" onclick="execute('B2')"></button>
-            <button class="control-btn" onclick="execute('SCAN')">SCAN</button>
-            <button class="control-btn" id="status-btn" onclick="execute('STATUS')">STATUS</button>
+        <div class="grid">
+            <button class="btn-b2" onclick="execute('B2')"></button>
+            <button class="ctrl" onclick="execute('SCAN')">SCAN</button>
+            <button class="ctrl" onclick="execute('STATUS')">STATUS</button>
         </div>
 
         <div id="log-container"></div>
-    </main>
+    </div>
 
     <script>
         const log = document.getElementById('log-container');
         function addLog(m) {
             const e = document.createElement('div');
-            e.innerHTML = `> ${m}`;
+            e.innerText = `> ${m}`;
             log.prepend(e);
         }
         function execute(c) { addLog(`CMD: ${c}_OK`); }
-        window.onload = () => { addLog("SYSTEM_READY_V2.1.6"); };
+        window.onload = () => { addLog("SYSTEM_READY_V2.1.7"); };
     </script>
 </body>
 </html>
