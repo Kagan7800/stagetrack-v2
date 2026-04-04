@@ -1,35 +1,85 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SNTL-X // OS v2.1.6</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="top-banner-b1"></div>
+:root {
+    --neon: #00E0FF;
+    --gold: #FFCE00;
+    --bg: #050a1a;
+}
 
-    <main id="hw-layer">
-        <div class="interface-header">[SNTL_HARDWARE_INTERFACE]</div>
-        
-        <div class="button-grid">
-            <button class="control-btn btn-b2" onclick="execute('B2')"></button>
-            <button class="control-btn" onclick="execute('SCAN')">SCAN</button>
-            <button class="control-btn" id="status-btn" onclick="execute('STATUS')">STATUS</button>
-        </div>
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-        <div id="log-container"></div>
-    </main>
+body { 
+    background-color: var(--bg);
+    margin: 0;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    font-family: 'Courier New', monospace;
+}
 
-    <script>
-        const log = document.getElementById('log-container');
-        function addLog(m) {
-            const e = document.createElement('div');
-            e.innerHTML = `> ${m}`;
-            log.prepend(e);
-        }
-        function execute(c) { addLog(`CMD: ${c}_OK`); }
-        window.onload = () => { addLog("SYSTEM_READY_V2.1.6"); };
-    </script>
-</body>
-</html>
+/* --- BANNER B1 (EDGE TO EDGE) --- */
+.top-banner-b1 {
+    width: 100%;
+    height: 15vh; /* Takes up 15% of screen height */
+    background: #000 url('b1.png') no-repeat center;
+    background-size: contain;
+    border-bottom: 2px solid var(--gold);
+    flex-shrink: 0;
+}
+
+/* --- INTERFACE BOX --- */
+#hw-layer {
+    width: 320px;
+    background: #0a0a0a;
+    border: 2px solid #27272a;
+    padding: 15px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.interface-header {
+    font-size: 10px;
+    color: var(--gold);
+    text-align: center;
+    border-bottom: 1px solid #27272a;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+.button-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+/* --- B2 BUTTON WITH IMAGE --- */
+.btn-b2 {
+    background: #000 url('b2-.png') no-repeat center !important;
+    background-size: contain !important;
+    min-height: 60px;
+}
+
+.control-btn {
+    background: transparent;
+    border: 1px solid #27272a;
+    color: var(--neon);
+    font-weight: bold;
+    cursor: pointer;
+    min-height: 60px;
+}
+
+.control-btn:hover {
+    border-color: var(--neon);
+}
+
+#log-container {
+    height: 100px;
+    margin-top: 15px;
+    border-top: 1px solid #27272a;
+    padding-top: 10px;
+    color: var(--gold);
+    font-size: 10px;
+    overflow: hidden;
+}
