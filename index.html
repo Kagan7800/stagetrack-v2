@@ -3,117 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SNTL-X // OS v2.4.0</title>
+    <title>Full Background Interface</title>
     <style>
-        :root { --neon: #00E0FF; --gold: #FFCE00; --bg: #050a1a; }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-
-        body { 
-            background-color: var(--bg);
-            display: flex;
-            flex-direction: column; 
-            align-items: center;
-            min-height: 100vh;
-            font-family: monospace;
-            color: white;
-            overflow-x: hidden;
+        /* 1. Reset margins and fix height */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
-        /* TOP BANNER */
-        .b1-header {
+        html, body {
+            height: 100%;
             width: 100%;
-            height: 120px;
-            background: #000 url('b1-040426.svg') no-repeat center;
-            background-size: contain;
-            border-bottom: 2px solid var(--gold);
         }
 
-        /* INTERFACE BOX */
-        .ui-frame {
-            width: 340px;
-            background: #000;
-            border: 2px solid #333;
+        /* 2. The Background Logic */
+        body {
+            /* REPLACE 'background.svg' WITH YOUR ACTUAL FILENAME */
+            background-image: url('background.svg'); 
+            
+            /* 'contain' ensures the full image is always visible */
+            background-size: contain; 
+            
+            /* 'no-repeat' stops the image from tiling */
+            background-repeat: no-repeat; 
+            
+            /* 'center' keeps it in the middle of the screen */
+            background-position: center; 
+            
+            /* 'fixed' keeps it from moving if you scroll */
+            background-attachment: fixed; 
+            
+            /* Match this color to the edges of your image for a seamless look */
+            background-color: #000000; 
+            
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: monospace;
+        }
+
+        /* 3. Overlay Content (Optional UI Box) */
+        .content-overlay {
+            margin-top: 50px;
             padding: 20px;
-            margin-top: 40px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
-        }
-
-        .ui-label {
-            color: var(--gold);
-            font-size: 11px;
+            background: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
+            border: 1px solid #333;
+            color: #00E0FF;
             text-align: center;
-            border-bottom: 1px solid #333;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
+            width: 300px;
         }
 
-        .ui-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-
-        /* B2 STARRY BUTTON */
-        .b2-svg-btn {
-            grid-column: span 2; 
-            height: 100px;
-            background: #000 url('b2-040426.svg') no-repeat center !important;
-            background-size: contain !important;
-            border: 1px solid #444;
-            cursor: pointer;
-            margin-bottom: 5px;
-        }
-
-        .std-btn {
-            background: transparent;
-            border: 1px solid #444;
-            color: var(--neon);
-            height: 50px;
-            font-weight: bold;
-            cursor: pointer;
-            text-transform: uppercase;
-        }
-
-        .std-btn:hover, .b2-svg-btn:hover {
-            border-color: var(--neon);
-            box-shadow: 0 0 10px rgba(0, 224, 255, 0.2);
-        }
-
-        #ui-console {
-            height: 80px;
-            margin-top: 15px;
-            border-top: 1px solid #333;
-            padding-top: 10px;
-            color: var(--gold);
-            font-size: 10px;
-            overflow: hidden;
-            line-height: 1.4;
-        }
     </style>
 </head>
 <body>
-    <div class="b1-header"></div>
 
-    <main class="ui-frame">
-        <div class="ui-label">[SNTL_HARDWARE_INTERFACE]</div>
-        
-        <div class="ui-grid">
-            <button class="b2-svg-btn" onclick="execute('B2')"></button>
-            <button class="std-btn" onclick="execute('SCAN')">SCAN</button>
-            <button class="std-btn" onclick="execute('STATUS')">STATUS</button>
-        </div>
+    <div class="content-overlay">
+        <h2>INTERFACE ACTIVE</h2>
+        <p>System Online</p>
+    </div>
 
-        <div id="ui-console">> SYSTEM_READY_V2.4.0</div>
-    </main>
-
-    <script>
-        const log = document.getElementById('ui-console');
-        function execute(c) {
-            const e = document.createElement('div');
-            e.innerText = `> ${c}_OK`;
-            log.prepend(e);
-        }
-    </script>
 </body>
 </html>
