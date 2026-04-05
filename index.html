@@ -3,23 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stagetrack V2</title>
+    <title>StageTrack</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
-        body {
+        body, html {
             margin: 0;
-            min-height: 100vh;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            background: #f0f0f0; /* Example background color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .stage {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px; /* Example padding */
+            box-sizing: border-box;
         }
         .system-wrapper {
-            width: 100vw;
-            height: 100vh;
-            max-width: none;
-            /* border unchanged */
+            width: min(420px, 100%);
+            background: #fff; /* Example panel background */
+            padding: 20px; /* Example padding */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
-    <div class="system-wrapper">
-        <!-- Other content goes here -->
+    <div class="stage">
+        <div class="system-wrapper">
+            <header class="b1-header">Header Content</header>
+            <div class="ui-content">Main UI Content</div>
+            <label>Input Label:</label>
+            <div class="b2-area">Area Content</div>
+            <div class="grid-buttons">Grid Buttons</div>
+            <div class="console">Console Output</div>
+            <script>console.log('Logging output here...');</script>
+        </div>
     </div>
 </body>
 </html>
