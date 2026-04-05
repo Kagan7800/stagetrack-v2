@@ -1,35 +1,31 @@
 /* --- FULL FIX BLOCK [fb] --- */
 
-/* 1. Prevent the container from collapsing */
+/* 1. Force the page to have height so it isn't a 0px white block */
 html, body {
     height: 100%;
+    min-height: 100vh;
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
+    background-color: #1a1a1a; /* Safety fallback: dark grey instead of white */
 }
 
 body {
-    /* 2. Unified Background Fix */
-    background-image: url('Layout.svg'); /* Ensure path and 'L' case match your file */
+    /* 2. Optimized Background Loading */
+    /* NOTE: Check if your file is 'Layout.svg' or 'layout.svg' */
+    background-image: url('Layout.svg'); 
     background-size: cover;
     background-position: center top;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    
-    /* 3. Drop-in Animation for visibility */
-    animation: dropIn 0.8s ease-out forwards;
-    
-    /* 4. Fallback in case SVG fails to load */
-    background-color: #f0f0f0; 
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+
+    /* 3. Drop-in Animation (Reveals content if it was hidden) */
+    animation: dropIn 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
-/* 5. Drop-in Keyframes */
+/* 4. Drop-in Keyframes */
 @keyframes dropIn {
     from {
-        transform: translateY(-20px);
+        transform: translateY(-50px);
         opacity: 0;
     }
     to {
