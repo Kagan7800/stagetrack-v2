@@ -3,107 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SNTL-X // OS v3.2.0</title>
+    <title>SNTL-X // OS v3.3.0</title>
     <style>
-        :root { --neon: #00E0FF; --gold: #FFCE00; --bg: #000; }
+        :root { --neon: #00E0FF; --gold: #FFCE00; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
         body {
-            background-color: var(--bg);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            font-family: monospace;
-            overflow: hidden;
-        }
-
-        /* 1. THE MINI-WRAPPER */
-        .system-wrapper {
-            width: 300px; /* Force small width */
-            max-height: 90vh; /* Force it to stay within screen height */
-            background: #000;
-            border: 1px solid #222;
+            background-color: #000;
             display: flex;
             flex-direction: column;
-            padding-bottom: 10px;
+            height: 100vh;
+            width: 100vw;
+            font-family: monospace;
+            overflow: hidden; /* Prevents all scrolling */
         }
 
-        /* 2. B1: HEADER (MINIMIZED) */
-        .b1-header {
+        /* TOP SECTION - 40% of screen */
+        .b1-container {
+            flex: 4; 
             width: 100%;
-            height: 60px; /* Significantly reduced */
-            background: #000 url('b1-040426.svg') no-repeat center;
-            background-size: contain;
+            background: url('b1-040426.svg') no-repeat center;
+            background-size: contain; /* Shows full image without cropping */
             border-bottom: 1px solid var(--gold);
         }
 
-        .ui-content { padding: 10px; }
-
-        .label {
-            color: var(--gold);
-            font-size: 8px;
-            text-align: center;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-        }
-
-        /* 3. B2: CENTER IMAGE (MINIMIZED) */
-        .b2-area {
+        /* BOTTOM SECTION - 60% of screen */
+        .ui-main {
+            flex: 6;
             width: 100%;
-            height: 70px; /* Significantly reduced */
-            background: #000 url('b2-040426.svg') no-repeat center;
-            background-size: contain;
-            border: 1px solid #111;
-            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 10px;
+            background: #000;
         }
 
-        .grid {
+        /* B2 IMAGE - Scaled inside the bottom section */
+        .b2-graphic {
+            width: 100%;
+            max-width: 400px;
+            height: 40%; /* Relative to the bottom section */
+            background: url('b2-040426.svg') no-repeat center;
+            background-size: contain;
+            margin-bottom: 15px;
+        }
+
+        .controls {
+            width: 100%;
+            max-width: 320px;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 8px;
+            gap: 10px;
         }
 
         .btn {
             background: transparent;
             border: 1px solid #333;
             color: var(--neon);
-            padding: 8px 0;
-            font-size: 10px;
+            padding: 12px 0;
             font-weight: bold;
             cursor: pointer;
+            text-transform: uppercase;
         }
 
-        .btn:hover { border-color: var(--neon); }
-
         #console {
-            margin-top: 8px;
-            height: 40px;
-            font-size: 9px;
+            width: 100%;
+            max-width: 320px;
+            margin-top: 15px;
             color: var(--gold);
-            border-top: 1px solid #1a1a1a;
-            padding-top: 5px;
-            overflow: hidden;
+            font-size: 10px;
+            border-top: 1px solid #222;
+            padding-top: 10px;
         }
     </style>
 </head>
 <body>
-    <div class="system-wrapper">
-        <div class="b1-header"></div>
-        <div class="ui-content">
-            <div class="label">SNTL_LINK_V3.2</div>
-            <div class="b2-area"></div>
-            <div class="grid">
-                <button class="btn" onclick="log('SCAN')">SCAN</button>
-                <button class="btn" onclick="log('STATUS')">STATUS</button>
-            </div>
-            <div id="console">> SYSTEM_READY</div>
+
+    <div class="b1-container"></div>
+
+    <div class="ui-main">
+        <div class="b2-graphic"></div>
+        
+        <div class="controls">
+            <button class="btn" onclick="log('SCAN')">SCAN</button>
+            <button class="btn" onclick="log('STATUS')">STATUS</button>
         </div>
+
+        <div id="console">> SYSTEM_REBOOT_COMPLETE...</div>
     </div>
+
     <script>
         function log(m) {
             const c = document.getElementById('console');
-            c.innerHTML = `> ${m}_OK<br>` + c.innerHTML;
+            c.innerHTML = `> ${m}_SEQUENCE_INITIATED<br>` + c.innerHTML;
         }
     </script>
 </body>
