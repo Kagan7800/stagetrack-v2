@@ -3,87 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SNTL-X // SYSTEM READY</title>
+    <title>SNTL-X // FINAL PROD</title>
     <style>
-        /* 1. LOCK THE SCREEN */
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        html, body { 
-            height: 100vh; 
-            width: 100vw; 
-            overflow: hidden; /* ABSOLUTELY NO SCROLLING */
-            background: #000;
-            color: #00E0FF;
-            font-family: 'Courier New', monospace;
-        }
+        html, body { height: 100%; width: 100%; overflow: hidden; background: #000; }
 
-        /* 2. THE 3-PART GRID (Management loves stability) */
-        .wrapper {
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            width: 100%;
-        }
-
-        /* TOP: 25% of height */
-        .b1-section {
-            flex: 0 0 25vh;
+        /* HEADER: Fixed to top */
+        .header {
+            position: absolute; top: 0; left: 0; width: 100%; height: 20%;
             background: url('b1-040426.svg') no-repeat center / contain;
             border-bottom: 1px solid #FFCE00;
         }
 
-        /* MIDDLE: 55% of height */
-        .b2-section {
-            flex: 0 0 55vh;
+        /* CENTER: The Main Visual */
+        .main {
+            position: absolute; top: 20%; left: 0; width: 100%; height: 60%;
             background: url('b2-040426.svg') no-repeat center / contain;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            padding-bottom: 20px;
         }
 
-        /* BOTTOM: 20% of height */
-        .console-section {
-            flex: 0 0 20vh;
-            background: #050505;
-            border-top: 1px solid #222;
-            padding: 15px;
-            font-size: 12px;
-            color: #FFCE00;
-            overflow-y: auto;
+        /* UI BUTTONS: Centered at the bottom of the main area */
+        .controls {
+            position: absolute; bottom: 25%; width: 100%;
+            display: flex; justify-content: center; gap: 20px;
         }
 
-        /* BUTTONS */
-        .btn-group { display: flex; gap: 15px; }
         .btn {
-            background: rgba(0,0,0,0.8);
-            border: 1px solid #00E0FF;
-            color: #00E0FF;
-            padding: 10px 25px;
-            cursor: pointer;
-            font-weight: bold;
-            letter-spacing: 1px;
+            background: rgba(0,0,0,0.9); border: 1px solid #00E0FF;
+            color: #00E0FF; padding: 10px 30px; font-family: monospace;
+            cursor: pointer; font-weight: bold;
+        }
+
+        /* CONSOLE: Fixed to bottom */
+        .console {
+            position: absolute; bottom: 0; left: 0; width: 100%; height: 20%;
+            background: #050505; border-top: 1px solid #222;
+            padding: 15px; color: #FFCE00; font-family: monospace; font-size: 12px;
         }
     </style>
 </head>
 <body>
-    <div class="wrapper">
-        <div class="b1-section"></div>
-        
-        <div class="b2-section">
-            <div class="btn-group">
-                <button class="btn" onclick="addMsg('SCAN')">SCAN</button>
-                <button class="btn" onclick="addMsg('STATUS')">STATUS</button>
-            </div>
-        </div>
-
-        <div class="console-section" id="con">> SYSTEM_BOOT_V4.2_SUCCESS</div>
+    <div class="header"></div>
+    <div class="main"></div>
+    <div class="controls">
+        <button class="btn" onclick="alert('SCANNING')">SCAN</button>
+        <button class="btn" onclick="alert('STATUS: OK')">STATUS</button>
     </div>
-
-    <script>
-        function addMsg(m) {
-            const c = document.getElementById('con');
-            c.innerHTML = `> ${m}_SEQUENCE_ACTIVE<br>` + c.innerHTML;
-        }
-    </script>
+    <div class="console">> SYSTEM_STABLE_V4.3<br>> ALL_SYSTEMS_OPERATIONAL</div>
 </body>
 </html>
