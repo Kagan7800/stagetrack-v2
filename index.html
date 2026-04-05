@@ -3,86 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SNTL-X // ENTERPRISE_STABLE</title>
+    <title>SNTL-X // V6_WIN_STATE</title>
     <style>
-        /* 1. CRITICAL RESET */
+        /* 1. THE FOUNDATION LOCK */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { 
             height: 100vh; width: 100vw; 
             overflow: hidden; background: #000; 
-            display: flex; justify-content: center; align-items: center;
+            display: flex; justify-content: center;
         }
 
-        /* 2. THE 'CONTEST FOUNDATION' CONTAINER */
-        /* Reduced size to 'Visual Best Practice' (Handheld Terminal Ratio) */
-        .app-shell {
+        /* 2. THE PRODUCTION-READY SHELL */
+        .master-container {
             width: 100%;
-            max-width: 450px; /* Management's preferred mobile-first width */
+            max-width: 480px; /* Locked to professional mobile-aspect ratio */
             height: 100vh;
             display: flex;
             flex-direction: column;
-            border-left: 1px solid #222;
-            border-right: 1px solid #222;
+            border: 1px solid #111;
         }
 
-        /* B1: TOP FOUNDATION (20% height) */
-        .b1-frame {
-            flex: 0 0 20%;
-            background: url('b1-040426.svg') no-repeat center / contain;
+        /* 3. B1: HEADER (15% height - Forced) */
+        .b1-foundation {
+            flex: 0 0 15vh;
+            width: 100%;
+            background: url('b1-040426.svg') no-repeat center / 100% 100%;
             border-bottom: 2px solid #FFCE00;
         }
 
-        /* B2: MAIN FOUNDATION (60% height) */
-        .b2-frame {
-            flex: 0 0 60%;
-            background: url('b2-040426.svg') no-repeat center / contain;
+        /* 4. B2: CENTER (65% height - Forced) */
+        .b2-foundation {
+            flex: 0 0 65vh;
+            width: 100%;
+            background: url('b2-040426.svg') no-repeat center / 100% 100%;
             display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 30px;
+            align-items: flex-end;
+            padding: 20px;
         }
 
-        /* CONSOLE: FOOTER FOUNDATION (20% height) */
-        .console-frame {
-            flex: 0 0 20%;
+        /* 5. CONSOLE: FOOTER (20% height - Forced) */
+        .footer-foundation {
+            flex: 1; /* Fills remaining 20% exactly */
             background: #080808;
             border-top: 1px solid #333;
-            padding: 15px;
+            padding: 12px;
             color: #FFCE00;
-            font-family: monospace;
+            font-family: 'Courier New', monospace;
             font-size: 11px;
-            line-height: 1.4;
+            overflow: hidden;
         }
 
-        .ui-row { display: flex; gap: 15px; width: 100%; }
+        .btn-group { display: flex; gap: 10px; width: 100%; }
         .btn {
-            flex: 1;
-            background: rgba(0,0,0,0.8);
-            border: 1px solid #00E0FF;
-            color: #00E0FF;
-            padding: 15px 0;
-            cursor: pointer;
-            font-weight: bold;
-            text-transform: uppercase;
+            flex: 1; background: rgba(0,0,0,0.9); border: 1px solid #00E0FF;
+            color: #00E0FF; padding: 12px; cursor: pointer; font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <div class="app-shell">
-        <div class="b1-frame"></div>
-        <div class="b2-frame">
-            <div class="ui-row">
-                <button class="btn" onclick="sys('SCAN')">Scan</button>
-                <button class="btn" onclick="sys('STATUS')">Status</button>
+    <div class="master-container">
+        <div class="b1-foundation"></div>
+        <div class="b2-foundation">
+            <div class="btn-group">
+                <button class="btn" onclick="sys('SCAN')">SCAN</button>
+                <button class="btn" onclick="sys('STATUS')">STATUS</button>
             </div>
         </div>
-        <div class="console-frame" id="log">> OS_V5.1_STABLE<br>> CACHE_PURGE_COMPLETE</div>
+        <div class="footer-foundation" id="out">
+            > SYSTEM_READY_V6.1<br>> RENDER_MODE: ABSOLUTE
+        </div>
     </div>
-
     <script>
-        function sys(m) {
-            const l = document.getElementById('log');
-            l.innerHTML = `> ${m}_SEQUENCE_SUCCESS<br>` + l.innerHTML;
+        function sys(m){
+            const o = document.getElementById('out');
+            o.innerHTML = `> ${m}_SEQUENCE_INIT...<br>` + o.innerHTML;
         }
     </script>
 </body>
