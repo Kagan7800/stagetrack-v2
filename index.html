@@ -2,87 +2,87 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SNTL-X // PRODUCTION</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SNTL-X // SYSTEM READY</title>
     <style>
+        /* 1. LOCK THE SCREEN */
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        
-        body {
-            background-color: #000;
+        html, body { 
+            height: 100vh; 
+            width: 100vw; 
+            overflow: hidden; /* ABSOLUTELY NO SCROLLING */
+            background: #000;
             color: #00E0FF;
-            font-family: monospace;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* 2. THE 3-PART GRID (Management loves stability) */
+        .wrapper {
+            display: flex;
+            flex-direction: column;
             height: 100vh;
-            width: 100vw;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* TOP BANNER: Locked to the top */
-        .header-top {
-            flex: 0 0 20vh; /* Takes exactly 20% of screen height */
             width: 100%;
-            background: url('b1-040426.svg') no-repeat center;
-            background-size: contain;
-            border-bottom: 2px solid #FFCE00;
         }
 
-        /* MAIN CONTENT: The center graphic */
-        .main-display {
-            flex: 1; /* Takes all remaining middle space */
-            background: url('b2-040426.svg') no-repeat center;
-            background-size: contain;
+        /* TOP: 25% of height */
+        .b1-section {
+            flex: 0 0 25vh;
+            background: url('b1-040426.svg') no-repeat center / contain;
+            border-bottom: 1px solid #FFCE00;
+        }
+
+        /* MIDDLE: 55% of height */
+        .b2-section {
+            flex: 0 0 55vh;
+            background: url('b2-040426.svg') no-repeat center / contain;
             display: flex;
-            flex-direction: column;
-            justify-content: flex-end; /* Pushes buttons to the bottom of this section */
-            align-items: center;
+            align-items: flex-end;
+            justify-content: center;
             padding-bottom: 20px;
         }
 
-        /* BUTTONS: Floating over the B2 image */
-        .btn-row {
-            display: flex;
-            gap: 15px;
-        }
-
-        .btn {
-            background: rgba(0, 0, 0, 0.7);
-            border: 1px solid #00E0FF;
-            color: #00E0FF;
-            padding: 12px 25px;
-            cursor: pointer;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-
-        /* CONSOLE: Locked to the bottom */
-        .footer-console {
-            flex: 0 0 10vh; /* Takes exactly 10% of screen height */
+        /* BOTTOM: 20% of height */
+        .console-section {
+            flex: 0 0 20vh;
             background: #050505;
             border-top: 1px solid #222;
-            padding: 10px;
-            font-size: 11px;
+            padding: 15px;
+            font-size: 12px;
             color: #FFCE00;
+            overflow-y: auto;
+        }
+
+        /* BUTTONS */
+        .btn-group { display: flex; gap: 15px; }
+        .btn {
+            background: rgba(0,0,0,0.8);
+            border: 1px solid #00E0FF;
+            color: #00E0FF;
+            padding: 10px 25px;
+            cursor: pointer;
+            font-weight: bold;
+            letter-spacing: 1px;
         }
     </style>
 </head>
 <body>
-
-    <div class="header-top"></div>
-
-    <div class="main-display">
-        <div class="btn-row">
-            <button class="btn" onclick="addLog('SCAN')">Scan</button>
-            <button class="btn" onclick="addLog('STATUS')">Status</button>
+    <div class="wrapper">
+        <div class="b1-section"></div>
+        
+        <div class="b2-section">
+            <div class="btn-group">
+                <button class="btn" onclick="addMsg('SCAN')">SCAN</button>
+                <button class="btn" onclick="addMsg('STATUS')">STATUS</button>
+            </div>
         </div>
+
+        <div class="console-section" id="con">> SYSTEM_BOOT_V4.2_SUCCESS</div>
     </div>
 
-    <div class="footer-console" id="log">> SYSTEM_ONLINE_V4.1</div>
-
     <script>
-        function addLog(m) {
-            const l = document.getElementById('log');
-            l.innerHTML = `> ${m}_OK<br>` + l.innerHTML;
+        function addMsg(m) {
+            const c = document.getElementById('con');
+            c.innerHTML = `> ${m}_SEQUENCE_ACTIVE<br>` + c.innerHTML;
         }
     </script>
 </body>
