@@ -3,48 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StageTrack</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>SNTL-X OS</title>
     <style>
-        body, html {
-            margin: 0;
-            padding: 0;
+        html, body {
             height: 100%;
-            width: 100%;
-            background: #f0f0f0; /* Example background color */
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            margin: 0;
+            background-color: var(--bg);
+            font-family: sans-serif;
+            overflow: hidden;
         }
         .stage {
+            min-height: 100vh;
             width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px; /* Example padding */
+            display: grid;
+            place-items: center;
+            padding: 16px;
             box-sizing: border-box;
         }
         .system-wrapper {
             width: min(420px, 100%);
-            background: #fff; /* Example panel background */
-            padding: 20px; /* Example padding */
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            border-radius: 5px;
+            background: #000;
+            border: 1px solid #1a1a1a;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 1);
         }
+        /* Keep existing styles for neon/gold, b1 header svg, b2 svg, grid, button styles, console styles */
     </style>
 </head>
 <body>
-    <div class="stage">
-        <div class="system-wrapper">
-            <header class="b1-header">Header Content</header>
-            <div class="ui-content">Main UI Content</div>
-            <label>Input Label:</label>
-            <div class="b2-area">Area Content</div>
-            <div class="grid-buttons">Grid Buttons</div>
-            <div class="console">Console Output</div>
-            <script>console.log('Logging output here...');</script>
+    <div class="b1-header">
+        <svg><!-- b1 header SVG content here --></svg>
+    </div>
+    <div class="ui-content">
+        <label for="status">Status:</label>
+        <div class="b2-area">
+            <button class="scan-btn">SCAN</button>
+            <button class="status-btn">STATUS</button>
+        </div>
+        <div class="console">
+            <!-- Console output here -->
         </div>
     </div>
+    <script>
+        function log() {
+            // Log function implementation here
+        }
+    </script>
 </body>
 </html>
