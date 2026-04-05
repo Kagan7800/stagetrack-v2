@@ -3,89 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SNTL-X // CRITICAL_FIX</title>
+    <title>SNTL-X // PRODUCTION_READY</title>
     <style>
-        /* 1. Nuke all browser defaults */
+        /* 1. NUKE THE DEFAULTS */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { 
-            height: 100%; 
-            width: 100%; 
+            height: 100vh; 
+            width: 100vw; 
             overflow: hidden; 
             background: #000; 
         }
 
-        /* 2. Create the 3-Layer Stack */
-        .container {
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            width: 100vw;
-        }
-
-        /* B1: Top 20% */
-        .b1-layer {
-            flex: 0 0 20vh;
+        /* 2. LAYER 1: TOP BANNER (Fixed 20%) */
+        .b1-top {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 20vh;
             background: url('b1-040426.svg') no-repeat center;
-            background-size: 100% 100%; /* FORCED STRETCH TO FILL BLOCK */
+            background-size: 100% 100%; /* FORCES IMAGE TO STRETCH TO BLOCK */
             border-bottom: 2px solid #FFCE00;
         }
 
-        /* B2: Middle 60% */
-        .b2-layer {
-            flex: 0 0 60vh;
+        /* 3. LAYER 2: MAIN DISPLAY (Fixed 60%) */
+        .b2-center {
+            position: absolute;
+            top: 20vh;
+            left: 0;
             width: 100%;
+            height: 60vh;
             background: url('b2-040426.svg') no-repeat center;
-            background-size: 100% 100%; /* FORCED STRETCH TO FILL BLOCK */
+            background-size: 100% 100%; /* FORCES IMAGE TO STRETCH TO BLOCK */
+        }
+
+        /* 4. LAYER 3: INTERACTIVE OVERLAY */
+        .ui-overlay {
+            position: absolute;
+            top: 20vh;
+            left: 0;
+            width: 100%;
+            height: 60vh;
             display: flex;
             align-items: flex-end;
             justify-content: center;
-            padding-bottom: 5vh;
+            padding-bottom: 30px;
+            pointer-events: none; /* Allows clicks through to the background if needed */
         }
 
-        /* CONSOLE: Bottom 20% */
-        .console-layer {
-            flex: 0 0 20vh;
+        .btn-box {
+            display: flex;
+            gap: 20px;
+            pointer-events: auto; /* Re-enables clicks for buttons only */
+        }
+
+        .btn {
+            background: rgba(0, 0, 0, 0.85);
+            border: 1px solid #00E0FF;
+            color: #00E0FF;
+            padding: 15px 35px;
+            font-family: monospace;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        /* 5. LAYER 4: SYSTEM CONSOLE (Fixed 20%) */
+        .console-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
             width: 100%;
-            background: #050505;
+            height: 20vh;
+            background: #080808;
+            border-top: 1px solid #333;
+            padding: 15px;
             color: #FFCE00;
             font-family: 'Courier New', monospace;
             font-size: 12px;
-            padding: 15px;
-            border-top: 1px solid #333;
             overflow-y: auto;
-        }
-
-        /* INTERACTIVE BUTTONS */
-        .ui-btns { display: flex; gap: 20px; z-index: 10; }
-        .btn {
-            background: rgba(0, 0, 0, 0.9);
-            border: 1px solid #00E0FF;
-            color: #00E0FF;
-            padding: 15px 30px;
-            font-weight: bold;
-            cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="b1-layer"></div>
-        
-        <div class="b2-layer">
-            <div class="ui-btns">
-                <button class="btn" onclick="add('SCAN')">SCAN</button>
-                <button class="btn" onclick="add('STATUS')">STATUS</button>
-            </div>
-        </div>
 
-        <div class="console-layer" id="log">> SYSTEM_RECOVERY_MODE_V4.4</div>
+    <div class="b1-top"></div>
+
+    <div class="b2-center"></div>
+
+    <div class="ui-overlay">
+        <div class="btn-box">
+            <button class="btn" onclick="cmd('SCAN')">Scan</button>
+            <button class="btn" onclick="cmd('STATUS')">Status</button>
+        </div>
     </div>
 
+    <div class="console-bottom" id="display">> SYSTEM_V4.5_STABLE</div>
+
     <script>
-        function add(m) {
-            const l = document.getElementById('log');
-            l.innerHTML = `> ${m}_EXE_SUCCESS<br>` + l.innerHTML;
+        function cmd(m) {
+            const d = document.getElementById('display');
+            d.innerHTML = `> ${m}_OK<br>` + d.innerHTML;
         }
     </script>
 </body>
