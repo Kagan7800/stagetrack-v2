@@ -1,83 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SNTL-X // V6_WIN_STATE</title>
-    <style>
-        /* 1. THE FOUNDATION LOCK */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body { 
-            height: 100vh; width: 100vw; 
-            overflow: hidden; background: #000; 
-            display: flex; justify-content: center;
-        }
+<style>
+    /* THE 'WINNER'S' SECRET: THE ASPECT LOCK */
+    .foundation-container {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        /* This prevents the 'stretched' look management hates */
+        max-width: 56.25vh; /* This is 9:16 ratio - perfect for mobile */
+        margin: 0 auto; 
+        background: #000;
+        border: 2px solid #333; /* Visual frame */
+    }
 
-        /* 2. THE PRODUCTION-READY SHELL */
-        .master-container {
-            width: 100%;
-            max-width: 480px; /* Locked to professional mobile-aspect ratio */
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            border: 1px solid #111;
-        }
-
-        /* 3. B1: HEADER (15% height - Forced) */
-        .b1-foundation {
-            flex: 0 0 15vh;
-            width: 100%;
-            background: url('b1-040426.svg') no-repeat center / 100% 100%;
-            border-bottom: 2px solid #FFCE00;
-        }
-
-        /* 4. B2: CENTER (65% height - Forced) */
-        .b2-foundation {
-            flex: 0 0 65vh;
-            width: 100%;
-            background: url('b2-040426.svg') no-repeat center / 100% 100%;
-            display: flex;
-            align-items: flex-end;
-            padding: 20px;
-        }
-
-        /* 5. CONSOLE: FOOTER (20% height - Forced) */
-        .footer-foundation {
-            flex: 1; /* Fills remaining 20% exactly */
-            background: #080808;
-            border-top: 1px solid #333;
-            padding: 12px;
-            color: #FFCE00;
-            font-family: 'Courier New', monospace;
-            font-size: 11px;
-            overflow: hidden;
-        }
-
-        .btn-group { display: flex; gap: 10px; width: 100%; }
-        .btn {
-            flex: 1; background: rgba(0,0,0,0.9); border: 1px solid #00E0FF;
-            color: #00E0FF; padding: 12px; cursor: pointer; font-weight: bold;
-        }
-    </style>
-</head>
-<body>
-    <div class="master-container">
-        <div class="b1-foundation"></div>
-        <div class="b2-foundation">
-            <div class="btn-group">
-                <button class="btn" onclick="sys('SCAN')">SCAN</button>
-                <button class="btn" onclick="sys('STATUS')">STATUS</button>
-            </div>
-        </div>
-        <div class="footer-foundation" id="out">
-            > SYSTEM_READY_V6.1<br>> RENDER_MODE: ABSOLUTE
-        </div>
-    </div>
-    <script>
-        function sys(m){
-            const o = document.getElementById('out');
-            o.innerHTML = `> ${m}_SEQUENCE_INIT...<br>` + o.innerHTML;
-        }
-    </script>
-</body>
-</html>
+    .b1-foundation { height: 20%; background-size: cover; }
+    .b2-foundation { height: 60%; background-size: cover; }
+    .footer-foundation { height: 20%; }
+</style>
