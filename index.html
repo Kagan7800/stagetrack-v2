@@ -3,94 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SNTL-X // SYSTEM_V6.0</title>
+    <title>SNTL-X // ENTERPRISE_STABLE</title>
     <style>
-        /* 1. NUKE THE BOX MODEL */
+        /* 1. CRITICAL RESET */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body, html {
+        html, body { 
+            height: 100vh; width: 100vw; 
+            overflow: hidden; background: #000; 
+            display: flex; justify-content: center; align-items: center;
+        }
+
+        /* 2. THE 'CONTEST FOUNDATION' CONTAINER */
+        /* Reduced size to 'Visual Best Practice' (Handheld Terminal Ratio) */
+        .app-shell {
+            width: 100%;
+            max-width: 450px; /* Management's preferred mobile-first width */
             height: 100vh;
-            width: 100vw;
-            background: #000;
-            overflow: hidden; /* NO SCROLLBARS ALLOWED */
             display: flex;
             flex-direction: column;
+            border-left: 1px solid #222;
+            border-right: 1px solid #222;
         }
 
-        /* 2. THE 3-SLOT ARCHITECTURE */
-        .header-slot {
-            flex: 0 0 18vh; /* Fixed 18% of screen */
-            border-bottom: 1px solid #FFCE00;
+        /* B1: TOP FOUNDATION (20% height) */
+        .b1-frame {
+            flex: 0 0 20%;
+            background: url('b1-040426.svg') no-repeat center / contain;
+            border-bottom: 2px solid #FFCE00;
         }
 
-        .main-slot {
-            flex: 1; /* Takes exactly what is left (approx 62%) */
-            position: relative;
-            background: #050505;
+        /* B2: MAIN FOUNDATION (60% height) */
+        .b2-frame {
+            flex: 0 0 60%;
+            background: url('b2-040426.svg') no-repeat center / contain;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
         }
 
-        .footer-slot {
-            flex: 0 0 20vh; /* Fixed 20% of screen */
-            background: #0a0a0a;
-            border-top: 1px solid #222;
+        /* CONSOLE: FOOTER FOUNDATION (20% height) */
+        .console-frame {
+            flex: 0 0 20%;
+            background: #080808;
+            border-top: 1px solid #333;
             padding: 15px;
             color: #FFCE00;
             font-family: monospace;
             font-size: 11px;
+            line-height: 1.4;
         }
 
-        /* 3. THE FORCE-FIT ASSETS */
-        .stage-img {
-            width: 100%;
-            height: 100%;
-            display: block;
-            object-fit: contain; /* Keeps shapes perfect; change to 'fill' to stretch */
-        }
-
-        /* 4. FLOATING UI (Sits on top of B2) */
-        .ui-layer {
-            position: absolute;
-            bottom: 20px;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-
+        .ui-row { display: flex; gap: 15px; width: 100%; }
         .btn {
-            background: rgba(0, 0, 0, 0.9);
+            flex: 1;
+            background: rgba(0,0,0,0.8);
             border: 1px solid #00E0FF;
             color: #00E0FF;
-            padding: 12px 30px;
-            font-weight: bold;
+            padding: 15px 0;
             cursor: pointer;
+            font-weight: bold;
             text-transform: uppercase;
         }
     </style>
 </head>
 <body>
-
-    <div class="header-slot">
-        <img src="b1-040426.svg" class="stage-img" alt="B1">
-    </div>
-
-    <div class="main-slot">
-        <img src="b2-040426.svg" class="stage-img" alt="B2">
-        <div class="ui-layer">
-            <button class="btn" onclick="log('SCAN')">Scan</button>
-            <button class="btn" onclick="log('STATUS')">Status</button>
+    <div class="app-shell">
+        <div class="b1-frame"></div>
+        <div class="b2-frame">
+            <div class="ui-row">
+                <button class="btn" onclick="sys('SCAN')">Scan</button>
+                <button class="btn" onclick="sys('STATUS')">Status</button>
+            </div>
         </div>
-    </div>
-
-    <div class="footer-slot" id="console">
-        > SYSTEM_LINK_V6.0_STABLE<br>
-        > FOUNDATION_CONFORMITY_CHECK: PASS
+        <div class="console-frame" id="log">> OS_V5.1_STABLE<br>> CACHE_PURGE_COMPLETE</div>
     </div>
 
     <script>
-        function log(m) {
-            const c = document.getElementById('console');
-            c.innerHTML = `> ${m}_SEQUENCE_OK<br>` + c.innerHTML;
+        function sys(m) {
+            const l = document.getElementById('log');
+            l.innerHTML = `> ${m}_SEQUENCE_SUCCESS<br>` + l.innerHTML;
         }
     </script>
 </body>
