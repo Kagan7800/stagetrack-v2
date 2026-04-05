@@ -3,108 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SNTL-X // OS v3.1.1</title>
+    <title>Stagetrack V2</title>
     <style>
-        :root { --neon: #00E0FF; --gold: #FFCE00; --bg: #010204; }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        
         body {
-            background-color: var(--bg);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            font-family: 'Courier New', monospace;
-            overflow: hidden;
+            margin: 0;
+            min-height: 100vh;
         }
-
-        /* SHRUNKEN WRAPPER */
         .system-wrapper {
-            width: 320px; /* Slimmer profile */
-            background: #000;
-            border: 1px solid #1a1a1a;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 0 40px rgba(0,0,0,1);
-        }
-
-        /* SLIM B1 HEADER */
-        .b1-header {
-            width: 100%;
-            height: 80px; /* Reduced from 100px */
-            background: #000 url('b1-040426.svg') no-repeat center;
-            background-size: contain;
-            border-bottom: 1px solid var(--gold);
-        }
-
-        .ui-content { padding: 12px; }
-
-        .label {
-            color: var(--gold);
-            font-size: 9px;
-            text-align: center;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-        }
-
-        /* SLIM B2 AREA */
-        .b2-area {
-            width: 100%;
-            height: 90px; /* Reduced from 120px */
-            background: #000 url('b2-040426.svg') no-repeat center;
-            background-size: contain;
-            border: 1px solid #111;
-            margin-bottom: 12px;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-        }
-
-        .btn {
-            background: transparent;
-            border: 1px solid #333;
-            color: var(--neon);
-            padding: 10px 0;
-            font-size: 11px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .btn:hover { border-color: var(--neon); background: rgba(0, 224, 255, 0.05); }
-
-        #console {
-            margin-top: 10px;
-            height: 50px;
-            font-size: 9px;
-            color: var(--gold);
-            border-top: 1px solid #1a1a1a;
-            padding-top: 6px;
-            overflow: hidden;
-            line-height: 1.2;
+            width: 100vw;
+            height: 100vh;
+            max-width: none;
+            /* border unchanged */
         }
     </style>
 </head>
 <body>
     <div class="system-wrapper">
-        <div class="b1-header"></div>
-        <div class="ui-content">
-            <div class="label">SNTL_HARDWARE_LINK_v3</div>
-            <div class="b2-area"></div>
-            <div class="grid">
-                <button class="btn" onclick="log('SCAN')">SCAN</button>
-                <button class="btn" onclick="log('STATUS')">STATUS</button>
-            </div>
-            <div id="console">> READY_TO_LOAD...</div>
-        </div>
+        <!-- Other content goes here -->
     </div>
-    <script>
-        function log(m) {
-            const c = document.getElementById('console');
-            c.innerHTML = `> ${m}_OK<br>` + c.innerHTML;
-        }
-    </script>
 </body>
 </html>
