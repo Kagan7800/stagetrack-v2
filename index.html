@@ -3,127 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SNTL-X // OS v3.1.0</title>
+    <title>SNTL-X // OS v3.1.1</title>
     <style>
-        :root { 
-            --neon: #00E0FF; 
-            --gold: #FFCE00; 
-            --bg: #020408; 
-        }
-
+        :root { --neon: #00E0FF; --gold: #FFCE00; --bg: #010204; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
         body {
             background-color: var(--bg);
             display: flex;
-            justify-content: center; /* Centers horizontally */
-            align-items: center;     /* Centers vertically */
-            min-height: 100vh;
-            font-family: monospace;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Courier New', monospace;
             overflow: hidden;
         }
 
-        /* THE MAIN CONTAINER: This controls the overall size */
+        /* SHRUNKEN WRAPPER */
         .system-wrapper {
-            width: 90%;
-            max-width: 360px; /* Reduced width for a sleeker look */
+            width: 320px; /* Slimmer profile */
             background: #000;
-            border: 1px solid #333;
+            border: 1px solid #1a1a1a;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 0 50px rgba(0,0,0,1);
+            box-shadow: 0 0 40px rgba(0,0,0,1);
         }
 
-        /* B1: TOP SECTION (REDUCED SIZE) */
+        /* SLIM B1 HEADER */
         .b1-header {
             width: 100%;
-            height: 100px; /* Shorter header */
+            height: 80px; /* Reduced from 100px */
             background: #000 url('b1-040426.svg') no-repeat center;
             background-size: contain;
             border-bottom: 1px solid var(--gold);
         }
 
-        /* INTERFACE CONTENT */
-        .ui-content {
-            padding: 15px;
-        }
+        .ui-content { padding: 12px; }
 
         .label {
             color: var(--gold);
-            font-size: 10px;
+            font-size: 9px;
             text-align: center;
-            margin-bottom: 15px;
-            opacity: 0.7;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
         }
 
-        /* B2: CENTER IMAGE (REDUCED SIZE) */
+        /* SLIM B2 AREA */
         .b2-area {
             width: 100%;
-            height: 120px; /* Reduced height */
+            height: 90px; /* Reduced from 120px */
             background: #000 url('b2-040426.svg') no-repeat center;
             background-size: contain;
-            border: 1px solid #222;
-            margin-bottom: 15px;
+            border: 1px solid #111;
+            margin-bottom: 12px;
         }
 
-        /* BUTTONS */
         .grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
+            gap: 8px;
         }
 
         .btn {
             background: transparent;
-            border: 1px solid #444;
+            border: 1px solid #333;
             color: var(--neon);
-            padding: 12px 0;
-            font-size: 12px;
+            padding: 10px 0;
+            font-size: 11px;
             font-weight: bold;
             cursor: pointer;
-            text-transform: uppercase;
         }
 
-        .btn:hover {
-            border-color: var(--neon);
-            background: rgba(0, 224, 255, 0.05);
-        }
+        .btn:hover { border-color: var(--neon); background: rgba(0, 224, 255, 0.05); }
 
-        /* CONSOLE */
         #console {
-            margin-top: 15px;
-            height: 60px;
+            margin-top: 10px;
+            height: 50px;
             font-size: 9px;
             color: var(--gold);
-            border-top: 1px solid #222;
-            padding-top: 8px;
+            border-top: 1px solid #1a1a1a;
+            padding-top: 6px;
             overflow: hidden;
+            line-height: 1.2;
         }
     </style>
 </head>
 <body>
-
     <div class="system-wrapper">
         <div class="b1-header"></div>
-        
         <div class="ui-content">
-            <div class="label">[HARDWARE_LINK_ACTIVE]</div>
-            
+            <div class="label">SNTL_HARDWARE_LINK_v3</div>
             <div class="b2-area"></div>
-
             <div class="grid">
-                <button class="btn" onclick="log('SCAN')">Scan</button>
-                <button class="btn" onclick="log('STATUS')">Status</button>
+                <button class="btn" onclick="log('SCAN')">SCAN</button>
+                <button class="btn" onclick="log('STATUS')">STATUS</button>
             </div>
-
-            <div id="console">> OS_V3.1.0_READY...</div>
+            <div id="console">> READY_TO_LOAD...</div>
         </div>
     </div>
-
     <script>
         function log(m) {
             const c = document.getElementById('console');
-            c.innerHTML = `> ${m}_INITIATED...<br>` + c.innerHTML;
+            c.innerHTML = `> ${m}_OK<br>` + c.innerHTML;
         }
     </script>
 </body>
