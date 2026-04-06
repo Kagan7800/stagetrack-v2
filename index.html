@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SNTL-X // GRID_STAGE_v2</title>
-    <link rel="icon" type="image/svg+xml" href="layout.svg">
+    <title>SNTL-X // PRECISION_GRID</title>
     <style>
-        /* 1 & 2: SAFETY NET & VIEWPORT LOCKING */
+        /* SAFEGUARDS #1 & #2: VIEWPORT LOCKING & SAFETY NET */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body, html { 
             height: 100vh; width: 100vw; 
             overflow: hidden; 
             background-color: #0b2fa3; 
-            font-family: sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         .app-wallpaper {
@@ -23,95 +22,90 @@
             z-index: 0;
         }
 
-        /* 3: THE GRID STAGE (7x5 Architecture) */
-        .stage-grid {
+        /* SAFEGUARD #3: THE 12-COLUMN ARCHITECTURAL STAGE */
+        .stage-container {
             position: absolute;
-            top: 18vh; /* Starts exactly at 0px of TopBanner */
+            top: 20vh; /* Clears the TopBanner */
             left: 0;
             width: 100vw;
-            height: 82vh;
+            height: 80vh;
             display: grid;
-            /* Columns: SidebarL | GC1 | GC2 | GC3 | GC4 | SidebarR */
-            grid-template-columns: 60px repeat(4, 1fr) 60px;
-            /* Rows: Row1(PEO) | Row2(PC Top) | Row3(PC Bot) | Row4(PEO) */
-            grid-template-rows: repeat(4, 1fr);
-            gap: 20px; /* Standard 20px padding around PC */
-            padding: 10px;
+            /* 12-Column Grid to match Spreadsheet granularity */
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: repeat(8, 1fr);
+            gap: 10px;
+            padding: 20px;
             z-index: 10;
         }
 
-        /* CONTAINER STYLING */
-        .gc, .pc-anchor, .sidebar-mod {
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
+        /* PC: THE 16:9 ANCHOR */
+        .pc-anchor {
+            grid-column: 3 / span 8; /* Centered in the 12-col grid */
+            grid-row: 2 / span 5;
+            background: rgba(0, 0, 0, 0.95);
+            border: 2px solid #ffffff;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
+            aspect-ratio: 16 / 9; /* FORCED 16:9 RATIO */
+            margin: auto; /* Keeps it centered if grid cells are larger */
+            box-shadow: 0 0 40px rgba(0,0,0,0.8);
+            color: white;
+            font-weight: 900;
+        }
+
+        /* PEO: SPREADSHEET-STYLE TILES */
+        .gc {
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 10px;
-            border-radius: 8px;
+            text-transform: uppercase;
+            border-radius: 4px;
         }
 
-        /* PC ANCHOR: CENTERED & DYNAMIC */
-        .pc-anchor {
-            grid-column: 2 / span 4;
-            grid-row: 2 / span 2;
-            background: rgba(0, 0, 0, 0.9);
-            font-size: 24px;
-            border: 2px solid #fff;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
-        }
+        /* POSITIONAL MAPPING (BASED ON SPREADSHEET) */
+        .ic { grid-column: 2; grid-row: 1; border-color: #ffd700; }
+        .gc1 { grid-column: 4; grid-row: 1; }
+        .gc2 { grid-column: 6; grid-row: 1; }
+        .gc3 { grid-column: 8; grid-row: 1; }
+        .gc4 { grid-column: 10; grid-row: 1; }
 
-        /* SIDEBARS: VERTICAL CHAT & TOOLBOX */
-        .sidebar-mod { writing-mode: vertical-rl; transform: rotate(180deg); text-transform: uppercase; }
-        .toolbox-area { grid-column: 1; grid-row: 1 / span 2; }
-        .chat-area { grid-column: 6; grid-row: 1 / span 2; }
+        /* Left/Right Vertical Groups */
+        .v-left { grid-column: 1; }
+        .v-right { grid-column: 12; }
 
-        /* GRID MAPPING BASED ON SPREADSHEET */
-        .ic { grid-column: 2; grid-row: 1; border-color: #ffd700; } /* Instructor */
-        .gc1 { grid-column: 3; grid-row: 1; }
-        .gc2 { grid-column: 4; grid-row: 1; }
-        .gc3 { grid-column: 5; grid-row: 1; }
-        
-        .gc5 { grid-column: 1; grid-row: 3; }
-        .gc7 { grid-column: 1; grid-row: 4; }
-        
-        .gc6 { grid-column: 6; grid-row: 3; }
-        .gc8 { grid-column: 6; grid-row: 4; }
-
-        .gc9 { grid-column: 2; grid-row: 4; }
-        .gc10 { grid-column: 3; grid-row: 4; }
-        .gc11 { grid-column: 4; grid-row: 4; }
-        .gc12 { grid-column: 5; grid-row: 4; }
+        /* Bottom Row */
+        .gc-bot { grid-row: 8; }
     </style>
 </head>
 <body>
 
     <div class="app-wallpaper"></div>
 
-    <div class="stage-grid">
-        <div class="pc-anchor">PC</div>
-
-        <div class="sidebar-mod toolbox-area">TOOLBOX</div>
-        <div class="sidebar-mod chat-area">CHAT</div>
+    <div class="stage-container">
+        <div class="pc-anchor">PC (16:9)</div>
 
         <div class="gc ic">IC</div>
         <div class="gc gc1">gc1</div>
         <div class="gc gc2">gc2</div>
         <div class="gc gc3">gc3</div>
-        
-        <div class="gc gc5">gc5</div>
-        <div class="gc gc7">gc7</div>
-        
-        <div class="gc gc6">gc6</div>
-        <div class="gc gc8">gc8</div>
+        <div class="gc gc4">gc4</div>
 
-        <div class="gc gc9">gc9</div>
-        <div class="gc gc10">gc10</div>
-        <div class="gc gc11">gc11</div>
-        <div class="gc gc12">gc12</div>
+        <div class="gc v-left" style="grid-row: 3;">gc5</div>
+        <div class="gc v-left" style="grid-row: 5;">gc7</div>
+        <div class="gc v-right" style="grid-row: 3;">gc6</div>
+        <div class="gc v-right" style="grid-row: 5;">gc8</div>
+
+        <div class="gc gc-bot" style="grid-column: 3;">gc9</div>
+        <div class="gc gc-bot" style="grid-column: 5;">gc10</div>
+        <div class="gc gc-bot" style="grid-column: 7;">gc11</div>
+        <div class="gc gc-bot" style="grid-column: 9;">gc12</div>
+        <div class="gc gc-bot" style="grid-column: 11;">gc13</div>
     </div>
 
 </body>
