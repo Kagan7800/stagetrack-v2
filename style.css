@@ -1,24 +1,102 @@
-/* FORCE VISIBILITY TEST */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
 html, body {
-    background-color: #1a1a1a !important; /* If the screen turns dark grey, CSS is working */
-    height: 100vh !important;
-    width: 100vw !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
+    height: 100vh;
+    width: 100vw;
+    background-color: #1745B9;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-body::before {
-    content: "";
-    position: fixed;
+#pc-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-width: 960px;
+    /* PNG fallback: shown if inline SVG somehow fails */
+    background-image: url('layout.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+/* Inline SVG layer - renders immediately from HTML */
+.svg-layer {
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('Layout.svg'); /* Ensure the 'L' is capitalized if the file is */
-    background-size: cover;
-    background-position: center;
-    z-index: -1;
+    z-index: 0;
+}
+
+.svg-layer svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Controls overlay on top */
+.app-ui {
+    position: absolute;
+    bottom: 10%;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+#status-title {
+    color: #ffffff;
+    font-family: 'Arial Black', Arial, sans-serif;
+    font-size: clamp(16px, 4vw, 28px);
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    letter-spacing: 2px;
+}
+
+#status-title.kid-text {
+    color: #ffdd00;
+}
+
+.btn-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    padding: 0 16px;
+}
+
+.control-btn {
+    background: #ff2a2a;
+    border: 3px solid #ffffff;
+    border-radius: 50px;
+    color: #ffffff;
+    padding: 12px 28px;
+    font-family: 'Arial Black', Arial, sans-serif;
+    font-size: clamp(12px, 3vw, 18px);
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: 0 5px 0 #8b0000;
+    transition: transform 0.1s, box-shadow 0.1s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.control-btn:active,
+.control-btn.active {
+    transform: translateY(3px);
+    box-shadow: 0 2px 0 #8b0000;
+    background: #cc0000;
+}
+
+#pc-container.kid-active .control-btn.active {
+    background: #ff9900;
+    border-color: #ffdd00;
+    box-shadow: 0 2px 0 #cc6600;
 }
