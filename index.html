@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SNTL-X // STAGE_LAYOUT</title>
+    <title>SNTL-X // SOURCE_CONTROL</title>
     <link rel="icon" type="image/svg+xml" href="layout.svg">
     <style>
         /* SAFEGUARD #1 & #2: VIEWPORT LOCKING & SAFETY NET */
@@ -11,7 +11,7 @@
         body, html { 
             height: 100vh; width: 100vw; 
             overflow: hidden; 
-            background-color: #0b2fa3; 
+            background-color: #0b2fa3; /* Standard Safety Net */
         }
 
         .app-wallpaper {
@@ -23,55 +23,64 @@
         }
 
         /* SAFEGUARD #3: ABSOLUTE UI LAYERING */
-        /* The Stage Container starts below the banner (22vh) */
-        .stage-area {
+        .side-column {
             position: absolute;
-            top: 22vh;
-            left: 0;
-            width: 100%;
-            height: 78vh;
+            top: 22vh; /* Aligned to the 0px bottom of the top banner */
+            height: 78vh; 
+            width: 55px;
             display: flex;
-            justify-content: center;
-            align-items: center;
+            flex-direction: column;
+            gap: 4px; /* Architectural separation */
             z-index: 10;
-            padding: 20px;
+            pointer-events: none;
         }
 
-        /* PEO: THE PEOPLE WRAPPER (Outer Ring) */
-        .peo-container {
+        .left-col { left: 0; }
+        .right-col { right: 0; }
+
+        /* MODULE BOX DEFINITION */
+        .module-box {
+            flex: 1; 
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
             display: flex;
-            justify-content: center;
             align-items: center;
-            border: 2px dashed rgba(255,255,255,0.3);
-            padding: 40px;
-            border-radius: 20px;
-            position: relative;
-        }
-        .peo-label {
-            position: absolute;
-            top: -10px;
-            background: #000;
-            color: #fff;
-            font-size: 10px;
-            padding: 2px 8px;
-            font-weight: bold;
+            justify-content: center;
+            pointer-events: auto;
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
-        /* PC: THE PRESENTATION (Center Focus) */
-        .pc-main {
-            width: 60vw;
-            height: 40vh;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            border: 2px solid #fff;
-            box-shadow: 0 0 30px rgba(0,0,0,0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        /* Styling for Left-aligned Modules (PC & TOOLBOX) */
+        .left-col .module-box { 
+            border-left: none; 
+            border-radius: 0 12px 12px 0; 
+        }
+
+        /* Styling for Right-aligned Modules (PEO & CHAT) */
+        .right-col .module-box { 
+            border-right: none; 
+            border-radius: 12px 0 0 12px; 
+        }
+
+        .vertical-label {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            transform: rotate(180deg);
             color: white;
-            font-weight: 900;
-            font-size: 24px;
             text-transform: uppercase;
+            font-weight: 900;
+            letter-spacing: 2px;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        /* Sub-labels for clarity */
+        .vertical-label span {
+            display: block;
+            font-size: 8px;
+            margin-top: 10px;
+            opacity: 0.6;
+            letter-spacing: 1px;
         }
     </style>
 </head>
@@ -79,13 +88,21 @@
 
     <div class="app-wallpaper"></div>
 
-    <div class="stage-area">
-        <div class="peo-container">
-            <div class="peo-label">PEO (PEOPLE CONTAINERS)</div>
-            
-            <div class="pc-main">
-                PC (PRESENTATION)
-            </div>
+    <div class="side-column left-col">
+        <div class="module-box">
+            <div class="vertical-label">PC <span>Presentation Containers</span></div>
+        </div>
+        <div class="module-box">
+            <div class="vertical-label">TOOLBOX</div>
+        </div>
+    </div>
+
+    <div class="side-column right-col">
+        <div class="module-box">
+            <div class="vertical-label">PEO <span>People Containers</span></div>
+        </div>
+        <div class="module-box">
+            <div class="vertical-label">CHAT</div>
         </div>
     </div>
 
