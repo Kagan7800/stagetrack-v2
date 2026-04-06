@@ -20,3 +20,8 @@ body, html {
     justify-content: flex-end; /* Keeps buttons at the bottom over the image */
     padding-bottom: 40px;
 }
+.app-interface {
+    /* ... other styles ... */
+    justify-content: center; /* This moves them from the bottom to the middle */
+    gap: 40px; /* Adds more breathing room between buttons */
+}
