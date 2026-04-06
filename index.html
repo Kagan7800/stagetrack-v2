@@ -1,17 +1,68 @@
-<svg viewBox="0 0 1920 1600" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
-    <rect width="1920" height="1600" fill="#0b2fa3" />
-    
-    <g opacity="0.1">
-        <rect x="400" width="600" height="3000" fill="#7a3bd1" transform="rotate(-45)" />
-    </g>
-    <circle cx="300" cy="400" r="25" fill="#ffd93b" />
-    <circle cx="1600" cy="600" r="25" fill="#ffd93b" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SNTL-X // WALLPAPER_FIX</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body, html { 
+            height: 100vh; width: 100vw; 
+            background: #0b2fa3; /* The primary blue */
+            overflow: hidden;
+            font-family: sans-serif;
+        }
 
-    <g transform="translate(160, 950)">
-        <rect width="1600" height="500" rx="80" fill="#1e90ff" stroke="#ff4d4d" stroke-width="35" />
-        
-        <text x="800" y="220" font-family="Arial Black, sans-serif" font-size="180" fill="#ff2a2a" text-anchor="middle">Music Fun</text>
-        
-        <text x="800" y="400" font-family="Arial, sans-serif" font-weight="bold" font-size="110" fill="#ff2a2a" text-anchor="middle">with my Little One</text>
-    </g>
-</svg>
+        /* THE WALLPAPER LAYER */
+        .wallpaper {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 1; /* Sits at the bottom */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Keeps the marquee at the top/mid area */
+        }
+
+        /* THE FUNCTIONAL LAYER */
+        .ui-layer {
+            position: relative;
+            z-index: 2; /* Sits ON TOP of the wallpaper */
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end; /* Pushes buttons to the bottom */
+            padding-bottom: 50px;
+            pointer-events: none; /* Allows clicks to pass through empty space */
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            pointer-events: auto; /* RE-ENABLES clicks for the buttons only */
+        }
+
+        .btn {
+            background: #ff2a2a; border: 4px solid #fff; border-radius: 50px;
+            color: #fff; padding: 15px 40px; font-weight: bold;
+            font-size: 1.2rem; cursor: pointer; box-shadow: 0 5px 0 #8b0000;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wallpaper">
+        <img src="layout.svg" style="width: 100%; max-width: 500px; height: auto;" alt="background">
+    </div>
+
+    <div class="ui-layer">
+        <div class="btn-container">
+            <button class="btn" onclick="alert('PLAY')">PLAY</button>
+            <button class="btn" onclick="alert('STOP')">STOP</button>
+        </div>
+    </div>
+
+</body>
+</html>
