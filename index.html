@@ -2,33 +2,48 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>SNTL-X // ISOLATED_LAYOUT_REPRODUCTION</title>
+    <title>SNTL-X // RECONSTRUCTION_V1</title>
     <style>
-        /* 1. RESET LAYER */
+        /* 1. ARCHITECTURAL RESET */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
         body, html { 
             height: 100vh; width: 100vw; 
             overflow: hidden; 
-            background: #0b2fa3; /* Base Architecture Blue */
-            font-family: 'Segoe UI', sans-serif;
+            background: #0b2fa3; /* Background Moat */
+            font-family: sans-serif;
         }
 
-        /* 2. THE EXPLICIT GRID (5 Cols / 7 Rows) */
-        #layout-module {
+        /* 2. EXPLICIT GRID (5 Columns / 7 Rows) */
+        #master-stage {
             display: grid;
-            /* Sidebars: 15% | Center: 70% divided into 3 | Sidebars: 15% */
+            /* Sidebars: 15% | Center Columns (3 equal parts) | Sidebars: 15% */
             grid-template-columns: 15% 1fr 1fr 1fr 15%;
-            /* Row 1: Banner | Row 2: Top Pills | Row 3-5: PC | Row 6: Bottom Pills | Row 7: Footer */
-            grid-template-rows: 18vh 40px 1fr 1fr 1fr 40px 5vh;
+            /* Row 1: Top Margin | Row 2: Top GCs | Row 3-5: Center Space | Row 6: Bottom GCs | Row 7: Footer */
+            grid-template-rows: 15vh 40px 1fr 1fr 1fr 40px 5vh;
             height: 100vh;
             width: 100vw;
-            gap: 15px;
             padding: 20px;
+            gap: 10px;
         }
 
-        /* 3. THE PC (CLAMPED TO 50%) */
-        #pc-anchor {
+        /* 3. PEO PILL MODULES (Explicitly Sized) */
+        .pill {
+            background: #000;
+            border: 1px solid rgba(255,255,255,0.5);
+            border-radius: 50px;
+            height: 30px;
+            width: 80%;
+            margin: auto;
+            color: white;
+            font-size: 10px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 4. THE PC (50% CENTER LOCK) */
+        #pc-container {
             grid-column: 2 / span 3;
             grid-row: 3 / span 3;
             display: flex;
@@ -37,55 +52,38 @@
         }
 
         .pc-box {
-            /* SOURCE OF TRUTH: 50% reduction as requested */
-            width: 50%; 
+            width: 50%; /* 50% Size as requested */
             aspect-ratio: 16 / 9;
             background: #000;
             border: 2px solid #fff;
             box-shadow: 0 0 30px rgba(0,0,0,0.5);
         }
 
-        /* 4. THE PEO MODULES (Explicit Placement Only) */
-        .peo {
-            background: rgba(0, 0, 0, 0.9);
-            border: 1.5px solid rgba(255, 255, 255, 0.4);
-            border-radius: 50px;
-            height: 32px;
-            width: 80%;
-            margin: auto;
-            color: #fff;
-            font-size: 10px;
-            font-weight: 900;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .ic { border-color: #ffcc00; color: #ffcc00; }
+        .gold { border-color: gold; color: gold; }
     </style>
 </head>
 <body>
 
-    <div id="layout-module">
-        <div class="peo" style="grid-column: 2; grid-row: 2;">GC4</div>
-        <div class="peo" style="grid-column: 3; grid-row: 2;">GC5</div>
-        <div class="peo" style="grid-column: 4; grid-row: 2;">GC6</div>
+    <div id="master-stage">
+        <div class="pill" style="grid-column: 2; grid-row: 2;">GC4</div>
+        <div class="pill" style="grid-column: 3; grid-row: 2;">GC5</div>
+        <div class="pill" style="grid-column: 4; grid-row: 2;">GC6</div>
 
-        <div class="peo ic" style="grid-column: 1; grid-row: 3;">IC</div>
-        <div class="peo" style="grid-column: 1; grid-row: 4;">GC1</div>
-        <div class="peo" style="grid-column: 1; grid-row: 5;">GC2</div>
+        <div class="pill gold" style="grid-column: 1; grid-row: 3;">IC</div>
+        <div class="pill" style="grid-column: 1; grid-row: 4;">GC1</div>
+        <div class="pill" style="grid-column: 1; grid-row: 5;">GC2</div>
 
-        <div id="pc-anchor">
+        <div id="pc-container">
             <div class="pc-box"></div>
         </div>
 
-        <div class="peo" style="grid-column: 5; grid-row: 3;">GC10</div>
-        <div class="peo" style="grid-column: 5; grid-row: 4;">GC11</div>
-        <div class="peo" style="grid-column: 5; grid-row: 5;">GC12</div>
+        <div class="pill" style="grid-column: 5; grid-row: 3;">GC10</div>
+        <div class="pill" style="grid-column: 5; grid-row: 4;">GC11</div>
+        <div class="pill" style="grid-column: 5; grid-row: 5;">GC12</div>
 
-        <div class="peo" style="grid-column: 2; grid-row: 6;">GC7</div>
-        <div class="peo" style="grid-column: 3; grid-row: 6;">GC8</div>
-        <div class="peo" style="grid-column: 4; grid-row: 6;">GC9</div>
+        <div class="pill" style="grid-column: 2; grid-row: 6;">GC7</div>
+        <div class="pill" style="grid-column: 3; grid-row: 6;">GC8</div>
+        <div class="pill" style="grid-column: 4; grid-row: 6;">GC9</div>
     </div>
 
 </body>
