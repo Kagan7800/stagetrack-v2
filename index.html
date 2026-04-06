@@ -1,52 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SNTL-X // RECOVERY_V10</title>
-    <style>
-        /* 1. FORCE THE COLOR (No more white screens) */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body, html { 
-            height: 100vh; width: 100vw; 
-            background: #0b2fa3; /* This ensures the screen is BLUE, not white */
-            display: flex; justify-content: center; align-items: center;
-            overflow: hidden;
-            color: white; font-family: sans-serif;
-        }
-
-        .stage {
-            width: 100%; height: 100%;
-            max-width: 500px; /* Best practice for mobile-first layout */
-            display: flex; flex-direction: column;
-            border: 2px solid rgba(255,255,255,0.2);
-            /* CALL THE NEW SVG HERE */
-            background: url('combined-layout.svg') no-repeat center center / contain;
-        }
-
-        .fallback-text {
-            text-align: center; padding-top: 50px; opacity: 0.5; font-size: 12px;
-        }
-
-        .controls {
-            margin-top: auto; margin-bottom: 40px;
-            display: flex; justify-content: center; gap: 20px;
-        }
-
-        .btn {
-            background: #ff2a2a; border: 3px solid #fff; color: #fff;
-            padding: 15px 30px; border-radius: 50px; font-weight: bold; cursor: pointer;
-        }
-    </style>
-</head>
-<body>
-    <div class="stage">
-        <div class="fallback-text">SVG_LOADING_PENDING...</div>
-        
-        <div class="controls">
-            <button class="btn" onclick="alert('START')">PLAY</button>
-            <button class="btn" onclick="alert('STOP')">STOP</button>
-        </div>
-    </div>
-</body>
-</html>
+<style>
+    .stage {
+        width: 100%;
+        height: 100%;
+        max-width: 500px;
+        /* The Fix: Ensure the path is relative and has a cache-buster */
+        background: url('./combined-layout.svg?v=1') no-repeat center center / contain;
+        display: flex;
+        flex-direction: column;
+    }
+</style>
