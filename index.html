@@ -1,5 +1,5 @@
 <style>
-    /* 1. SYSTEM OVERVIEW: Viewport & Safety Net */
+    /* 1. VIEWPORT LOCKING */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body, html { 
         height: 100vh; width: 100vw; 
@@ -7,31 +7,29 @@
         background: url('layout.svg') no-repeat center center fixed;
         background-size: cover;
         background-color: #0b2fa3; 
-        font-family: sans-serif;
+        font-family: 'Segoe UI', Roboto, sans-serif;
     }
 
-    /* 2. TOP BANNER MODULE (Matches Marquee Height) */
+    /* 2. TOP BANNER (Clearance for Music Fun Marquee) */
     .top-banner {
-        height: 20vh;
+        height: 18vh;
         width: 100%;
     }
 
-    /* 3. THE 3-COLUMN MODULAR GRID (Corrected Proportions) */
+    /* 3. MODULAR GRID (Rule 4.1: Sidebars 15%, Center 70%) */
     .grid-layout {
         display: grid;
-        /* Sidebar (15%) | Center (70%) | Sidebar (15%) */
         grid-template-columns: 15% 70% 15%;
         grid-template-rows: repeat(8, 1fr);
-        height: 80vh;
-        gap: 10px;
+        height: 82vh;
+        gap: 12px;
         padding: 0 20px 20px 20px;
-        z-index: 10;
     }
 
     /* 4. CONTAINER MODULES */
     .tile {
-        background: rgba(0, 0, 0, 0.85);
-        backdrop-filter: blur(10px);
+        background: rgba(0, 0, 0, 0.82);
+        backdrop-filter: blur(12px);
         border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 8px;
         display: flex;
@@ -40,28 +38,33 @@
         color: white;
         font-weight: 900;
         font-size: 11px;
-        text-align: center;
+        transition: all 0.3s ease;
     }
 
-    /* PC MODULE (The "Big Box" Fix) */
+    /* PC MODULE (Rule 3.1: The 16:9 Anchor) */
     .pc-tile {
         grid-column: 2;
-        grid-row: 1 / span 8; /* Occupy all available vertical space in center */
-        width: 95%;
-        height: 95%;
+        grid-row: 1 / span 8; /* Spans all rows to maximize size */
+        width: 100%;
+        height: 100%;
+        max-height: 100%;
         aspect-ratio: 16 / 9;
         background: rgba(0, 0, 0, 0.95);
         border: 3px solid #ffffff;
-        box-shadow: 0 0 50px rgba(0,0,0,0.9);
-        margin: auto; /* Keeps 16:9 centered in the 70% width */
+        box-shadow: 0 0 60px rgba(0,0,0,0.85);
+        display: flex;
+        align-items: center;
+        justify-content: center;
         font-size: 32px;
+        /* Remove margin: auto to prevent shrinking */
     }
 
-    /* IC & GC STYLING */
+    /* IC & SIDE TILE ADJUSTMENTS */
     .ic-tile { border: 2px solid #ffd700; color: #ffd700; }
     
-    /* Ensure side tiles don't get too tall */
+    /* Ensure Guest Containers don't stretch too tall */
     .grid-layout > .tile:not(.pc-tile) {
-        max-height: 80px; 
+        max-height: 90px;
+        align-self: center;
     }
 </style>
