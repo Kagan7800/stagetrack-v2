@@ -1,58 +1,97 @@
-/* 1. SYSTEM OVERVIEW: Viewport & Safety Net */
-.stage-background {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    background-color: #0b2fa3; /* Safety Net */
-    background-image: url('layout.svg');
-    background-size: cover;
-    background-position: center;
-    overflow: hidden;
+/* 1. SYSTEM OVERVIEW: Viewport Locking */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
 }
 
-/* 2. TOP BANNER MODULE (0px Clearance) */
+body, html { 
+    height: 100vh; 
+    width: 100vw; 
+    overflow: hidden; 
+    background: #0b2fa3 url('layout.svg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* 2. TOP BANNER MODULE (Fixed Height) */
 .top-banner {
     height: 18vh;
     width: 100%;
+    position: relative;
+    z-index: 5;
 }
 
-/* 3. THE 3-COLUMN MODULAR GRID (Rule 4.1 & 4.2) */
+/* 3. THE 3-COLUMN MODULAR GRID (RCIP Corrected) */
 .grid-layout {
     display: grid;
-    /* Left: 1fr, Center: 4fr, Right: 1fr */
-    grid-template-columns: 1fr 4fr 1fr;
-    /* 8 Row Structure (Rule 4.2) */
+    /* Sidebar: 15% | Center Stage: 70% | Sidebar: 15% */
+    grid-template-columns: 15% 70% 15%;
+    /* 8-Row Architecture */
     grid-template-rows: repeat(8, 1fr);
-    height: 82vh;
-    gap: 12px;
-    padding: 10px 20px;
+    /* CALC: Total height minus the banner height */
+    height: calc(100vh - 18vh); 
+    width: 100vw;
+    gap: 10px;
+    padding: 0 20px 20px 20px;
+    position: relative;
+    z-index: 10;
 }
 
-/* 4. CONTAINER MODULES */
+/* 4. CONTAINER MODULES (PEO / GCs) */
 .tile {
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
+    border: 1.5px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px; /* Pill Shape for Spreadsheet Look */
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-    color: white;
+    color: #ffffff;
+    font-weight: 900;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    /* Prevent vertical stretching */
+    height: 35px; 
+    width: 90%;
+    margin: auto;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
-/* PC MODULE SPECIFIC (Rule 3.1 & 4.5) */
+/* 5. PC MODULE: THE ANCHOR (Standard Architectural 16:9) */
 .pc-tile {
     grid-column: 2;
-    grid-row: 2 / span 6; /* Vertically centered across 8 rows */
-    aspect-ratio: 16 / 9;
-    background: rgba(0, 0, 0, 0.95);
-    border: 2px solid #fff;
-    box-shadow: 0 0 30px rgba(0,0,0,0.7);
-    margin: auto; /* Centers within the 4fr column */
+    grid-row: 1 / span 8; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* IC MODULE (Rule 3.2 & 4.3) */
-.ic-tile {
-    border-color: #ffd700;
+.pc-screen {
+    width: 100%;
+    /* Ensures the 16:9 box fits within the 70% center width */
+    max-width: 100%; 
+    aspect-ratio: 16 / 9;
+    background: rgba(0, 0, 0, 0.95);
+    border: 3px solid #ffffff;
+    box-shadow: 0 0 50px rgba(0,0,0,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+}
+
+/* 6. SPECIALIZED STATES */
+.ic-tile { 
+    border: 2px solid #ffd700; 
+    color: #ffd700; 
+}
+
+/* Hover effect for interactivity */
+.tile:hover {
+    border-color: rgba(255, 255, 255, 0.8);
+    background: rgba(0, 0, 0, 0.95);
+    transform: scale(1.02);
+    transition: all 0.2s ease-in-out;
 }
