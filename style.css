@@ -1,24 +1,22 @@
-/* FORCE VISIBILITY TEST */
-html, body {
-    background-color: #1a1a1a !important; /* If the screen turns dark grey, CSS is working */
-    height: 100vh !important;
-    width: 100vw !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    /* THIS IS THE KEY: It pins the image to the entire background */
+    background: url('layout.svg') no-repeat center center fixed;
+    background-size: cover; 
+    overflow: hidden;
 }
 
-body::before {
-    content: "";
-    position: fixed;
+.ui-layer {
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('layout.svg');
-    background-size: cover;
-    background-position: center;
-    z-index: -1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Keeps buttons at the bottom over the image */
+    padding-bottom: 40px;
 }
