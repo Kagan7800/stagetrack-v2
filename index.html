@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SNTL-X // REVERSED_INTERFACE</title>
+    <title>SNTL-X // EDGE_INTERFACE</title>
     <style>
         /* SAFEGUARD #1 & #2: VIEWPORT LOCKING & SAFETY NET */
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -11,7 +11,7 @@
             height: 100vh; width: 100vw; 
             overflow: hidden; 
             background-color: #0b2fa3; /* Safety Net */
-            font-family: sans-serif;
+            font-family: 'Arial', sans-serif;
         }
 
         .app-wallpaper {
@@ -27,47 +27,54 @@
             position: absolute;
             inset: 0;
             z-index: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 20px;
             pointer-events: none;
         }
 
-        /* TOOLBOX (Moved to Top Left) */
-        .toolbox {
-            align-self: flex-start; /* FLIPPED TO LEFT */
-            background: rgba(255, 255, 255, 0.15);
+        /* STANDARD SIDE-BAR ARCHITECTURE */
+        .side-bar {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            width: 40px; /* Collapsed Width */
+            background: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 12px;
-            padding: 15px;
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             pointer-events: auto;
-            color: white;
+            transition: width 0.3s ease;
+            cursor: pointer;
         }
 
-        /* CHAT (Moved to Bottom Right) */
-        .chat-container {
-            align-self: flex-end; /* FLIPPED TO RIGHT */
-            width: 280px;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(15px);
-            border-radius: 15px;
-            padding: 15px;
-            pointer-events: auto;
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .side-bar:hover {
+            width: 60px; /* Subtle hover expansion */
+            background: rgba(0, 0, 0, 0.8);
         }
 
-        .chat-messages { height: 120px; overflow-y: auto; font-size: 13px; margin-bottom: 10px; }
-        .chat-input {
-            width: 100%;
-            background: rgba(255,255,255,0.1);
-            border: none;
-            padding: 8px 12px;
-            border-radius: 20px;
+        /* VERTICAL TEXT FORMATTING */
+        .vertical-label {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            transform: rotate(180deg);
             color: white;
-            outline: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* LEFT SIDE: TOOLBOX */
+        .toolbox-side {
+            left: 0;
+        }
+
+        /* RIGHT SIDE: CHAT */
+        .chat-side {
+            right: 0;
+            border-right: none;
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
         }
     </style>
 </head>
@@ -76,18 +83,12 @@
     <div class="app-wallpaper"></div>
 
     <div class="ui-layer">
-        <div class="toolbox">
-            <div style="font-size: 12px; opacity: 0.7; margin-bottom: 8px;">TOOLBOX</div>
-            <div style="display: flex; gap: 15px; font-size: 20px;">
-                <span>🛠️</span><span>🎨</span><span>⚙️</span>
-            </div>
+        <div class="side-bar toolbox-side">
+            <div class="vertical-label">TOOLBOX</div>
         </div>
 
-        <div class="chat-container">
-            <div class="chat-messages">
-                <div style="margin-bottom: 8px;"><span style="color: #ffd93b;">System:</span> Layout flipped.</div>
-            </div>
-            <input type="text" class="chat-input" placeholder="Message...">
+        <div class="side-bar chat-side">
+            <div class="vertical-label">CHAT</div>
         </div>
     </div>
 
