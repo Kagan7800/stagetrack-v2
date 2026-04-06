@@ -1,70 +1,108 @@
-<style>
-    /* 1. VIEWPORT LOCKING */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body, html { 
-        height: 100vh; width: 100vw; 
-        overflow: hidden; 
-        background: url('layout.svg') no-repeat center center fixed;
-        background-size: cover;
-        background-color: #0b2fa3; 
-        font-family: 'Segoe UI', Roboto, sans-serif;
-    }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SNTL-X // STUDIO_STAGE</title>
+    <style>
+        /* 1. SYSTEM OVERVIEW: Viewport & Safety Net */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body, html { 
+            height: 100vh; width: 100vw; 
+            overflow: hidden; 
+        }
 
-    /* 2. TOP BANNER (Clearance for Music Fun Marquee) */
-    .top-banner {
-        height: 18vh;
-        width: 100%;
-    }
+        .stage-background {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background-color: #0b2fa3; /* Safety Net */
+            background-image: url('layout.svg');
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+        }
 
-    /* 3. MODULAR GRID (Rule 4.1: Sidebars 15%, Center 70%) */
-    .grid-layout {
-        display: grid;
-        grid-template-columns: 15% 70% 15%;
-        grid-template-rows: repeat(8, 1fr);
-        height: 82vh;
-        gap: 12px;
-        padding: 0 20px 20px 20px;
-    }
+        /* 2. TOP BANNER MODULE (0px Clearance for Marquee) */
+        .top-banner {
+            height: 18vh;
+            width: 100%;
+        }
 
-    /* 4. CONTAINER MODULES */
-    .tile {
-        background: rgba(0, 0, 0, 0.82);
-        backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-weight: 900;
-        font-size: 11px;
-        transition: all 0.3s ease;
-    }
+        /* 3. THE 3-COLUMN MODULAR GRID (Rule 4.1 & 4.2) */
+        .grid-layout {
+            display: grid;
+            /* Left: 1fr | Center: 4fr | Right: 1fr */
+            grid-template-columns: 1fr 4fr 1fr;
+            /* 8 Row Structure (Rule 4.2) */
+            grid-template-rows: repeat(8, 1fr);
+            height: 82vh;
+            gap: 12px;
+            padding: 10px 20px;
+        }
 
-    /* PC MODULE (Rule 3.1: The 16:9 Anchor) */
-    .pc-tile {
-        grid-column: 2;
-        grid-row: 1 / span 8; /* Spans all rows to maximize size */
-        width: 100%;
-        height: 100%;
-        max-height: 100%;
-        aspect-ratio: 16 / 9;
-        background: rgba(0, 0, 0, 0.95);
-        border: 3px solid #ffffff;
-        box-shadow: 0 0 60px rgba(0,0,0,0.85);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 32px;
-        /* Remove margin: auto to prevent shrinking */
-    }
+        /* 4. CONTAINER MODULES */
+        .tile {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            color: white;
+            font-family: sans-serif;
+            font-size: 11px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
 
-    /* IC & SIDE TILE ADJUSTMENTS */
-    .ic-tile { border: 2px solid #ffd700; color: #ffd700; }
-    
-    /* Ensure Guest Containers don't stretch too tall */
-    .grid-layout > .tile:not(.pc-tile) {
-        max-height: 90px;
-        align-self: center;
-    }
-</style>
+        /* PC MODULE SPECIFIC (Rule 3.1 & 4.5) */
+        .pc-tile {
+            grid-column: 2;
+            grid-row: 2 / span 6; /* Vertically centered */
+            aspect-ratio: 16 / 9;
+            background: rgba(0, 0, 0, 0.95);
+            border: 2px solid #fff;
+            box-shadow: 0 0 30px rgba(0,0,0,0.7);
+            margin: auto; /* Centers within the 4fr column */
+            font-size: 24px;
+        }
+
+        /* IC MODULE (Rule 3.2 & 4.3) */
+        .ic-tile {
+            border: 2px solid #ffd700;
+            color: #ffd700;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="stage-background">
+        <div class="top-banner"></div>
+
+        <div class="grid-layout">
+            <div class="tile ic-tile" style="grid-column: 1; grid-row: 1;">IC</div>
+            <div class="tile" style="grid-column: 1; grid-row: 2;">GC1</div>
+            <div class="tile" style="grid-column: 1; grid-row: 3;">GC2</div>
+            <div class="tile" style="grid-column: 1; grid-row: 4;">GC3</div>
+            <div class="tile" style="grid-column: 1; grid-row: 5;">GC4</div>
+            <div class="tile" style="grid-column: 1; grid-row: 6;">GC5</div>
+            <div class="tile" style="grid-column: 1; grid-row: 7;">GC6</div>
+            <div class="tile" style="grid-column: 1; grid-row: 8;">GC7</div>
+
+            <div class="tile pc-tile">PC (16:9)</div>
+
+            <div class="tile" style="grid-column: 3; grid-row: 1;">GC8</div>
+            <div class="tile" style="grid-column: 3; grid-row: 2;">GC9</div>
+            <div class="tile" style="grid-column: 3; grid-row: 3;">GC10</div>
+            <div class="tile" style="grid-column: 3; grid-row: 4;">GC11</div>
+            <div class="tile" style="grid-column: 3; grid-row: 5;">GC12</div>
+            <div class="tile" style="grid-column: 3; grid-row: 6;">GC13</div>
+            <div class="tile" style="grid-column: 3; grid-row: 7;">GC14</div>
+            </div>
+    </div>
+
+</body>
+</html>
