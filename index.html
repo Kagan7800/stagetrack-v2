@@ -1,58 +1,80 @@
-<style>
-    /* 1. SAFEGUARD: VIEWPORT & SAFETY NET */
-    body, html { 
-        height: 100vh; width: 100vw; 
-        overflow: hidden; 
-        background-color: #0b2fa3; 
-    }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SNTL-X // FULL_BOX_LAYOUT</title>
+    <link rel="icon" type="image/svg+xml" href="layout.svg">
+    <style>
+        /* SAFEGUARD #1 & #2: VIEWPORT LOCKING & SAFETY NET */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body, html { 
+            height: 100vh; width: 100vw; 
+            overflow: hidden; 
+            background-color: #0b2fa3; 
+        }
 
-    /* 2. SAFEGUARD: VIEWPORT LOCKING */
-    .app-wallpaper {
-        position: absolute;
-        inset: 0;
-        background: url('layout.svg') no-repeat center center;
-        background-size: cover; 
-        z-index: 0;
-    }
+        .app-wallpaper {
+            position: absolute;
+            inset: 0;
+            background: url('layout.svg') no-repeat center center;
+            background-size: cover; 
+            z-index: 0;
+        }
 
-    /* 3. SAFEGUARD: ABSOLUTE UI LAYERING */
-    .side-bar {
-        position: absolute;
-        /* FIX: Start sidebars BELOW the top banner area */
-        /* Adjusted to ~18% or a fixed pixel value to clear the 'Music Fun' box */
-        top: 20%; 
-        height: 80%; /* Takes up the remaining bottom space */
-        width: 45px;
-        background: rgba(0, 0, 0, 0.8);
-        backdrop-filter: blur(10px);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        pointer-events: auto;
-        z-index: 10;
-    }
+        /* SAFEGUARD #3: ABSOLUTE UI LAYERING */
+        .side-box {
+            position: absolute;
+            /* Starts exactly at the 0px line of your content area */
+            top: 22vh; 
+            height: 78vh; 
+            width: 50px;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: auto;
+            z-index: 10;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
 
-    .toolbox-left { 
-        left: 0; 
-        border-radius: 0 15px 0 0; /* Rounds the top corner for a pro look */
-        border-right: 1px solid rgba(255,255,255,0.2); 
-    }
-    
-    .chat-right { 
-        right: 0; 
-        border-radius: 15px 0 0 0; 
-        border-left: 1px solid rgba(255,255,255,0.2); 
-    }
+        .toolbox-left { 
+            left: 0; 
+            border-left: none;
+            border-radius: 0 12px 0 0; 
+        }
 
-    .vertical-text {
-        writing-mode: vertical-rl;
-        text-orientation: mixed;
-        transform: rotate(180deg);
-        color: white;
-        text-transform: uppercase;
-        font-weight: 900;
-        letter-spacing: 2px;
-        font-size: 14px;
-        opacity: 0.9;
-    }
-</style>
+        .chat-right { 
+            right: 0; 
+            border-right: none;
+            border-radius: 12px 0 0 0; 
+        }
+
+        .vertical-label {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            transform: rotate(180deg);
+            color: white;
+            text-transform: uppercase;
+            font-weight: 900;
+            letter-spacing: 3px;
+            font-size: 15px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-wallpaper"></div>
+
+    <div class="side-box toolbox-left">
+        <div class="vertical-label">Toolbox</div>
+    </div>
+
+    <div class="side-box chat-right">
+        <div class="vertical-label">Chat</div>
+    </div>
+
+</body>
+</html>
