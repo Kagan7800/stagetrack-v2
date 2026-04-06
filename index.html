@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SNTL-X // SOURCE_CONTROL</title>
+    <title>SNTL-X // GRID_STAGE_v2</title>
     <link rel="icon" type="image/svg+xml" href="layout.svg">
     <style>
-        /* SAFEGUARD #1 & #2: VIEWPORT LOCKING & SAFETY NET */
+        /* 1 & 2: SAFETY NET & VIEWPORT LOCKING */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body, html { 
             height: 100vh; width: 100vw; 
             overflow: hidden; 
-            background-color: #0b2fa3; /* Standard Safety Net */
+            background-color: #0b2fa3; 
+            font-family: sans-serif;
         }
 
         .app-wallpaper {
@@ -22,88 +23,95 @@
             z-index: 0;
         }
 
-        /* SAFEGUARD #3: ABSOLUTE UI LAYERING */
-        .side-column {
+        /* 3: THE GRID STAGE (7x5 Architecture) */
+        .stage-grid {
             position: absolute;
-            top: 22vh; /* Aligned to the 0px bottom of the top banner */
-            height: 78vh; 
-            width: 55px;
-            display: flex;
-            flex-direction: column;
-            gap: 4px; /* Architectural separation */
+            top: 18vh; /* Starts exactly at 0px of TopBanner */
+            left: 0;
+            width: 100vw;
+            height: 82vh;
+            display: grid;
+            /* Columns: SidebarL | GC1 | GC2 | GC3 | GC4 | SidebarR */
+            grid-template-columns: 60px repeat(4, 1fr) 60px;
+            /* Rows: Row1(PEO) | Row2(PC Top) | Row3(PC Bot) | Row4(PEO) */
+            grid-template-rows: repeat(4, 1fr);
+            gap: 20px; /* Standard 20px padding around PC */
+            padding: 10px;
             z-index: 10;
-            pointer-events: none;
         }
 
-        .left-col { left: 0; }
-        .right-col { right: 0; }
-
-        /* MODULE BOX DEFINITION */
-        .module-box {
-            flex: 1; 
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(12px);
+        /* CONTAINER STYLING */
+        .gc, .pc-anchor, .sidebar-mod {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            pointer-events: auto;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            font-weight: bold;
+            font-size: 10px;
+            border-radius: 8px;
         }
 
-        /* Styling for Left-aligned Modules (PC & TOOLBOX) */
-        .left-col .module-box { 
-            border-left: none; 
-            border-radius: 0 12px 12px 0; 
+        /* PC ANCHOR: CENTERED & DYNAMIC */
+        .pc-anchor {
+            grid-column: 2 / span 4;
+            grid-row: 2 / span 2;
+            background: rgba(0, 0, 0, 0.9);
+            font-size: 24px;
+            border: 2px solid #fff;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
         }
 
-        /* Styling for Right-aligned Modules (PEO & CHAT) */
-        .right-col .module-box { 
-            border-right: none; 
-            border-radius: 12px 0 0 12px; 
-        }
+        /* SIDEBARS: VERTICAL CHAT & TOOLBOX */
+        .sidebar-mod { writing-mode: vertical-rl; transform: rotate(180deg); text-transform: uppercase; }
+        .toolbox-area { grid-column: 1; grid-row: 1 / span 2; }
+        .chat-area { grid-column: 6; grid-row: 1 / span 2; }
 
-        .vertical-label {
-            writing-mode: vertical-rl;
-            text-orientation: mixed;
-            transform: rotate(180deg);
-            color: white;
-            text-transform: uppercase;
-            font-weight: 900;
-            letter-spacing: 2px;
-            font-size: 12px;
-            text-align: center;
-        }
+        /* GRID MAPPING BASED ON SPREADSHEET */
+        .ic { grid-column: 2; grid-row: 1; border-color: #ffd700; } /* Instructor */
+        .gc1 { grid-column: 3; grid-row: 1; }
+        .gc2 { grid-column: 4; grid-row: 1; }
+        .gc3 { grid-column: 5; grid-row: 1; }
+        
+        .gc5 { grid-column: 1; grid-row: 3; }
+        .gc7 { grid-column: 1; grid-row: 4; }
+        
+        .gc6 { grid-column: 6; grid-row: 3; }
+        .gc8 { grid-column: 6; grid-row: 4; }
 
-        /* Sub-labels for clarity */
-        .vertical-label span {
-            display: block;
-            font-size: 8px;
-            margin-top: 10px;
-            opacity: 0.6;
-            letter-spacing: 1px;
-        }
+        .gc9 { grid-column: 2; grid-row: 4; }
+        .gc10 { grid-column: 3; grid-row: 4; }
+        .gc11 { grid-column: 4; grid-row: 4; }
+        .gc12 { grid-column: 5; grid-row: 4; }
     </style>
 </head>
 <body>
 
     <div class="app-wallpaper"></div>
 
-    <div class="side-column left-col">
-        <div class="module-box">
-            <div class="vertical-label">PC <span>Presentation Containers</span></div>
-        </div>
-        <div class="module-box">
-            <div class="vertical-label">TOOLBOX</div>
-        </div>
-    </div>
+    <div class="stage-grid">
+        <div class="pc-anchor">PC</div>
 
-    <div class="side-column right-col">
-        <div class="module-box">
-            <div class="vertical-label">PEO <span>People Containers</span></div>
-        </div>
-        <div class="module-box">
-            <div class="vertical-label">CHAT</div>
-        </div>
+        <div class="sidebar-mod toolbox-area">TOOLBOX</div>
+        <div class="sidebar-mod chat-area">CHAT</div>
+
+        <div class="gc ic">IC</div>
+        <div class="gc gc1">gc1</div>
+        <div class="gc gc2">gc2</div>
+        <div class="gc gc3">gc3</div>
+        
+        <div class="gc gc5">gc5</div>
+        <div class="gc gc7">gc7</div>
+        
+        <div class="gc gc6">gc6</div>
+        <div class="gc gc8">gc8</div>
+
+        <div class="gc gc9">gc9</div>
+        <div class="gc gc10">gc10</div>
+        <div class="gc gc11">gc11</div>
+        <div class="gc gc12">gc12</div>
     </div>
 
 </body>
