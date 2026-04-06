@@ -2,64 +2,70 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>SNTL-X // RECONSTRUCTION_V1</title>
+    <title>SNTL-X // STUDIO_DEBUG_V2</title>
     <style>
-        /* 1. ARCHITECTURAL RESET */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body, html { 
             height: 100vh; width: 100vw; 
             overflow: hidden; 
-            background: #0b2fa3; /* Background Moat */
-            font-family: sans-serif;
+            background: #0b2fa3; /* Base Moat */
+            font-family: 'Segoe UI', sans-serif;
         }
 
-        /* 2. EXPLICIT GRID (5 Columns / 7 Rows) */
         #master-stage {
             display: grid;
-            /* Sidebars: 15% | Center Columns (3 equal parts) | Sidebars: 15% */
+            /* Sidebars: 15% | Center Columns | Sidebars: 15% */
             grid-template-columns: 15% 1fr 1fr 1fr 15%;
-            /* Row 1: Top Margin | Row 2: Top GCs | Row 3-5: Center Space | Row 6: Bottom GCs | Row 7: Footer */
-            grid-template-rows: 15vh 40px 1fr 1fr 1fr 40px 5vh;
+            
+            /* THE SPACING CONCEPT (7-ROW LOCK)
+               R1: Top Margin (12vh)
+               R2: Top GCs (40px)
+               R3: UPPER AIR GAP (10vh) <--- The missing space
+               R4: PC CENTER (35vh) 
+               R5: LOWER AIR GAP (10vh) <--- The missing space
+               R6: Bottom GCs (40px)
+               R7: Bottom Margin (3vh)
+            */
+            grid-template-rows: 12vh 40px 10vh 35vh 10vh 40px 3vh;
+            
             height: 100vh;
             width: 100vw;
-            padding: 20px;
-            gap: 10px;
+            padding: 0 40px;
         }
 
-        /* 3. PEO PILL MODULES (Explicitly Sized) */
         .pill {
             background: #000;
-            border: 1px solid rgba(255,255,255,0.5);
+            border: 1.5px solid rgba(255,255,255,0.4);
             border-radius: 50px;
-            height: 30px;
-            width: 80%;
+            height: 32px;
+            width: 85%;
             margin: auto;
             color: white;
             font-size: 10px;
-            font-weight: bold;
+            font-weight: 900;
             display: flex;
             align-items: center;
             justify-content: center;
+            text-transform: uppercase;
         }
 
-        /* 4. THE PC (50% CENTER LOCK) */
         #pc-container {
             grid-column: 2 / span 3;
-            grid-row: 3 / span 3;
+            grid-row: 4; /* Locked to the 35vh action row */
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
         .pc-box {
-            width: 50%; /* 50% Size as requested */
+            height: 100%; /* Fills the 35vh row exactly */
             aspect-ratio: 16 / 9;
             background: #000;
             border: 2px solid #fff;
-            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
         }
 
-        .gold { border-color: gold; color: gold; }
+        .gold { border-color: #ffcc00; color: #ffcc00; }
     </style>
 </head>
 <body>
@@ -69,17 +75,17 @@
         <div class="pill" style="grid-column: 3; grid-row: 2;">GC5</div>
         <div class="pill" style="grid-column: 4; grid-row: 2;">GC6</div>
 
-        <div class="pill gold" style="grid-column: 1; grid-row: 3;">IC</div>
-        <div class="pill" style="grid-column: 1; grid-row: 4;">GC1</div>
-        <div class="pill" style="grid-column: 1; grid-row: 5;">GC2</div>
+        <div class="pill gold" style="grid-column: 1; grid-row: 4; align-self: start; margin-top: -50px;">IC</div>
+        <div class="pill" style="grid-column: 1; grid-row: 4; align-self: center;">GC1</div>
+        <div class="pill" style="grid-column: 1; grid-row: 4; align-self: end; margin-bottom: -50px;">GC2</div>
 
         <div id="pc-container">
             <div class="pc-box"></div>
         </div>
 
-        <div class="pill" style="grid-column: 5; grid-row: 3;">GC10</div>
-        <div class="pill" style="grid-column: 5; grid-row: 4;">GC11</div>
-        <div class="pill" style="grid-column: 5; grid-row: 5;">GC12</div>
+        <div class="pill" style="grid-column: 5; grid-row: 4; align-self: start; margin-top: -50px;">GC10</div>
+        <div class="pill" style="grid-column: 5; grid-row: 4; align-self: center;">GC11</div>
+        <div class="pill" style="grid-column: 5; grid-row: 4; align-self: end; margin-bottom: -50px;">GC12</div>
 
         <div class="pill" style="grid-column: 2; grid-row: 6;">GC7</div>
         <div class="pill" style="grid-column: 3; grid-row: 6;">GC8</div>
