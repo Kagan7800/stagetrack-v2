@@ -1,0 +1,58 @@
+/* 1. SYSTEM OVERVIEW: Viewport & Safety Net */
+.stage-background {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-color: #0b2fa3; /* Safety Net */
+    background-image: url('layout.svg');
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+/* 2. TOP BANNER MODULE (0px Clearance) */
+.top-banner {
+    height: 18vh;
+    width: 100%;
+}
+
+/* 3. THE 3-COLUMN MODULAR GRID (Rule 4.1 & 4.2) */
+.grid-layout {
+    display: grid;
+    /* Left: 1fr, Center: 4fr, Right: 1fr */
+    grid-template-columns: 1fr 4fr 1fr;
+    /* 8 Row Structure (Rule 4.2) */
+    grid-template-rows: repeat(8, 1fr);
+    height: 82vh;
+    gap: 12px;
+    padding: 10px 20px;
+}
+
+/* 4. CONTAINER MODULES */
+.tile {
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: white;
+}
+
+/* PC MODULE SPECIFIC (Rule 3.1 & 4.5) */
+.pc-tile {
+    grid-column: 2;
+    grid-row: 2 / span 6; /* Vertically centered across 8 rows */
+    aspect-ratio: 16 / 9;
+    background: rgba(0, 0, 0, 0.95);
+    border: 2px solid #fff;
+    box-shadow: 0 0 30px rgba(0,0,0,0.7);
+    margin: auto; /* Centers within the 4fr column */
+}
+
+/* IC MODULE (Rule 3.2 & 4.3) */
+.ic-tile {
+    border-color: #ffd700;
+}
