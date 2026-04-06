@@ -3,43 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SNTL-X // CLEAN_INTERFACE</title>
+    <title>SNTL-X // STUDIO_INTERFACE</title>
     <style>
-        /* 1. SAFEGUARD: THE INVISIBLE SAFETY NET */
-        /* We set the background color to match the SVG's primary blue #0b2fa3 */
+        /* SAFEGUARD #1 & #2: VIEWPORT LOCKING & SAFETY NET */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
         body, html { 
-            height: 100vh; 
-            width: 100vw; 
+            height: 100vh; width: 100vw; 
             overflow: hidden; 
-            background-color: #0b2fa3; 
+            background-color: #0b2fa3; /* Safety Net */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* 2. SAFEGUARD: VIEWPORT UNIT LOCKING */
-        /* Pins the layout.svg to the glass of the screen (no islands/gaps) */
         .app-wallpaper {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             background: url('layout.svg') no-repeat center center;
             background-size: cover; 
             z-index: 0;
         }
 
-        /* 3. SAFEGUARD: ABSOLUTE UI LAYERING */
-        /* This layer remains ready for future functional elements without 
-           disturbing the background wallpaper flow */
+        /* SAFEGUARD #3: ABSOLUTE UI LAYERING */
         .ui-layer {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             z-index: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px;
             pointer-events: none;
+        }
+
+        /* TOOLBOX (Top Right) */
+        .toolbox {
+            align-self: flex-end;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            padding: 15px;
+            pointer-events: auto;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .toolbox h3 { font-size: 14px; margin-bottom: 10px; text-transform: uppercase; opacity: 0.8; }
+        .tool-icons { display: flex; gap: 15px; font-size: 20px; cursor: pointer; }
+
+        /* CHAT (Bottom Left) */
+        .chat-container {
+            align-self: flex-start;
+            width: 280px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(15px);
+            border-radius: 15px;
+            padding: 15px;
+            pointer-events: auto;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .chat-messages { height: 120px; overflow-y: auto; font-size: 13px; margin-bottom: 10px; }
+        .chat-msg { margin-bottom: 8px; }
+        .chat-msg span { color: #ffd93b; font-weight: bold; }
+
+        .chat-input {
+            width: 100%;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            padding: 8px 12px;
+            border-radius: 20px;
+            color: white;
+            outline: none;
         }
     </style>
 </head>
@@ -47,7 +82,24 @@
 
     <div class="app-wallpaper"></div>
 
-    <div class="ui-layer"></div>
+    <div class="ui-layer">
+        <div class="toolbox">
+            <h3>Toolbox</h3>
+            <div class="tool-icons">
+                <span>🛠️</span>
+                <span>🎨</span>
+                <span>⚙️</span>
+            </div>
+        </div>
+
+        <div class="chat-container">
+            <div class="chat-messages">
+                <div class="chat-msg"><span>System:</span> Studio connected.</div>
+                <div class="chat-msg"><span>Admin:</span> Design layout finalized.</div>
+            </div>
+            <input type="text" class="chat-input" placeholder="Type a message...">
+        </div>
+    </div>
 
 </body>
 </html>
