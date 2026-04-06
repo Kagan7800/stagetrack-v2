@@ -3,81 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SNTL-X // STUDIO_v2_FIXED</title>
+    <title>SNTL-X // STUDIO_RCIP_v3</title>
     <style>
-        /* 1. SYSTEM OVERVIEW: Viewport & Safety Net */
+        /* 1. CORE ARCHITECTURE */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body, html { 
             height: 100vh; width: 100vw; 
             overflow: hidden; 
             background: #0b2fa3 url('layout.svg') no-repeat center center fixed;
             background-size: cover;
-            font-family: sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, sans-serif;
         }
 
-        /* 2. TOP BANNER MODULE (18vh Clearance) */
+        /* 2. TOP BANNER CLEARANCE (Protects the Marquee) */
         .top-banner {
-            height: 18vh;
+            height: 20vh; /* Increased slightly to clear the marquee light-bulbs */
             width: 100%;
         }
 
-        /* 3. MODULAR GRID: THE RCIP 3-COLUMN ENGINE */
+        /* 3. THE 3-COLUMN MODULAR GRID (RCIP Adjusted Proportions) */
         .grid-layout {
             display: grid;
-            /* Sidebars: 15% | Center Anchor: 70% | Sidebars: 15% */
-            grid-template-columns: 15% 70% 15%;
+            /* Sidebar: 20% | Center Stage: 60% | Sidebar: 20% */
+            grid-template-columns: 20% 60% 20%;
             grid-template-rows: repeat(8, 1fr);
-            height: 82vh;
+            height: 80vh;
             gap: 12px;
-            padding: 10px 20px;
+            padding: 0 30px 20px 30px;
         }
 
-        /* 4. CONTAINER MODULES */
+        /* 4. CONTAINER MODULES (GC / PEO) */
         .tile {
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.9); /* Darker for better contrast */
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px; /* Matching the rounded pill look from spreadsheet */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-weight: 900;
+            font-size: 12px;
+            letter-spacing: 1px;
+            height: 32px; /* Standardizing the "Pill" height */
+            align-self: center;
+        }
+
+        /* 5. THE PC ANCHOR (Presentation Container) */
+        .pc-tile {
+            grid-column: 2;
+            grid-row: 1 / span 8; 
+            background: none; border: none; backdrop-filter: none; /* Strip tile defaults */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pc-screen {
+            width: 100%;
+            max-width: 900px; /* Constrains 16:9 to reasonable scale */
+            aspect-ratio: 16 / 9;
+            background: rgba(0, 0, 0, 0.95);
+            border: 2px solid #ffffff;
+            box-shadow: 0 0 40px rgba(0,0,0,0.8);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-weight: 900;
-            font-size: 11px;
+            font-size: 24px;
         }
 
-        /* PC MODULE: THE ANCHOR FIX */
-        .pc-tile {
-            grid-column: 2;
-            grid-row: 1 / span 8; /* Utilize full vertical potential */
-            width: 100%;          /* Force expansion to the 70% column */
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* 6. SPECIALIZED CONTAINERS */
+        .ic-tile { 
+            border: 2px solid #ffd700; /* Instructor Gold */
+            color: #ffd700;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
         }
 
-        /* THE INNER 16:9 SCREEN */
-        .pc-screen {
-            width: 95%;           /* Slight padding inside the anchor zone */
-            aspect-ratio: 16 / 9;
-            background: rgba(0, 0, 0, 0.95);
-            border: 2px solid #ffffff;
-            box-shadow: 0 0 50px rgba(0,0,0,0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-        }
-
-        /* IC & SIDEBAR REFINEMENT */
-        .ic-tile { border-color: #ffd700; color: #ffd700; }
-        
-        /* Prevent sidebar tiles from growing too tall */
-        .grid-layout > .tile:not(.pc-tile) {
-            max-height: 85px;
-            align-self: center;
-        }
     </style>
 </head>
 <body>
