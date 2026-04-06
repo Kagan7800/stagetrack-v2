@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SNTL-X // STUDIO_INTERFACE</title>
+    <title>SNTL-X // REVERSED_INTERFACE</title>
     <style>
         /* SAFEGUARD #1 & #2: VIEWPORT LOCKING & SAFETY NET */
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -11,7 +11,7 @@
             height: 100vh; width: 100vw; 
             overflow: hidden; 
             background-color: #0b2fa3; /* Safety Net */
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: sans-serif;
         }
 
         .app-wallpaper {
@@ -34,9 +34,9 @@
             pointer-events: none;
         }
 
-        /* TOOLBOX (Top Right) */
+        /* TOOLBOX (Moved to Top Left) */
         .toolbox {
-            align-self: flex-end;
+            align-self: flex-start; /* FLIPPED TO LEFT */
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.3);
@@ -44,15 +44,11 @@
             padding: 15px;
             pointer-events: auto;
             color: white;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
-        .toolbox h3 { font-size: 14px; margin-bottom: 10px; text-transform: uppercase; opacity: 0.8; }
-        .tool-icons { display: flex; gap: 15px; font-size: 20px; cursor: pointer; }
-
-        /* CHAT (Bottom Left) */
+        /* CHAT (Moved to Bottom Right) */
         .chat-container {
-            align-self: flex-start;
+            align-self: flex-end; /* FLIPPED TO RIGHT */
             width: 280px;
             background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(15px);
@@ -64,9 +60,6 @@
         }
 
         .chat-messages { height: 120px; overflow-y: auto; font-size: 13px; margin-bottom: 10px; }
-        .chat-msg { margin-bottom: 8px; }
-        .chat-msg span { color: #ffd93b; font-weight: bold; }
-
         .chat-input {
             width: 100%;
             background: rgba(255,255,255,0.1);
@@ -84,20 +77,17 @@
 
     <div class="ui-layer">
         <div class="toolbox">
-            <h3>Toolbox</h3>
-            <div class="tool-icons">
-                <span>🛠️</span>
-                <span>🎨</span>
-                <span>⚙️</span>
+            <div style="font-size: 12px; opacity: 0.7; margin-bottom: 8px;">TOOLBOX</div>
+            <div style="display: flex; gap: 15px; font-size: 20px;">
+                <span>🛠️</span><span>🎨</span><span>⚙️</span>
             </div>
         </div>
 
         <div class="chat-container">
             <div class="chat-messages">
-                <div class="chat-msg"><span>System:</span> Studio connected.</div>
-                <div class="chat-msg"><span>Admin:</span> Design layout finalized.</div>
+                <div style="margin-bottom: 8px;"><span style="color: #ffd93b;">System:</span> Layout flipped.</div>
             </div>
-            <input type="text" class="chat-input" placeholder="Type a message...">
+            <input type="text" class="chat-input" placeholder="Message...">
         </div>
     </div>
 
