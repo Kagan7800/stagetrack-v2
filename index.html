@@ -1,98 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SNTL-X // PIXEL_PERFECT</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+<svg viewBox="0 0 1920 1600" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
+    <rect width="1920" height="1600" fill="#0b2fa3" />
+    
+    <g opacity="0.1">
+        <rect x="400" width="600" height="3000" fill="#7a3bd1" transform="rotate(-45)" />
+    </g>
+    <circle cx="300" cy="400" r="25" fill="#ffd93b" />
+    <circle cx="1600" cy="600" r="25" fill="#ffd93b" />
+
+    <g transform="translate(160, 950)">
+        <rect width="1600" height="500" rx="80" fill="#1e90ff" stroke="#ff4d4d" stroke-width="35" />
         
-        /* 1. THE STAGE LOCK */
-        body, html { 
-            height: 100vh; width: 100vw; 
-            background: #0b2fa3; 
-            display: flex; justify-content: center; align-items: center;
-            overflow: hidden;
-        }
-
-        .container {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            /* This ensures the design doesn't stretch */
-            max-width: 500px; 
-        }
-
-        /* 2. THE DESIGN (SVG) */
-        .design-layer {
-            flex: 1; /* Takes all available space */
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        svg {
-            width: 100%;
-            height: auto;
-            max-height: 80vh; /* Keeps it above the buttons */
-        }
-
-        /* 3. THE INTERFACE (Buttons) */
-        .footer-ui {
-            height: 15vh; /* Dedicated space for buttons at the bottom */
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            background: rgba(0,0,0,0.1);
-        }
-
-        .btn {
-            background: #ff2a2a; 
-            border: 4px solid #fff; 
-            border-radius: 50px;
-            color: #fff; 
-            padding: 15px 40px; 
-            font-family: 'Arial Black', sans-serif;
-            font-size: 18px; 
-            cursor: pointer; 
-            box-shadow: 0 6px 0 #8b0000;
-            text-transform: uppercase;
-        }
-
-        .btn:active { transform: translateY(4px); box-shadow: 0 2px 0 #8b0000; }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <div class="design-layer">
-            <svg viewBox="0 0 1920 1600" xmlns="http://www.w3.org/2000/svg">
-                <rect width="1920" height="1600" fill="#0b2fa3" />
-                <g opacity="0.15">
-                    <rect x="200" width="600" height="2400" fill="#7a3bd1" transform="rotate(-45)" />
-                    <rect x="1200" width="600" height="2400" fill="#7a3bd1" transform="rotate(-45)" />
-                </g>
-                <circle cx="300" cy="400" r="25" fill="#ffd93b" />
-                <circle cx="1600" cy="300" r="20" fill="#ffd93b" />
-                
-                <g transform="translate(160, 900)">
-                    <rect width="1600" height="500" rx="60" fill="#1e90ff" stroke="#ff4d4d" stroke-width="30" />
-                    <text x="800" y="220" font-family="Arial Black" font-size="160" fill="#ff2a2a" text-anchor="middle">Music Fun</text>
-                    <text x="800" y="380" font-family="Arial" font-size="80" fill="#ff2a2a" text-anchor="middle">with my Little One</text>
-                </g>
-            </svg>
-        </div>
-
-        <div class="footer-ui">
-            <button class="btn" onclick="alert('PLAY')">PLAY</button>
-            <button class="btn" onclick="alert('STOP')">STOP</button>
-        </div>
-    </div>
-
-</body>
-</html>
+        <text x="800" y="220" font-family="Arial Black, sans-serif" font-size="180" fill="#ff2a2a" text-anchor="middle">Music Fun</text>
+        
+        <text x="800" y="400" font-family="Arial, sans-serif" font-weight="bold" font-size="110" fill="#ff2a2a" text-anchor="middle">with my Little One</text>
+    </g>
+</svg>
