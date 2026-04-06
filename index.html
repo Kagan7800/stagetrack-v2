@@ -1,23 +1,87 @@
-<div class="grid-layout">
-    <div class="tile ic-tile" style="grid-column: 1; grid-row: 2;">IC</div>
-    <div class="tile" style="grid-column: 1; grid-row: 3;">GC1</div>
-    <div class="tile" style="grid-column: 1; grid-row: 4;">GC2</div>
-    <div class="tile" style="grid-column: 1; grid-row: 5;">GC3</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNTL-X // NUCLEAR_STAGE</title>
+    <style>
+        /* 1. SETUP */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body, html { 
+            height: 100vh; width: 100vw; 
+            overflow: hidden; 
+            background: #0b2fa3; /* Safety Blue */
+            font-family: sans-serif;
+        }
 
-    <div class="tile" style="grid-column: 2; grid-row: 1;">GC4</div>
-    <div class="tile" style="grid-column: 3; grid-row: 1;">GC5</div>
-    <div class="tile" style="grid-column: 4; grid-row: 1;">GC6</div>
+        /* 2. THE GRID (5 Columns / 6 Rows) */
+        #stage-master {
+            display: grid;
+            grid-template-columns: 15% 1fr 1fr 1fr 15%;
+            grid-template-rows: 18vh 1fr 1fr 1fr 1fr 1fr;
+            height: 100vh;
+            width: 100vw;
+            gap: 10px;
+            padding: 10px;
+        }
 
-    <div class="pc-tile">
-        <div class="pc-screen">PC (16:9)</div>
+        /* 3. CONTAINERS */
+        .peo {
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid white;
+            border-radius: 50px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 12px;
+            height: 35px;
+            align-self: center;
+        }
+
+        /* 4. THE PC (16:9 CENTER) */
+        #pc-anchor {
+            grid-column: 2 / span 3;
+            grid-row: 3 / span 3;
+            background: black;
+            border: 3px solid white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            aspect-ratio: 16 / 9;
+            width: 100%;
+            margin: auto;
+            color: white;
+            font-size: 24px;
+        }
+
+        .ic { border-color: gold; color: gold; }
+    </style>
+</head>
+<body>
+
+    <div id="stage-master">
+        <div class="peo" style="grid-column: 2; grid-row: 2;">GC4</div>
+        <div class="peo" style="grid-column: 3; grid-row: 2;">GC5</div>
+        <div class="peo" style="grid-column: 4; grid-row: 2;">GC6</div>
+
+        <div class="peo ic" style="grid-column: 1; grid-row: 2;">IC</div>
+        <div class="peo" style="grid-column: 1; grid-row: 3;">GC1</div>
+        <div class="peo" style="grid-column: 1; grid-row: 4;">GC2</div>
+        <div class="peo" style="grid-column: 1; grid-row: 5;">GC3</div>
+
+        <div id="pc-anchor">PC (16:9)</div>
+
+        <div class="peo" style="grid-column: 5; grid-row: 2;">GC10</div>
+        <div class="peo" style="grid-column: 5; grid-row: 3;">GC11</div>
+        <div class="peo" style="grid-column: 5; grid-row: 4;">GC12</div>
+        <div class="peo" style="grid-column: 5; grid-row: 5;">GC13</div>
+
+        <div class="peo" style="grid-column: 2; grid-row: 6;">GC7</div>
+        <div class="peo" style="grid-column: 3; grid-row: 6;">GC8</div>
+        <div class="peo" style="grid-column: 4; grid-row: 6;">GC9</div>
     </div>
 
-    <div class="tile" style="grid-column: 2; grid-row: 6;">GC7</div>
-    <div class="tile" style="grid-column: 3; grid-row: 6;">GC8</div>
-    <div class="tile" style="grid-column: 4; grid-row: 6;">GC9</div>
-
-    <div class="tile" style="grid-column: 5; grid-row: 2;">GC10</div>
-    <div class="tile" style="grid-column: 5; grid-row: 3;">GC11</div>
-    <div class="tile" style="grid-column: 5; grid-row: 4;">GC12</div>
-    <div class="tile" style="grid-column: 5; grid-row: 5;">GC13</div>
-</div>
+</body>
+</html>
