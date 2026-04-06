@@ -3,110 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SNTL-X // PRECISION_GRID</title>
+    <title>SNTL-X // MODULAR_STAGE</title>
     <style>
-        /* SAFEGUARDS #1 & #2: VIEWPORT LOCKING & SAFETY NET */
+        /* SAFEGUARD #1 & #2: VIEWPORT LOCKING */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body, html { 
             height: 100vh; width: 100vw; 
             overflow: hidden; 
+            background: url('layout.svg') no-repeat center center fixed;
+            background-size: cover;
             background-color: #0b2fa3; 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: sans-serif;
         }
 
-        .app-wallpaper {
-            position: absolute;
-            inset: 0;
-            background: url('layout.svg') no-repeat center center;
-            background-size: cover; 
-            z-index: 0;
+        /* MODULE 1: TOP BANNER (0px Clearance) */
+        .top-banner {
+            height: 18vh;
+            width: 100%;
         }
 
-        /* SAFEGUARD #3: THE 12-COLUMN ARCHITECTURAL STAGE */
-        .stage-container {
-            position: absolute;
-            top: 20vh; /* Clears the TopBanner */
-            left: 0;
-            width: 100vw;
-            height: 80vh;
+        /* MODULE 2: THE 3-COLUMN GRID (Rule 4.1) */
+        .grid-layout {
             display: grid;
-            /* 12-Column Grid to match Spreadsheet granularity */
-            grid-template-columns: repeat(12, 1fr);
+            /* LEFT (1fr) | CENTER (4fr) | RIGHT (1fr) */
+            grid-template-columns: 1fr 4fr 1fr;
             grid-template-rows: repeat(8, 1fr);
-            gap: 10px;
-            padding: 20px;
-            z-index: 10;
+            height: 82vh;
+            gap: 12px;
+            padding: 10px 20px;
         }
 
-        /* PC: THE 16:9 ANCHOR */
-        .pc-anchor {
-            grid-column: 3 / span 8; /* Centered in the 12-col grid */
-            grid-row: 2 / span 5;
-            background: rgba(0, 0, 0, 0.95);
-            border: 2px solid #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            aspect-ratio: 16 / 9; /* FORCED 16:9 RATIO */
-            margin: auto; /* Keeps it centered if grid cells are larger */
-            box-shadow: 0 0 40px rgba(0,0,0,0.8);
-            color: white;
-            font-weight: 900;
-        }
-
-        /* PEO: SPREADSHEET-STYLE TILES */
-        .gc {
-            background: rgba(0, 0, 0, 0.75);
+        /* CONTAINER MODULES */
+        .tile {
+            background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            color: rgba(255, 255, 255, 0.7);
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 10px;
-            text-transform: uppercase;
-            border-radius: 4px;
+            color: white;
+            font-weight: bold;
+            font-size: 11px;
         }
 
-        /* POSITIONAL MAPPING (BASED ON SPREADSHEET) */
-        .ic { grid-column: 2; grid-row: 1; border-color: #ffd700; }
-        .gc1 { grid-column: 4; grid-row: 1; }
-        .gc2 { grid-column: 6; grid-row: 1; }
-        .gc3 { grid-column: 8; grid-row: 1; }
-        .gc4 { grid-column: 10; grid-row: 1; }
+        /* PC MODULE (Rule 3.1 & 4.5) */
+        .pc-tile {
+            grid-column: 2;
+            grid-row: 2 / span 6; /* Centered vertically across 8 rows */
+            aspect-ratio: 16 / 9;
+            background: rgba(0, 0, 0, 0.95);
+            border: 2px solid #fff;
+            box-shadow: 0 0 30px rgba(0,0,0,0.7);
+            margin: auto; /* Forces 16:9 and absolute centering */
+            font-size: 24px;
+        }
 
-        /* Left/Right Vertical Groups */
-        .v-left { grid-column: 1; }
-        .v-right { grid-column: 12; }
-
-        /* Bottom Row */
-        .gc-bot { grid-row: 8; }
+        /* IC MODULE (Rule 3.2) */
+        .ic-tile { border-color: #ffd700; color: #ffd700; }
     </style>
 </head>
 <body>
 
-    <div class="app-wallpaper"></div>
+    <div class="top-banner"></div>
 
-    <div class="stage-container">
-        <div class="pc-anchor">PC (16:9)</div>
+    <div class="grid-layout">
+        <div class="tile ic-tile" style="grid-column: 1; grid-row: 1;">IC</div>
+        <div class="tile" style="grid-column: 1; grid-row: 2;">GC1</div>
+        <div class="tile" style="grid-column: 1; grid-row: 3;">GC2</div>
+        <div class="tile" style="grid-column: 1; grid-row: 4;">GC3</div>
+        <div class="tile" style="grid-column: 1; grid-row: 5;">GC4</div>
+        <div class="tile" style="grid-column: 1; grid-row: 6;">GC5</div>
+        <div class="tile" style="grid-column: 1; grid-row: 7;">GC6</div>
+        <div class="tile" style="grid-column: 1; grid-row: 8;">GC7</div>
 
-        <div class="gc ic">IC</div>
-        <div class="gc gc1">gc1</div>
-        <div class="gc gc2">gc2</div>
-        <div class="gc gc3">gc3</div>
-        <div class="gc gc4">gc4</div>
+        <div class="pc-tile">PC (16:9)</div>
 
-        <div class="gc v-left" style="grid-row: 3;">gc5</div>
-        <div class="gc v-left" style="grid-row: 5;">gc7</div>
-        <div class="gc v-right" style="grid-row: 3;">gc6</div>
-        <div class="gc v-right" style="grid-row: 5;">gc8</div>
-
-        <div class="gc gc-bot" style="grid-column: 3;">gc9</div>
-        <div class="gc gc-bot" style="grid-column: 5;">gc10</div>
-        <div class="gc gc-bot" style="grid-column: 7;">gc11</div>
-        <div class="gc gc-bot" style="grid-column: 9;">gc12</div>
-        <div class="gc gc-bot" style="grid-column: 11;">gc13</div>
-    </div>
+        <div class="tile" style="grid-column: 3; grid-row: 1;">GC8</div>
+        <div class="tile" style="grid-column: 3; grid-row: 2;">GC9</div>
+        <div class="tile" style="grid-column: 3; grid-row: 3;">GC10</div>
+        <div class="tile" style="grid-column: 3; grid-row: 4;">GC11</div>
+        <div class="tile" style="grid-column: 3; grid-row: 5;">GC12</div>
+        <div class="tile" style="grid-column: 3; grid-row: 6;">GC13</div>
+        <div class="tile" style="grid-column: 3; grid-row: 7;">GC14</div>
+        </div>
 
 </body>
 </html>
