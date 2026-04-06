@@ -2,42 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>SNTL-X // STUDIO_DEBUG_V2</title>
+    <title>SNTL-X // ISOLATED_LAYOUT_V1</title>
     <style>
+        /* 1. RESET CRITICALS */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body, html { 
             height: 100vh; width: 100vw; 
+            background: #0b2fa3; /* Reference Background Color */
             overflow: hidden; 
-            background: #0b2fa3; /* Base Moat */
-            font-family: 'Segoe UI', sans-serif;
+            font-family: sans-serif;
         }
 
-        #master-stage {
+        /* 2. EXPLICIT 5x7 GRID SYSTEM */
+        #layout-module {
             display: grid;
-            /* Sidebars: 15% | Center Columns | Sidebars: 15% */
+            /* Explicit Columns: Left(15%) | Center(3 tracks) | Right(15%) */
             grid-template-columns: 15% 1fr 1fr 1fr 15%;
-            
-            /* THE SPACING CONCEPT (7-ROW LOCK)
-               R1: Top Margin (12vh)
-               R2: Top GCs (40px)
-               R3: UPPER AIR GAP (10vh) <--- The missing space
-               R4: PC CENTER (35vh) 
-               R5: LOWER AIR GAP (10vh) <--- The missing space
-               R6: Bottom GCs (40px)
-               R7: Bottom Margin (3vh)
+            /* Explicit Rows: 
+               R1: Top Margin (15vh)
+               R2: Top GC Track (45px)
+               R3: Top Buffer (8vh)
+               R4: PC Main Track (30vh) 
+               R5: Bottom Buffer (8vh)
+               R6: Bottom GC Track (45px)
+               R7: Bottom Margin (余白)
             */
-            grid-template-rows: 12vh 40px 10vh 35vh 10vh 40px 3vh;
-            
+            grid-template-rows: 15vh 45px 8vh 30vh 8vh 45px 1fr;
             height: 100vh;
             width: 100vw;
             padding: 0 40px;
         }
 
-        .pill {
+        /* 3. TILE ARCHITECTURE */
+        .tile {
             background: #000;
-            border: 1.5px solid rgba(255,255,255,0.4);
+            border: 1px solid rgba(255,255,255,0.4);
             border-radius: 50px;
-            height: 32px;
+            height: 35px;
             width: 85%;
             margin: auto;
             color: white;
@@ -46,50 +47,50 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            text-transform: uppercase;
         }
 
-        #pc-container {
+        .ic-highlight { border-color: #ffcc00; color: #ffcc00; }
+
+        /* 4. PC ANCHOR (Explicit 50% Size) */
+        #pc-anchor {
             grid-column: 2 / span 3;
-            grid-row: 4; /* Locked to the 35vh action row */
+            grid-row: 4;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        .pc-box {
-            height: 100%; /* Fills the 35vh row exactly */
+        .pc-content {
+            width: 50%; /* Reduction per single source of truth */
             aspect-ratio: 16 / 9;
             background: #000;
             border: 2px solid #fff;
-            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            box-shadow: 0 0 40px rgba(0,0,0,0.6);
         }
-
-        .gold { border-color: #ffcc00; color: #ffcc00; }
     </style>
 </head>
 <body>
 
-    <div id="master-stage">
-        <div class="pill" style="grid-column: 2; grid-row: 2;">GC4</div>
-        <div class="pill" style="grid-column: 3; grid-row: 2;">GC5</div>
-        <div class="pill" style="grid-column: 4; grid-row: 2;">GC6</div>
+    <div id="layout-module">
+        <div class="tile" style="grid-column: 2; grid-row: 2;">GC4</div>
+        <div class="tile" style="grid-column: 3; grid-row: 2;">GC5</div>
+        <div class="tile" style="grid-column: 4; grid-row: 2;">GC6</div>
 
-        <div class="pill gold" style="grid-column: 1; grid-row: 4; align-self: start; margin-top: -50px;">IC</div>
-        <div class="pill" style="grid-column: 1; grid-row: 4; align-self: center;">GC1</div>
-        <div class="pill" style="grid-column: 1; grid-row: 4; align-self: end; margin-bottom: -50px;">GC2</div>
+        <div class="tile ic-highlight" style="grid-column: 1; grid-row: 3;">IC</div>
+        <div class="tile"              style="grid-column: 1; grid-row: 4;">GC1</div>
+        <div class="tile"              style="grid-column: 1; grid-row: 5;">GC2</div>
 
-        <div id="pc-container">
-            <div class="pc-box"></div>
+        <div id="pc-anchor">
+            <div class="pc-content"></div>
         </div>
 
-        <div class="pill" style="grid-column: 5; grid-row: 4; align-self: start; margin-top: -50px;">GC10</div>
-        <div class="pill" style="grid-column: 5; grid-row: 4; align-self: center;">GC11</div>
-        <div class="pill" style="grid-column: 5; grid-row: 4; align-self: end; margin-bottom: -50px;">GC12</div>
+        <div class="tile" style="grid-column: 5; grid-row: 3;">GC10</div>
+        <div class="tile" style="grid-column: 5; grid-row: 4;">GC11</div>
+        <div class="tile" style="grid-column: 5; grid-row: 5;">GC12</div>
 
-        <div class="pill" style="grid-column: 2; grid-row: 6;">GC7</div>
-        <div class="pill" style="grid-column: 3; grid-row: 6;">GC8</div>
-        <div class="pill" style="grid-column: 4; grid-row: 6;">GC9</div>
+        <div class="tile" style="grid-column: 2; grid-row: 6;">GC7</div>
+        <div class="tile" style="grid-column: 3; grid-row: 6;">GC8</div>
+        <div class="tile" style="grid-column: 4; grid-row: 6;">GC9</div>
     </div>
 
 </body>
