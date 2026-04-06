@@ -1,96 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SNTL-X // EDGE_INTERFACE</title>
-    <style>
-        /* SAFEGUARD #1 & #2: VIEWPORT LOCKING & SAFETY NET */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body, html { 
-            height: 100vh; width: 100vw; 
-            overflow: hidden; 
-            background-color: #0b2fa3; /* Safety Net */
-            font-family: 'Arial', sans-serif;
-        }
+<style>
+    /* 1. SAFEGUARD: VIEWPORT & SAFETY NET */
+    body, html { 
+        height: 100vh; width: 100vw; 
+        overflow: hidden; 
+        background-color: #0b2fa3; 
+    }
 
-        .app-wallpaper {
-            position: absolute;
-            inset: 0;
-            background: url('layout.svg') no-repeat center center;
-            background-size: cover; 
-            z-index: 0;
-        }
+    /* 2. SAFEGUARD: VIEWPORT LOCKING */
+    .app-wallpaper {
+        position: absolute;
+        inset: 0;
+        background: url('layout.svg') no-repeat center center;
+        background-size: cover; 
+        z-index: 0;
+    }
 
-        /* SAFEGUARD #3: ABSOLUTE UI LAYERING */
-        .ui-layer {
-            position: absolute;
-            inset: 0;
-            z-index: 1;
-            pointer-events: none;
-        }
+    /* 3. SAFEGUARD: ABSOLUTE UI LAYERING */
+    .side-bar {
+        position: absolute;
+        /* FIX: Start sidebars BELOW the top banner area */
+        /* Adjusted to ~18% or a fixed pixel value to clear the 'Music Fun' box */
+        top: 20%; 
+        height: 80%; /* Takes up the remaining bottom space */
+        width: 45px;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(10px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        pointer-events: auto;
+        z-index: 10;
+    }
 
-        /* STANDARD SIDE-BAR ARCHITECTURE */
-        .side-bar {
-            position: absolute;
-            top: 0;
-            height: 100%;
-            width: 40px; /* Collapsed Width */
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(10px);
-            border-right: 1px solid rgba(255, 255, 255, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            pointer-events: auto;
-            transition: width 0.3s ease;
-            cursor: pointer;
-        }
+    .toolbox-left { 
+        left: 0; 
+        border-radius: 0 15px 0 0; /* Rounds the top corner for a pro look */
+        border-right: 1px solid rgba(255,255,255,0.2); 
+    }
+    
+    .chat-right { 
+        right: 0; 
+        border-radius: 15px 0 0 0; 
+        border-left: 1px solid rgba(255,255,255,0.2); 
+    }
 
-        .side-bar:hover {
-            width: 60px; /* Subtle hover expansion */
-            background: rgba(0, 0, 0, 0.8);
-        }
-
-        /* VERTICAL TEXT FORMATTING */
-        .vertical-label {
-            writing-mode: vertical-rl;
-            text-orientation: mixed;
-            transform: rotate(180deg);
-            color: white;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: bold;
-            font-size: 14px;
-            opacity: 0.8;
-        }
-
-        /* LEFT SIDE: TOOLBOX */
-        .toolbox-side {
-            left: 0;
-        }
-
-        /* RIGHT SIDE: CHAT */
-        .chat-side {
-            right: 0;
-            border-right: none;
-            border-left: 1px solid rgba(255, 255, 255, 0.2);
-        }
-    </style>
-</head>
-<body>
-
-    <div class="app-wallpaper"></div>
-
-    <div class="ui-layer">
-        <div class="side-bar toolbox-side">
-            <div class="vertical-label">TOOLBOX</div>
-        </div>
-
-        <div class="side-bar chat-side">
-            <div class="vertical-label">CHAT</div>
-        </div>
-    </div>
-
-</body>
-</html>
+    .vertical-text {
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        transform: rotate(180deg);
+        color: white;
+        text-transform: uppercase;
+        font-weight: 900;
+        letter-spacing: 2px;
+        font-size: 14px;
+        opacity: 0.9;
+    }
+</style>
