@@ -2,42 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SNTL-X // STUDIO_v2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SNTL-X // STUDIO_v2_FIXED</title>
     <style>
-        /* PILLAR 1: VIEWPORT LOCK */
+        /* 1. SYSTEM OVERVIEW: Viewport & Safety Net */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body, html { 
             height: 100vh; width: 100vw; 
             overflow: hidden; 
-            background-color: #0b2fa3; /* Safety Net */
-        }
-
-        .stage-background {
-            position: fixed;
-            inset: 0;
-            background: url('layout.svg') no-repeat center center;
+            background: #0b2fa3 url('layout.svg') no-repeat center center fixed;
             background-size: cover;
-            z-index: 1;
+            font-family: sans-serif;
         }
 
-        /* PILLAR 2: THE 3-COLUMN MODULAR ENGINE */
+        /* 2. TOP BANNER MODULE (18vh Clearance) */
+        .top-banner {
+            height: 18vh;
+            width: 100%;
+        }
+
+        /* 3. MODULAR GRID: THE RCIP 3-COLUMN ENGINE */
         .grid-layout {
-            position: relative;
-            z-index: 10;
             display: grid;
-            /* Sidebars (1fr) | PC Anchor (4fr) | Sidebars (1fr) */
-            grid-template-columns: 1fr 4fr 1fr;
+            /* Sidebars: 15% | Center Anchor: 70% | Sidebars: 15% */
+            grid-template-columns: 15% 70% 15%;
             grid-template-rows: repeat(8, 1fr);
-            height: 82vh; /* FORCES VISIBILITY */
-            margin-top: 18vh; /* CLEARANCE FOR MARQUEE */
+            height: 82vh;
             gap: 12px;
             padding: 10px 20px;
         }
 
-        /* PILLAR 3: CONTAINER ENFORCEMENT */
+        /* 4. CONTAINER MODULES */
         .tile {
-            background: rgba(0, 0, 0, 0.85);
+            background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 8px;
@@ -45,31 +42,47 @@
             align-items: center;
             justify-content: center;
             color: white;
-            font-family: sans-serif;
             font-weight: 900;
-            font-size: 10px;
-            min-height: 45px; /* PREVENTS VANISHING */
+            font-size: 11px;
         }
 
-        /* THE PC ANCHOR (Rule 3.1 & 4.5) */
+        /* PC MODULE: THE ANCHOR FIX */
         .pc-tile {
             grid-column: 2;
-            grid-row: 2 / span 6; /* Vertically centered */
-            width: 100%;
+            grid-row: 1 / span 8; /* Utilize full vertical potential */
+            width: 100%;          /* Force expansion to the 70% column */
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* THE INNER 16:9 SCREEN */
+        .pc-screen {
+            width: 95%;           /* Slight padding inside the anchor zone */
             aspect-ratio: 16 / 9;
             background: rgba(0, 0, 0, 0.95);
             border: 2px solid #ffffff;
-            box-shadow: 0 0 40px rgba(0,0,0,0.8);
-            margin: auto;
-            font-size: 24px;
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
         }
 
-        .ic-tile { border: 2px solid #ffd700; color: #ffd700; }
+        /* IC & SIDEBAR REFINEMENT */
+        .ic-tile { border-color: #ffd700; color: #ffd700; }
+        
+        /* Prevent sidebar tiles from growing too tall */
+        .grid-layout > .tile:not(.pc-tile) {
+            max-height: 85px;
+            align-self: center;
+        }
     </style>
 </head>
 <body>
 
-    <div class="stage-background"></div>
+    <div class="top-banner"></div>
 
     <div class="grid-layout">
         <div class="tile ic-tile" style="grid-column: 1; grid-row: 1;">IC</div>
@@ -81,7 +94,9 @@
         <div class="tile" style="grid-column: 1; grid-row: 7;">GC6</div>
         <div class="tile" style="grid-column: 1; grid-row: 8;">GC7</div>
 
-        <div class="tile pc-tile">PC (16:9)</div>
+        <div class="pc-tile">
+            <div class="pc-screen">PC (16:9)</div>
+        </div>
 
         <div class="tile" style="grid-column: 3; grid-row: 1;">GC8</div>
         <div class="tile" style="grid-column: 3; grid-row: 2;">GC9</div>
