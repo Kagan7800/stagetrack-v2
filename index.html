@@ -3,92 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SNTL-X // FIXED_STAGE</title>
+    <title>SNTL-X // PRO_STUDIO</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body, html { 
             height: 100vh; width: 100vw; 
             overflow: hidden; 
             background: #0b2fa3; 
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Segoe UI', system-ui, sans-serif;
         }
 
-        /* 5 Columns | 7 Rows */
         #stage-master {
             display: grid;
+            /* Sidebars: 12% | Center: 1fr | Sidebars: 12% */
             grid-template-columns: 12% 1fr 1fr 1fr 12%;
-            grid-template-rows: 15vh 40px 1fr 1fr 1fr 40px 5vh;
+            /* ROW MAP: 
+               1: Banner(15vh) 
+               2: Top Pills(40px) 
+               3: GAP(20px) 
+               4-6: PC Center 
+               7: GAP(20px) 
+               8: Bottom Pills(40px) 
+            */
+            grid-template-rows: 15vh 40px 20px 1fr 1fr 1fr 20px 40px;
             height: 100vh;
             width: 100vw;
-            gap: 10px;
-            padding: 15px;
+            padding: 10px 20px;
         }
 
-        /* Small "Pill" Style for People */
         .peo {
             background: rgba(0, 0, 0, 0.9);
-            border: 1px solid rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.5);
             border-radius: 50px;
             color: white;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 900;
-            font-size: 10px;
-            height: 30px; /* Force small height */
-            width: 90%;
+            font-size: 11px;
+            height: 32px;
+            width: 85%;
             margin: auto;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        /* THE PC (Clamped 16:9) */
         #pc-anchor {
             grid-column: 2 / span 3;
-            grid-row: 3 / span 3;
-            background: black;
-            border: 2px solid white;
-            box-shadow: 0 0 40px rgba(0,0,0,0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            grid-row: 4 / span 3; /* Moved down to Row 4 to clear the gap */
+            background: #000;
+            border: 2px solid #fff;
+            box-shadow: 0 0 50px rgba(0,0,0,0.6);
             width: 100%;
             height: 100%;
             aspect-ratio: 16 / 9;
             margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: white;
-            font-size: 20px;
+            font-size: 24px;
         }
 
-        .ic { border: 2px solid gold; color: gold; }
-
-        /* Label for Top Banner Space */
-        #top-gap { grid-column: 1 / span 5; grid-row: 1; }
+        .ic { border: 2px solid #ffcc00; color: #ffcc00; box-shadow: 0 0 10px rgba(255, 204, 0, 0.4); }
     </style>
 </head>
 <body>
 
     <div id="stage-master">
-        <div id="top-gap"></div>
-
         <div class="peo" style="grid-column: 2; grid-row: 2;">GC4</div>
         <div class="peo" style="grid-column: 3; grid-row: 2;">GC5</div>
         <div class="peo" style="grid-column: 4; grid-row: 2;">GC6</div>
 
-        <div class="peo ic" style="grid-column: 1; grid-row: 3;">IC</div>
-        <div class="peo" style="grid-column: 1; grid-row: 4;">GC1</div>
-        <div class="peo" style="grid-column: 1; grid-row: 5;">GC2</div>
-        <div class="peo" style="grid-column: 1; grid-row: 6;">GC3</div>
+        <div class="peo ic" style="grid-column: 1; grid-row: 4;">IC</div>
+        <div class="peo" style="grid-column: 1; grid-row: 5;">GC1</div>
+        <div class="peo" style="grid-column: 1; grid-row: 6;">GC2</div>
+        <div class="peo" style="grid-column: 1; grid-row: 7;">GC3</div>
 
         <div id="pc-anchor">PC (16:9)</div>
 
-        <div class="peo" style="grid-column: 5; grid-row: 3;">GC10</div>
-        <div class="peo" style="grid-column: 5; grid-row: 4;">GC11</div>
-        <div class="peo" style="grid-column: 5; grid-row: 5;">GC12</div>
-        <div class="peo" style="grid-column: 5; grid-row: 6;">GC13</div>
+        <div class="peo" style="grid-column: 5; grid-row: 4;">GC10</div>
+        <div class="peo" style="grid-column: 5; grid-row: 5;">GC11</div>
+        <div class="peo" style="grid-column: 5; grid-row: 6;">GC12</div>
+        <div class="peo" style="grid-column: 5; grid-row: 7;">GC13</div>
 
-        <div class="peo" style="grid-column: 2; grid-row: 6;">GC7</div>
-        <div class="peo" style="grid-column: 3; grid-row: 6;">GC8</div>
-        <div class="peo" style="grid-column: 4; grid-row: 6;">GC9</div>
+        <div class="peo" style="grid-column: 2; grid-row: 8;">GC7</div>
+        <div class="peo" style="grid-column: 3; grid-row: 8;">GC8</div>
+        <div class="peo" style="grid-column: 4; grid-row: 8;">GC9</div>
     </div>
 
 </body>
