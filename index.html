@@ -2,95 +2,101 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>SNTL-X // ISOLATED_LAYOUT_V1</title>
+    <title>SNTL-X // EXPERT_ISO_V1</title>
     <style>
-        /* 1. RESET CRITICALS */
+        /* 1. LAYER ZERO: THE MOAT */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body, html { 
             height: 100vh; width: 100vw; 
-            background: #0b2fa3; /* Reference Background Color */
             overflow: hidden; 
-            font-family: sans-serif;
+            background: #0b2fa3; /* The architectural blue */
+            font-family: 'Inter', system-ui, sans-serif;
         }
 
-        /* 2. EXPLICIT 5x7 GRID SYSTEM */
-        #layout-module {
+        /* 2. THE GRID ENGINE (Explicit Coordinate System) */
+        #stage-master {
             display: grid;
-            /* Explicit Columns: Left(15%) | Center(3 tracks) | Right(15%) */
-            grid-template-columns: 15% 1fr 1fr 1fr 15%;
-            /* Explicit Rows: 
-               R1: Top Margin (15vh)
-               R2: Top GC Track (45px)
-               R3: Top Buffer (8vh)
-               R4: PC Main Track (30vh) 
-               R5: Bottom Buffer (8vh)
-               R6: Bottom GC Track (45px)
-               R7: Bottom Margin (余白)
+            /* 5 Columns: Side(180px) | 3 Center Tracks | Side(180px) */
+            grid-template-columns: 180px 1fr 1fr 1fr 180px;
+            
+            /* THE SPACING MATRIX (7 Rows)
+               R1: Top Banner Margin (15vh)
+               R2: Top GC Track (Fixed 36px)
+               R3: UPPER MOAT (Fixed 40px) <--- The Spacing Fix
+               R4: PC MAIN TRACK (32vh)
+               R5: LOWER MOAT (Fixed 40px) <--- The Spacing Fix
+               R6: Bottom GC Track (Fixed 36px)
+               R7: Footer Margin (1fr)
             */
-            grid-template-rows: 15vh 45px 8vh 30vh 8vh 45px 1fr;
+            grid-template-rows: 15vh 36px 40px 32vh 40px 36px 1fr;
+            
             height: 100vh;
             width: 100vw;
-            padding: 0 40px;
+            padding: 0 50px;
+            justify-items: center;
         }
 
-        /* 3. TILE ARCHITECTURE */
-        .tile {
-            background: #000;
-            border: 1px solid rgba(255,255,255,0.4);
+        /* 3. PEO PILLS (The "Participants") */
+        .peo {
+            background: rgba(0, 0, 0, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.4);
             border-radius: 50px;
-            height: 35px;
-            width: 85%;
-            margin: auto;
-            color: white;
+            height: 32px;
+            width: 150px; /* Fixed width for architectural consistency */
+            color: #fff;
             font-size: 10px;
             font-weight: 900;
             display: flex;
             align-items: center;
             justify-content: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .ic-highlight { border-color: #ffcc00; color: #ffcc00; }
+        .ic-gold { border: 2px solid #ffcc00; color: #ffcc00; }
 
-        /* 4. PC ANCHOR (Explicit 50% Size) */
+        /* 4. THE PC ANCHOR (50% Scaled Content) */
         #pc-anchor {
             grid-column: 2 / span 3;
             grid-row: 4;
             display: flex;
             align-items: center;
             justify-content: center;
+            width: 100%;
         }
 
-        .pc-content {
-            width: 50%; /* Reduction per single source of truth */
+        .pc-box {
+            /* The 50% Reduction Rule */
+            height: 100%; 
             aspect-ratio: 16 / 9;
             background: #000;
-            border: 2px solid #fff;
-            box-shadow: 0 0 40px rgba(0,0,0,0.6);
+            border: 2px solid #ffffff;
+            box-shadow: 0 0 40px rgba(0,0,0,0.7);
         }
     </style>
 </head>
 <body>
 
-    <div id="layout-module">
-        <div class="tile" style="grid-column: 2; grid-row: 2;">GC4</div>
-        <div class="tile" style="grid-column: 3; grid-row: 2;">GC5</div>
-        <div class="tile" style="grid-column: 4; grid-row: 2;">GC6</div>
+    <div id="stage-master">
+        <div class="peo" style="grid-column: 2; grid-row: 2;">GC4</div>
+        <div class="peo" style="grid-column: 3; grid-row: 2;">GC5</div>
+        <div class="peo" style="grid-column: 4; grid-row: 2;">GC6</div>
 
-        <div class="tile ic-highlight" style="grid-column: 1; grid-row: 3;">IC</div>
-        <div class="tile"              style="grid-column: 1; grid-row: 4;">GC1</div>
-        <div class="tile"              style="grid-column: 1; grid-row: 5;">GC2</div>
+        <div class="peo ic-gold" style="grid-column: 1; grid-row: 3;">IC</div>
+        <div class="peo"         style="grid-column: 1; grid-row: 4;">GC1</div>
+        <div class="peo"         style="grid-column: 1; grid-row: 5;">GC2</div>
 
         <div id="pc-anchor">
-            <div class="pc-content"></div>
+            <div class="pc-box"></div>
         </div>
 
-        <div class="tile" style="grid-column: 5; grid-row: 3;">GC10</div>
-        <div class="tile" style="grid-column: 5; grid-row: 4;">GC11</div>
-        <div class="tile" style="grid-column: 5; grid-row: 5;">GC12</div>
+        <div class="peo" style="grid-column: 5; grid-row: 3;">GC10</div>
+        <div class="peo" style="grid-column: 5; grid-row: 4;">GC11</div>
+        <div class="peo" style="grid-column: 5; grid-row: 5;">GC12</div>
 
-        <div class="tile" style="grid-column: 2; grid-row: 6;">GC7</div>
-        <div class="tile" style="grid-column: 3; grid-row: 6;">GC8</div>
-        <div class="tile" style="grid-column: 4; grid-row: 6;">GC9</div>
+        <div class="peo" style="grid-column: 2; grid-row: 6;">GC7</div>
+        <div class="peo" style="grid-column: 3; grid-row: 6;">GC8</div>
+        <div class="peo" style="grid-column: 4; grid-row: 6;">GC9</div>
     </div>
 
 </body>
