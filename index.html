@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SNTL-X // FULL_BOX_LAYOUT</title>
+    <title>SNTL-X // SOURCE_CONTROL</title>
     <link rel="icon" type="image/svg+xml" href="layout.svg">
     <style>
         /* SAFEGUARD #1 & #2: VIEWPORT LOCKING & SAFETY NET */
@@ -11,7 +11,7 @@
         body, html { 
             height: 100vh; width: 100vw; 
             overflow: hidden; 
-            background-color: #0b2fa3; 
+            background-color: #0b2fa3; /* Standard Safety Net */
         }
 
         .app-wallpaper {
@@ -23,32 +23,43 @@
         }
 
         /* SAFEGUARD #3: ABSOLUTE UI LAYERING */
-        .side-box {
+        .side-column {
             position: absolute;
-            /* Starts exactly at the 0px line of your content area */
-            top: 22vh; 
+            top: 22vh; /* Aligned to the 0px bottom of the top banner */
             height: 78vh; 
-            width: 50px;
+            width: 55px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px; /* Architectural separation */
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .left-col { left: 0; }
+        .right-col { right: 0; }
+
+        /* MODULE BOX DEFINITION */
+        .module-box {
+            flex: 1; 
             background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(12px);
             display: flex;
             align-items: center;
             justify-content: center;
             pointer-events: auto;
-            z-index: 10;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
-        .toolbox-left { 
-            left: 0; 
-            border-left: none;
-            border-radius: 0 12px 0 0; 
+        /* Styling for Left-aligned Modules (PC & TOOLBOX) */
+        .left-col .module-box { 
+            border-left: none; 
+            border-radius: 0 12px 12px 0; 
         }
 
-        .chat-right { 
-            right: 0; 
-            border-right: none;
-            border-radius: 12px 0 0 0; 
+        /* Styling for Right-aligned Modules (PEO & CHAT) */
+        .right-col .module-box { 
+            border-right: none; 
+            border-radius: 12px 0 0 12px; 
         }
 
         .vertical-label {
@@ -58,9 +69,18 @@
             color: white;
             text-transform: uppercase;
             font-weight: 900;
-            letter-spacing: 3px;
-            font-size: 15px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            letter-spacing: 2px;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        /* Sub-labels for clarity */
+        .vertical-label span {
+            display: block;
+            font-size: 8px;
+            margin-top: 10px;
+            opacity: 0.6;
+            letter-spacing: 1px;
         }
     </style>
 </head>
@@ -68,12 +88,22 @@
 
     <div class="app-wallpaper"></div>
 
-    <div class="side-box toolbox-left">
-        <div class="vertical-label">Toolbox</div>
+    <div class="side-column left-col">
+        <div class="module-box">
+            <div class="vertical-label">PC <span>Presentation Containers</span></div>
+        </div>
+        <div class="module-box">
+            <div class="vertical-label">TOOLBOX</div>
+        </div>
     </div>
 
-    <div class="side-box chat-right">
-        <div class="vertical-label">Chat</div>
+    <div class="side-column right-col">
+        <div class="module-box">
+            <div class="vertical-label">PEO <span>People Containers</span></div>
+        </div>
+        <div class="module-box">
+            <div class="vertical-label">CHAT</div>
+        </div>
     </div>
 
 </body>
