@@ -67,3 +67,7 @@ body {
   aspect-ratio: 16 / 9;
   /* ... rest of your styles */
 }
+const stageState = {
+  leftSidebar: ["SYSTEM READY", "TEMP: 180°C", "VOLTAGE: 12V"],
+  rightSidebar: ["LATENCY: 14ms", "FPS: 60", "STATUS: ACTIVE"]
+};
