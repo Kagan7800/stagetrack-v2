@@ -1,42 +1,91 @@
-/* Add this to your existing pill styles */
-.pill {
-  /* ... previous styles ... */
-  cursor: pointer;
-  transition: all 0.2s ease;
+:root {
+  --moat-color: #0b2fa3;
+  --pill-bg: rgba(0, 0, 0, 0.9);
+  --accent-cyan: #00f2ff;
+  --accent-red: #ff5252;
 }
 
-.pill:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: var(--accent-cyan);
-  transform: scale(1.05);
-  box-shadow: 0 0 15px var(--accent-cyan);
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--moat-color);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-family: 'Courier New', Courier, monospace;
+  transition: background 0.5s ease;
 }
 
-/* Restored Grid & PC Node Layout */
+/* THE GRID SHIELD */
 #stage-anchor {
   display: grid;
   grid-template-columns: 180px 1fr 180px;
   grid-template-rows: 40px 1fr 40px;
-  width: 95vw;
-  max-width: 1600px;
-  height: 75vh;
-  gap: 40px;
+  width: 95vw; height: 75vh; gap: 40px;
 }
 
 .pc-node {
   grid-column: 2; grid-row: 2;
-  width: var(--pc-width);
-  aspect-ratio: 16 / 9;
-  background: #000;
-  border: 2px solid #fff;
-  margin: auto;
-  position: relative;
-  overflow: hidden;
-  padding: 20px;
+  width: 50vw; aspect-ratio: 16 / 9;
+  background: #000; border: 2px solid #fff;
+  position: relative; overflow: hidden;
+  padding: 20px; box-shadow: 0 0 50px rgba(0,0,0,0.5);
 }
 
 #terminal-log {
-  color: var(--accent-cyan);
-  font-size: 14px;
-  text-shadow: 0 0 5px var(--accent-cyan);
+  color: var(--accent-cyan); font-size: 14px; line-height: 1.5;
+  height: 100%; overflow: hidden; text-shadow: 0 0 5px var(--accent-cyan);
+}
+
+/* REBOOT BUTTON */
+#reboot-btn {
+  display: none; position: absolute; top: 60%; left: 50%; 
+  transform: translate(-50%, -50%);
+  padding: 10px 20px; background: transparent; 
+  border: 1px solid var(--accent-cyan); color: var(--accent-cyan);
+  cursor: pointer; z-index: 110; font-family: inherit;
+}
+
+#reboot-btn:hover { background: var(--accent-cyan); color: #000; }
+
+/* CRT EFFECTS: Noise, Scanlines, Vignette */
+.pc-node::after {
+  content: ""; position: absolute; top: -100%; left: -100%; width: 300%; height: 300%;
+  background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+  opacity: 0.08; pointer-events: none; z-index: 10;
+  animation: noise-move 0.2s steps(5) infinite;
+}
+
+.pc-node::before {
+  content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: radial-gradient(circle, transparent 40%, rgba(0,0,0,0.9) 110%),
+              linear-gradient(rgba(18,16,16,0) 50%, rgba(0,0,0,0.2) 50%);
+  background-size: 100% 100%, 100% 4px; z-index: 11; pointer-events: none;
+}
+
+/* SIDEBARS & PILLS */
+.sidebar-left, .sidebar-right { display: flex; flex-direction: column; justify-content: space-between; }
+
+.pill {
+  background: var(--pill-bg); border: 1px solid rgba(255,255,255,0.4);
+  color: white; height: 34px; border-radius: 50px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 900; cursor: pointer; transition: all 0.2s;
+}
+
+.pill:hover { border-color: var(--accent-cyan); box-shadow: 0 0 15px var(--accent-cyan); transform: scale(1.05); }
+
+/* FAILSAFE STATE */
+.system-shutdown::before {
+  content: "FATAL ERROR: OVERHEAT"; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: #000; color: var(--accent-red); display: flex; align-items: center; justify-content: center;
+  z-index: 100; font-weight: bold;
+}
+
+@keyframes noise-move { 
+  0% { transform: translate(0,0); } 
+  50% { transform: translate(-5%, 5%); } 
+  100% { transform: translate(0,0); } 
 }
