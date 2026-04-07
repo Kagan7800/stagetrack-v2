@@ -1,67 +1,60 @@
-.layout {
-  display: grid;
-  width: 100%;
+:root {
+  --moat-color: #0b2fa3;
+  --pill-bg: rgba(0, 0, 0, 0.9);
+  --pc-width: 50vw; /* Hard-coded 50% scale */
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--moat-color);
   height: 100vh;
-
-  grid-template-columns:
-    80px        /* Inst label column */
-    1fr         /* Left PEO column */
-    3fr         /* PC center column */
-    1fr         /* Right PEO column */
-    80px;       /* Chat label column */
-
-  grid-template-rows:
-    120px       /* TopBanner */
-    repeat(7, 1fr); /* PEO rows */
-}
-
-.top-banner {
-  grid-column: 1 / 6;
-  grid-row: 1;
-}
-
-.inst-label {
-  grid-column: 1;
-  grid-row: 2 / 9;
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
-.chat-label {
-  grid-column: 5;
-  grid-row: 2 / 9;
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
+/* THE GRID SHIELD: This protects the spacing */
+#stage-anchor {
+  display: grid;
+  /* Columns: Side(Fixed) | Center(Flexible) | Side(Fixed) */
+  grid-template-columns: 180px 1fr 180px;
+  /* Rows: Top(Fixed) | Center(PC) | Bottom(Fixed) */
+  grid-template-rows: 40px 1fr 40px;
+  width: 90vw;
+  height: 70vh; /* Fixed height creates the top/bottom Moat */
+  gap: 40px;    /* THE SPACING CONCEPT: Hard-coded gaps */
+}
+
+.pc-node {
+  grid-column: 2;
+  grid-row: 2;
+  width: var(--pc-width);
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border: 2px solid #fff;
+  margin: auto; /* Keeps it dead center */
+  box-shadow: 0 0 50px rgba(0,0,0,0.5);
+}
+
+/* Sidebars are nested to prevent they drift away from the PC */
+.sidebar-left, .sidebar-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.pill {
+  background: var(--pill-bg);
+  border: 1px solid rgba(255,255,255,0.4);
+  color: white;
+  height: 34px;
+  border-radius: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 11px;
+  font-weight: 900;
 }
-
-/* Left column tiles */
-.ic { grid-column: 2; grid-row: 2; }
-.gc1 { grid-column: 2; grid-row: 3; }
-.gc2 { grid-column: 2; grid-row: 4; }
-.gc3 { grid-column: 2; grid-row: 5; }
-.gc4 { grid-column: 2; grid-row: 6; }
-.gc5 { grid-column: 2; grid-row: 7; }
-.gc6 { grid-column: 2; grid-row: 8; }
-
-/* Center PC (dynamic anchor) */
-.pc {
-  grid-column: 3;
-  grid-row: 3 / 8; /* spans rows 3–7 */
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-/* Right column tiles */
-.gc7  { grid-column: 4; grid-row: 2; }
-.gc8  { grid-column: 4; grid-row: 3; }
-.gc9  { grid-column: 4; grid-row: 4; }
-.gc10 { grid-column: 4; grid-row: 5; }
-.gc11 { grid-column: 4; grid-row: 6; }
-.gc12 { grid-column: 4; grid-row: 7; }
-.gc13 { grid-column: 4; grid-row: 8; }
