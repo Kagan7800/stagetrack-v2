@@ -1,49 +1,42 @@
-:root {
-  --moat-color: #0b2fa3;
-  --pill-bg: rgba(0, 0, 0, 0.9);
-  --pc-width: 50vw;
-  --accent-cyan: #00f2ff;
-  --accent-red: #ff5252;
+/* Add this to your existing pill styles */
+.pill {
+  /* ... previous styles ... */
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+.pill:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--accent-cyan);
+  transform: scale(1.05);
+  box-shadow: 0 0 15px var(--accent-cyan);
+}
 
-body {
-  background: var(--moat-color);
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* Restored Grid & PC Node Layout */
+#stage-anchor {
+  display: grid;
+  grid-template-columns: 180px 1fr 180px;
+  grid-template-rows: 40px 1fr 40px;
+  width: 95vw;
+  max-width: 1600px;
+  height: 75vh;
+  gap: 40px;
+}
+
+.pc-node {
+  grid-column: 2; grid-row: 2;
+  width: var(--pc-width);
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border: 2px solid #fff;
+  margin: auto;
+  position: relative;
   overflow: hidden;
-  font-family: 'Courier New', Courier, monospace;
-  transition: background 0.5s ease; /* Smooth alert transition */
+  padding: 20px;
 }
 
-/* ... existing layout styles ... */
-
-.pill-live::before {
-  content: "";
-  width: 8px;
-  height: 8px;
-  background: var(--accent-red);
-  border-radius: 50%;
-  margin-right: 8px;
-  animation: pulse-red 2s infinite;
-}
-
-@keyframes pulse-red {
-  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 82, 82, 0.7); }
-  70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(255, 82, 82, 0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 82, 82, 0); }
-}
-
-.glitch-flash {
-  animation: pill-flicker 0.2s ease-in-out;
-}
-
-@keyframes pill-flicker {
-  0% { opacity: 1; transform: skewX(0deg); }
-  20% { opacity: 0.5; transform: skewX(10deg); color: var(--accent-cyan); }
-  50% { opacity: 0.8; transform: skewX(-10deg); }
-  100% { opacity: 1; transform: skewX(0deg); }
+#terminal-log {
+  color: var(--accent-cyan);
+  font-size: 14px;
+  text-shadow: 0 0 5px var(--accent-cyan);
 }
