@@ -16,54 +16,11 @@ body {
   justify-content: center;
   overflow: hidden;
   font-family: 'Courier New', Courier, monospace;
-  transition: background 0.5s ease; /* Smooth transition for Red Alert */
+  transition: background 0.5s ease; /* Smooth alert transition */
 }
 
-#stage-anchor {
-  display: grid;
-  grid-template-columns: 180px 1fr 180px;
-  grid-template-rows: 40px 1fr 40px;
-  width: 90vw;
-  max-width: 1600px;
-  height: 70vh;
-  gap: 40px;
-}
+/* ... existing layout styles ... */
 
-.pc-node {
-  grid-column: 2;
-  grid-row: 2;
-  width: var(--pc-width);
-  max-height: 100%;
-  aspect-ratio: 16 / 9;
-  background: #000;
-  border: 2px solid #fff;
-  margin: auto;
-  box-shadow: 0 0 50px rgba(0,0,0,0.5);
-}
-
-.sidebar-left, .sidebar-right {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-}
-
-.pill {
-  background: var(--pill-bg);
-  border: 1px solid rgba(255,255,255,0.4);
-  color: white;
-  height: 34px;
-  border-radius: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 11px;
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-/* LIVE STATUS COMPONENT */
 .pill-live::before {
   content: "";
   width: 8px;
@@ -74,7 +31,6 @@ body {
   animation: pulse-red 2s infinite;
 }
 
-/* ANIMATIONS */
 @keyframes pulse-red {
   0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 82, 82, 0.7); }
   70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(255, 82, 82, 0); }
