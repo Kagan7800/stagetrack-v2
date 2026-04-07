@@ -1,55 +1,58 @@
 /**
- * STAGETRACK V2 - Core Logic Engine
+ * STAGETRACK V2 - Interactive Mode Logic
  */
 const state = {
     leftSidebar: ["CLOCK: 00:00:00", "TEMP: 180.0°C", "VOLTAGE: 12.4V"],
-    rightSidebar: ["LATENCY: 14ms", "FPS: 0", "STATUS: ACTIVE"],
+    rightSidebar: ["LATENCY: 14ms", "FPS: 0", "MODE: NEUTRAL"],
     fps: 0,
     temp: 180.0,
-    isBooting: true
+    isBooting: true,
+    currentMode: 'NEUTRAL' // NEUTRAL, OVERCLOCK, STEALTH
 };
 
-const logs = [
-    "> FETCHING DATA PACKETS...",
-    "> ENCRYPTING CHANNEL...",
-    "> BYPASSING FIREWALL...",
-    "> SYNCING CORES...",
-    "> STABILIZING FLUX...",
-    "> MEMORY LEAK DETECTED: RESOLVED",
-    "> OPTIMIZING GPU PIPELINE..."
-];
+const modeSettings = {
+    NEUTRAL: { color: "#0b2fa3", log: "> SYSTEM NORMAL" },
+    OVERCLOCK: { color: "#4a0000", log: "> CORE VOLTAGE INCREASED" },
+    STEALTH: { color: "#1a1a1a", log: "> THERMAL MASK ACTIVE" }
+};
 
-function addLog() {
+function addLog(customText) {
     const logContainer = document.getElementById('terminal-log');
     if (!logContainer) return;
-    
     const entry = document.createElement('div');
-    entry.innerText = logs[Math.floor(Math.random() * logs.length)];
+    entry.innerText = customText || "> DATA PACKET RECEIVED";
     logContainer.appendChild(entry);
-    
-    // Keep only last 10 logs
-    if (logContainer.childNodes.length > 10) {
-        logContainer.removeChild(logContainer.firstChild);
-    }
-    // Auto-scroll to bottom
+    if (logContainer.childNodes.length > 10) logContainer.removeChild(logContainer.firstChild);
     logContainer.scrollTop = logContainer.scrollHeight;
+}
+
+function switchMode() {
+    const modes = ['NEUTRAL', 'OVERCLOCK', 'STEALTH'];
+    let idx = modes.indexOf(state.currentMode);
+    state.currentMode = modes[(idx + 1) % modes.length];
+    
+    state.rightSidebar[2] = `MODE: ${state.currentMode}`;
+    document.body.style.background = modeSettings[state.currentMode].color;
+    addLog(modeSettings[state.currentMode].log);
+    
+    updateSidebar('right', state.rightSidebar);
 }
 
 async function updateSidebar(side, data) {
     const container = document.querySelector(`.sidebar-${side}`);
     if (!container) return;
 
-    if (!state.isBooting) {
-        container.querySelectorAll('.pill').forEach(p => p.classList.add('glitch-flash'));
-        await new Promise(r => setTimeout(r, 120));
-    }
-
     container.innerHTML = '';
     data.forEach(text => {
         const pill = document.createElement('div');
         pill.className = 'pill';
-        if (text.includes("FPS") || text.includes("CLOCK") || text.includes("TEMP")) pill.classList.add('pill-live');
+        if (text.includes("FPS") || text.includes("CLOCK") || text.includes("MODE")) pill.classList.add('pill-live');
         pill.innerText = text;
+        
+        // Make pills clickable to switch modes
+        pill.style.cursor = "pointer";
+        pill.onclick = switchMode;
+        
         container.appendChild(pill);
     });
 }
@@ -57,14 +60,13 @@ async function updateSidebar(side, data) {
 async function runBootSequence() {
     const pcNode = document.querySelector('.pc-node');
     pcNode.classList.add('screen-booting'); 
-
-    await updateSidebar('left', ["INITIALIZING...", "LOADING SENSORS...", "LINK START"]);
-    await updateSidebar('right', ["NETWORK: UP", "GPU: READY", "MOAT: SECURE"]);
+    await updateSidebar('left', ["INITIALIZING...", "SENSORS...", "ONLINE"]);
+    await updateSidebar('right', ["NET: OK", "GPU: OK", "MODE: NEUTRAL"]);
     
     setTimeout(() => {
         state.isBooting = false;
         pcNode.classList.remove('screen-booting');
-        setInterval(addLog, 2000); // Start logging every 2 seconds
+        setInterval(() => addLog(), 3000);
         requestAnimationFrame(tick);
     }, 2000);
 }
@@ -78,11 +80,13 @@ function tick(now) {
         state.fps = frames;
         state.rightSidebar[1] = `FPS: ${state.fps}`;
         state.leftSidebar[0] = `CLOCK: ${new Date().toLocaleTimeString('en-GB', { hour12: false })}`;
-        state.temp += (Math.random() - 0.5) * 4;
-        state.leftSidebar[1] = `TEMP: ${state.temp.toFixed(1)}°C`;
         
-        document.body.style.background = state.temp > 185 ? "#4a0000" : "var(--moat-color)";
-        state.rightSidebar[2] = state.temp > 185 ? "STATUS: WARNING" : "STATUS: ACTIVE";
+        // Only jitter temp in Neutral mode; Overclock makes it rise
+        if(state.currentMode === 'OVERCLOCK') state.temp += 1.5;
+        else if(state.currentMode === 'STEALTH') state.temp -= 1.0;
+        else state.temp += (Math.random() - 0.5) * 2;
+
+        state.leftSidebar[1] = `TEMP: ${state.temp.toFixed(1)}°C`;
         
         updateSidebar('left', state.leftSidebar);
         updateSidebar('right', state.rightSidebar);
