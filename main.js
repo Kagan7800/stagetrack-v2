@@ -1,21 +1,19 @@
 // 1. Central Data State
 const stageState = {
   leftSidebar: ["SYSTEM READY", "TEMP: 180°C", "VOLTAGE: 12V"],
-  rightSidebar: ["LATENCY: 14ms", "FPS: 60", "STATUS: ACTIVE"]
+  rightSidebar: ["LATENCY: 14ms", "FPS: 0", "STATUS: ACTIVE"] // FPS starts at 0
 };
 
 // 2. The Glitch & Update Function
 async function updateSidebarUI(side, dataArray) {
   const container = document.querySelector(`.sidebar-${side}`);
-  const existingPills = container.querySelectorAll('.pill');
+  if (!container) return;
 
-  // Apply glitch to current pills
+  const existingPills = container.querySelectorAll('.pill');
   existingPills.forEach(pill => pill.classList.add('glitch-flash'));
 
-  // Wait for animation mid-point
   await new Promise(resolve => setTimeout(resolve, 150));
 
-  // Clear and Build new pills
   container.innerHTML = '';
   dataArray.forEach(text => {
     const pill = document.createElement('div');
@@ -25,15 +23,36 @@ async function updateSidebarUI(side, dataArray) {
   });
 }
 
-// 3. Initial Render
+// 3. Live FPS Tracker Logic
+let lastFrameTime = performance.now();
+let frameCount = 0;
+
+function updateFPS() {
+  const now = performance.now();
+  frameCount++;
+
+  if (now - lastFrameTime >= 1000) {
+    const fps = frameCount;
+    // Update the state
+    stageState.rightSidebar[1] = `FPS: ${fps}`;
+    
+    // Only update the right sidebar UI to show the new FPS
+    updateSidebarUI('right', stageState.rightSidebar);
+
+    frameCount = 0;
+    lastFrameTime = now;
+  }
+
+  requestAnimationFrame(updateFPS);
+}
+
+// 4. Initial Render & Start Loop
 function init() {
   updateSidebarUI('left', stageState.leftSidebar);
   updateSidebarUI('right', stageState.rightSidebar);
+  
+  // Start the live FPS counter
+  requestAnimationFrame(updateFPS);
 }
 
-// Run when page loads
 window.addEventListener('DOMContentLoaded', init);
-
-/** * PRO TIP: Call updateSidebarUI('left', ['NEW', 'DATA']) 
- * anytime you want to trigger the animation and change text.
- */
