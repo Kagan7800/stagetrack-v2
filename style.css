@@ -13,7 +13,7 @@ body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  font-family: sans-serif;
+  font-family: 'Courier New', Courier, monospace; /* Tech vibe */
 }
 
 #stage-anchor {
@@ -35,7 +35,6 @@ body {
   border: 2px solid #fff;
   margin: auto;
   box-shadow: 0 0 50px rgba(0,0,0,0.5);
-  object-fit: contain;
 }
 
 .sidebar-left, .sidebar-right {
@@ -56,18 +55,18 @@ body {
   justify-content: center;
   font-size: 11px;
   font-weight: 900;
-  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-/* The Glitch Effect */
+/* Flicker Animation */
 .glitch-flash {
   animation: pill-flicker 0.2s ease-in-out;
 }
 
 @keyframes pill-flicker {
-  0% { opacity: 1; transform: translateX(0); border-color: rgba(255,255,255,0.4); }
-  25% { opacity: 0.4; transform: translateX(-2px); border-color: #ff0055; }
-  50% { opacity: 0.8; transform: translateX(2px); }
-  75% { opacity: 0.2; border-color: #00f2ff; }
-  100% { opacity: 1; transform: translateX(0); border-color: rgba(255,255,255,0.4); }
+  0% { opacity: 1; transform: scale(1); }
+  25% { opacity: 0.3; transform: scale(1.05); color: #00f2ff; }
+  50% { opacity: 0.7; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
 }
