@@ -1,7 +1,7 @@
 :root {
   --moat-color: #0b2fa3;
   --pill-bg: rgba(0, 0, 0, 0.9);
-  --pc-width: 50vw; /* Hard-coded 50% scale */
+  --pc-width: 50vw;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -13,32 +13,31 @@ body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  font-family: sans-serif;
 }
 
-/* THE GRID SHIELD: This protects the spacing */
 #stage-anchor {
   display: grid;
-  /* Columns: Side(Fixed) | Center(Flexible) | Side(Fixed) */
   grid-template-columns: 180px 1fr 180px;
-  /* Rows: Top(Fixed) | Center(PC) | Bottom(Fixed) */
   grid-template-rows: 40px 1fr 40px;
   width: 90vw;
-  height: 70vh; /* Fixed height creates the top/bottom Moat */
-  gap: 40px;    /* THE SPACING CONCEPT: Hard-coded gaps */
+  height: 70vh;
+  gap: 40px;
 }
 
 .pc-node {
   grid-column: 2;
   grid-row: 2;
   width: var(--pc-width);
+  max-height: 100%;
   aspect-ratio: 16 / 9;
   background: #000;
   border: 2px solid #fff;
-  margin: auto; /* Keeps it dead center */
+  margin: auto;
   box-shadow: 0 0 50px rgba(0,0,0,0.5);
+  object-fit: contain;
 }
 
-/* Sidebars are nested to prevent they drift away from the PC */
 .sidebar-left, .sidebar-right {
   display: flex;
   flex-direction: column;
@@ -57,17 +56,18 @@ body {
   justify-content: center;
   font-size: 11px;
   font-weight: 900;
+  transition: all 0.2s ease;
 }
-.pc-node {
-  grid-column: 2;
-  grid-row: 2;
-  width: var(--pc-width);
-  max-height: 100%; /* Prevents the screen from bleeding into the top/bottom 40px rows */
-  object-fit: contain; /* Useful if you later put an image or video inside */
-  aspect-ratio: 16 / 9;
-  /* ... rest of your styles */
+
+/* The Glitch Effect */
+.glitch-flash {
+  animation: pill-flicker 0.2s ease-in-out;
 }
-const stageState = {
-  leftSidebar: ["SYSTEM READY", "TEMP: 180°C", "VOLTAGE: 12V"],
-  rightSidebar: ["LATENCY: 14ms", "FPS: 60", "STATUS: ACTIVE"]
-};
+
+@keyframes pill-flicker {
+  0% { opacity: 1; transform: translateX(0); border-color: rgba(255,255,255,0.4); }
+  25% { opacity: 0.4; transform: translateX(-2px); border-color: #ff0055; }
+  50% { opacity: 0.8; transform: translateX(2px); }
+  75% { opacity: 0.2; border-color: #00f2ff; }
+  100% { opacity: 1; transform: translateX(0); border-color: rgba(255,255,255,0.4); }
+}
