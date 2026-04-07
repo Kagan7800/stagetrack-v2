@@ -1,8 +1,6 @@
 /**
  * STAGETRACK V2 - Core Logic Engine
- * Features: RAF Performance Monitor, Interactive Modes, Thermal Failsafe, and Audio Alerts
  */
-
 const initialState = {
     leftSidebar: ["CLOCK: 00:00:00", "TEMP: 180.0°C", "VOLTAGE: 12.4V"],
     rightSidebar: ["LATENCY: 14ms", "FPS: 0", "MODE: NEUTRAL"],
@@ -10,7 +8,7 @@ const initialState = {
     temp: 180.0,
     isBooting: true,
     isDead: false,
-    currentMode: 'NEUTRAL' // NEUTRAL, OVERCLOCK, STEALTH
+    currentMode: 'NEUTRAL'
 };
 
 let state = { ...initialState };
@@ -32,13 +30,11 @@ function playAlertTone(freq = 440, duration = 0.1) {
 }
 
 // --- SYSTEM CONTROLS ---
-
 function switchMode() {
     const modes = ['NEUTRAL', 'OVERCLOCK', 'STEALTH'];
     state.currentMode = modes[(modes.indexOf(state.currentMode) + 1) % modes.length];
     playAlertTone(660, 0.05);
     addLog(`> MODE CHANGED: ${state.currentMode}`);
-    updateSidebar('right', state.rightSidebar);
 }
 
 function rebootSystem() {
@@ -60,7 +56,6 @@ function addLog(text) {
 }
 
 // --- RENDER & TICK ---
-
 async function updateSidebar(side, data) {
     const container = document.querySelector(`.sidebar-${side}`);
     if (!container) return;
@@ -84,13 +79,12 @@ function tick(now) {
         state.rightSidebar[2] = `MODE: ${state.currentMode}`;
         state.leftSidebar[0] = `CLOCK: ${new Date().toLocaleTimeString('en-GB', { hour12: false })}`;
         
-        // Mode-based Thermodynamics
-        if(state.currentMode === 'OVERCLOCK') state.temp += 2.5;
-        else if(state.currentMode === 'STEALTH') state.temp -= 0.8;
+        if(state.currentMode === 'OVERCLOCK') state.temp += 2.8;
+        else if(state.currentMode === 'STEALTH') state.temp -= 0.6;
         else state.temp += (Math.random() - 0.5) * 2;
+        
         state.leftSidebar[1] = `TEMP: ${state.temp.toFixed(1)}°C`;
 
-        // Safety Protocols
         if (state.temp > 250) {
             state.isDead = true;
             document.querySelector('.pc-node').classList.add('system-shutdown');
